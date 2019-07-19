@@ -1,0 +1,7 @@
+language: node_js
+
+env:
+  - DATABASE_URL=postgresql://postgres@localhost:5432/waiter_shifts
+
+node_js:
+  - "v9.11.2"
