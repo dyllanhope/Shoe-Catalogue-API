@@ -114,15 +114,15 @@ checkoutBtn.addEventListener('click', function () {
 });
 
 function buildDropDowns () {
-    var colourOptions = { list: shoeInstance.colours() };
+    var colourOptions = { list: shoeInstance.lists('colour') };
     var colourHTML = dropDownTemplate(colourOptions);
     colourData.innerHTML = colourHTML;
 
-    var brandOptions = { list: shoeInstance.brand() };
+    var brandOptions = { list: shoeInstance.lists('brand') };
     var brandHTML = dropDownTemplate(brandOptions);
     brandData.innerHTML = brandHTML;
 
-    var sizeOptions = { list: shoeInstance.size() };
+    var sizeOptions = { list: shoeInstance.lists('size') };
     var sizeHTML = dropDownTemplate(sizeOptions);
     sizeData.innerHTML = sizeHTML;
 }

@@ -9,32 +9,32 @@ var records = [
     },
     {
         id: 2,
-        colour: 'Blue',
+        colour: 'Red',
         brand: 'Nike',
-        price: 300,
+        price: 350,
         size: 9,
         item_stock: 4
     },
     {
         id: 3,
-        colour: 'White',
+        colour: 'Red',
         brand: 'Nike',
-        price: 900,
+        price: 350,
         size: 10,
         item_stock: 3
     },
     {
         id: 4,
-        colour: 'Black',
+        colour: 'Red',
         brand: 'Nike',
-        price: 950,
+        price: 350,
         size: 11,
         item_stock: 2
     },
     {
         id: 5,
-        colour: 'Red',
-        brand: 'Adidas',
+        colour: 'Blue',
+        brand: 'Nike',
         price: 400,
         size: 8,
         item_stock: 0
@@ -42,121 +42,473 @@ var records = [
     {
         id: 6,
         colour: 'Blue',
-        brand: 'Adidas',
-        price: 250,
+        brand: 'Nike',
+        price: 400,
         size: 9,
-        item_stock: 4
+        item_stock: 2
     },
     {
         id: 7,
-        colour: 'White',
-        brand: 'Adidas',
-        price: 1200,
+        colour: 'Blue',
+        brand: 'Nike',
+        price: 400,
         size: 10,
-        item_stock: 2
+        item_stock: 7
     },
     {
         id: 8,
-        colour: 'Black',
-        brand: 'Adidas',
-        price: 1100,
+        colour: 'Blue',
+        brand: 'Nike',
+        price: 400,
         size: 11,
-        item_stock: 4
+        item_stock: 5
     },
     {
         id: 9,
-        colour: 'Red',
-        brand: 'New Balance',
-        price: 300,
+        colour: 'Black',
+        brand: 'Nike',
+        price: 1200,
         size: 8,
-        item_stock: 2
+        item_stock: 5
     },
     {
         id: 10,
-        colour: 'Blue',
-        brand: 'New Balance',
-        price: 350,
+        colour: 'Black',
+        brand: 'Nike',
+        price: 1200,
         size: 9,
         item_stock: 1
     },
     {
         id: 11,
-        colour: 'White',
-        brand: 'New Balance',
-        price: 700,
+        colour: 'Black',
+        brand: 'Nike',
+        price: 1200,
         size: 10,
-        item_stock: 7
+        item_stock: 3
     },
     {
         id: 12,
         colour: 'Black',
-        brand: 'New Balance',
-        price: 750,
+        brand: 'Nike',
+        price: 1200,
         size: 11,
         item_stock: 3
     },
     {
         id: 13,
-        colour: 'Red',
-        brand: 'Vans',
-        price: 400,
+        colour: 'White',
+        brand: 'Nike',
+        price: 1100,
         size: 8,
-        item_stock: 4
+        item_stock: 2
     },
     {
         id: 14,
-        colour: 'Blue',
-        brand: 'Vans',
-        price: 350,
+        colour: 'White',
+        brand: 'Nike',
+        price: 1100,
         size: 9,
-        item_stock: 2
+        item_stock: 4
     },
     {
         id: 15,
         colour: 'White',
-        brand: 'Vans',
-        price: 800,
+        brand: 'Nike',
+        price: 1100,
         size: 10,
         item_stock: 1
     },
     {
         id: 16,
-        colour: 'Black',
-        brand: 'Vans',
-        price: 1000,
+        colour: 'White',
+        brand: 'Nike',
+        price: 1100,
         size: 11,
-        item_stock: 4
+        item_stock: 5
     },
     {
         id: 17,
         colour: 'Red',
-        brand: 'Puma',
-        price: 200,
+        brand: 'Adidas',
+        price: 400,
+        size: 8,
+        item_stock: 6
+    },
+    {
+        id: 18,
+        colour: 'Red',
+        brand: 'Adidas',
+        price: 400,
+        size: 9,
+        item_stock: 2
+    },
+    {
+        id: 19,
+        colour: 'Red',
+        brand: 'Adidas',
+        price: 400,
+        size: 10,
+        item_stock: 1
+    },
+    {
+        id: 20,
+        colour: 'Red',
+        brand: 'Adidas',
+        price: 400,
+        size: 11,
+        item_stock: 5
+    },
+    {
+        id: 21,
+        colour: 'Blue',
+        brand: 'Adidas',
+        price: 450,
+        size: 8,
+        item_stock: 5
+    },
+    {
+        id: 22,
+        colour: 'Blue',
+        brand: 'Adidas',
+        price: 450,
+        size: 9,
+        item_stock: 3
+    },
+    {
+        id: 23,
+        colour: 'Blue',
+        brand: 'Adidas',
+        price: 450,
+        size: 10,
+        item_stock: 1
+    },
+    {
+        id: 24,
+        colour: 'Blue',
+        brand: 'Adidas',
+        price: 450,
+        size: 11,
+        item_stock: 0
+    },
+    {
+        id: 25,
+        colour: 'Black',
+        brand: 'Adidas',
+        price: 1250,
+        size: 8,
+        item_stock: 3
+    },
+    {
+        id: 26,
+        colour: 'Black',
+        brand: 'Adidas',
+        price: 1250,
+        size: 9,
+        item_stock: 2
+    },
+    {
+        id: 27,
+        colour: 'Black',
+        brand: 'Adidas',
+        price: 1250,
+        size: 10,
+        item_stock: 5
+    },
+    {
+        id: 28,
+        colour: 'Black',
+        brand: 'Adidas',
+        price: 1250,
+        size: 11,
+        item_stock: 5
+    },
+    {
+        id: 29,
+        colour: 'White',
+        brand: 'Adidas',
+        price: 1300,
+        size: 8,
+        item_stock: 4
+    },
+    {
+        id: 30,
+        colour: 'White',
+        brand: 'Adidas',
+        price: 1300,
+        size: 9,
+        item_stock: 1
+    },
+    {
+        id: 31,
+        colour: 'White',
+        brand: 'Adidas',
+        price: 1300,
+        size: 10,
+        item_stock: 5
+    },
+    {
+        id: 32,
+        colour: 'White',
+        brand: 'Adidas',
+        price: 1300,
+        size: 11,
+        item_stock: 2
+    },
+    {
+        id: 33,
+        colour: 'Red',
+        brand: 'New Balance',
+        price: 400,
+        size: 8,
+        item_stock: 4
+    },
+    {
+        id: 34,
+        colour: 'Red',
+        brand: 'New Balance',
+        price: 400,
+        size: 9,
+        item_stock: 1
+    },
+    {
+        id: 35,
+        colour: 'Red',
+        brand: 'New Balance',
+        price: 400,
+        size: 10,
+        item_stock: 2
+    },
+    {
+        id: 36,
+        colour: 'Red',
+        brand: 'New Balance',
+        price: 400,
+        size: 11,
+        item_stock: 3
+    },
+    {
+        id: 37,
+        colour: 'Blue',
+        brand: 'New Balance',
+        price: 400,
         size: 8,
         item_stock: 7
     },
     {
-        id: 18,
+        id: 38,
         colour: 'Blue',
-        brand: 'Puma',
-        price: 250,
+        brand: 'New Balance',
+        price: 400,
+        size: 9,
+        item_stock: 3
+    },
+    {
+        id: 39,
+        colour: 'Blue',
+        brand: 'New Balance',
+        price: 400,
+        size: 10,
+        item_stock: 5
+    },
+    {
+        id: 40,
+        colour: 'Blue',
+        brand: 'New Balance',
+        price: 400,
+        size: 11,
+        item_stock: 2
+    },
+    {
+        id: 41,
+        colour: 'Black',
+        brand: 'New Balance',
+        price: 1000,
+        size: 8,
+        item_stock: 3
+    },
+    {
+        id: 42,
+        colour: 'Black',
+        brand: 'New Balance',
+        price: 1000,
         size: 9,
         item_stock: 5
     },
     {
-        id: 19,
-        colour: 'White',
-        brand: 'Puma',
-        price: 600,
+        id: 43,
+        colour: 'Black',
+        brand: 'New Balance',
+        price: 1000,
         size: 10,
-        item_stock: 8
+        item_stock: 1
     },
     {
-        id: 20,
+        id: 44,
         colour: 'Black',
-        brand: 'Puma',
-        price: 550,
+        brand: 'New Balance',
+        price: 1000,
         size: 11,
+        item_stock: 0
+    },
+    {
+        id: 45,
+        colour: 'White',
+        brand: 'New Balance',
+        price: 950,
+        size: 8,
+        item_stock: 1
+    },
+    {
+        id: 46,
+        colour: 'White',
+        brand: 'New Balance',
+        price: 950,
+        size: 9,
         item_stock: 5
+    },
+    {
+        id: 47,
+        colour: 'White',
+        brand: 'New Balance',
+        price: 950,
+        size: 10,
+        item_stock: 2
+    },
+    {
+        id: 48,
+        colour: 'White',
+        brand: 'New Balance',
+        price: 950,
+        size: 11,
+        item_stock: 4
+    },
+    {
+        id: 49,
+        colour: 'Red',
+        brand: 'Vans',
+        price: 400,
+        size: 8,
+        item_stock: 1
+    },
+    {
+        id: 50,
+        colour: 'Red',
+        brand: 'Vans',
+        price: 400,
+        size: 9,
+        item_stock: 5
+    },
+    {
+        id: 51,
+        colour: 'Red',
+        brand: 'Vans',
+        price: 400,
+        size: 10,
+        item_stock: 6
+    },
+    {
+        id: 52,
+        colour: 'Red',
+        brand: 'Vans',
+        price: 400,
+        size: 11,
+        item_stock: 2
+    },
+    {
+        id: 53,
+        colour: 'Blue',
+        brand: 'Vans',
+        price: 500,
+        size: 8,
+        item_stock: 4
+    },
+    {
+        id: 54,
+        colour: 'Blue',
+        brand: 'Vans',
+        price: 500,
+        size: 9,
+        item_stock: 6
+    },
+    {
+        id: 55,
+        colour: 'Blue',
+        brand: 'Vans',
+        price: 500,
+        size: 10,
+        item_stock: 3
+    },
+    {
+        id: 56,
+        colour: 'Blue',
+        brand: 'Vans',
+        price: 500,
+        size: 11,
+        item_stock: 1
+    },
+    {
+        id: 57,
+        colour: 'Black',
+        brand: 'Vans',
+        price: 900,
+        size: 8,
+        item_stock: 2
+    },
+    {
+        id: 58,
+        colour: 'Black',
+        brand: 'Vans',
+        price: 900,
+        size: 9,
+        item_stock: 5
+    },
+    {
+        id: 59,
+        colour: 'Black',
+        brand: 'Vans',
+        price: 900,
+        size: 10,
+        item_stock: 5
+    },
+    {
+        id: 60,
+        colour: 'Black',
+        brand: 'Vans',
+        price: 900,
+        size: 11,
+        item_stock: 6
+    },
+    {
+        id: 61,
+        colour: 'White',
+        brand: 'Vans',
+        price: 800,
+        size: 8,
+        item_stock: 7
+    },
+    {
+        id: 62,
+        colour: 'White',
+        brand: 'Vans',
+        price: 800,
+        size: 9,
+        item_stock: 3
+    },
+    {
+        id: 63,
+        colour: 'White',
+        brand: 'Vans',
+        price: 800,
+        size: 10,
+        item_stock: 3
+    },
+    {
+        id: 64,
+        colour: 'White',
+        brand: 'Vans',
+        price: 800,
+        size: 11,
+        item_stock: 1
     }
 ];
