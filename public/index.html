@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="css/simple-grid.css">
+    <link rel="stylesheet" href="css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <title>Shoe Catalogue</title>
+
+    <script type="text/template" class="filteredListTemplate">
+            {{#if (isAllSelected)}}
+                {{#each filter}}
+                    <h4>We have <span style="color:red">{{stock}}</span> {{colour}} {{brand}}(s) - size: {{size}} at R{{price}} in stock.</h4>
+                {{/each}}
+            {{else if (isSizeSelected)}}
+            <h4>Shoes:</h4>
+            <table class = "tableStyle">
+                <tr>
+                    <th>Items Available</th>
+                    <th>Stock</th>
+                    <th>Price</th>
+                </tr>
+                {{#each filter}}
+                <tr>
+                    <td>{{Avail_item}} </td>
+                    <td>{{Avail_sizes}}</td>
+                    <td>R{{price}}</td>
+                </tr>
+                {{/each}}
+                    </table>
+            {{else}}
+            <h4>Shoes:</h4>
+            <table class="tableStyle">
+                <tr>
+                    <th>Items Available</th>
+                    <th>Sizes(stock)</th>
+                    <th>Price</th>
+                </tr>
+                {{#each filter}}
+                <tr>
+                    <td>{{Avail_item}} </td>
+                    <td>{{Avail_sizes}} </td>
+                    <td>R{{price}} </td>
+                    </tr>
+                {{/each}}
+                    </table>
+            {{/if}}
+    </script>
+
+
+    <script type="text/template" class="basketListTemplate">
+        <ul>
+            {{#each items}}
+                <li>Size {{size}} {{colour}} {{brand}}  ({{qty}} - R{{cost}}) </li>
+            {{/each}}
+        </ul>
+    </script>
+
+    <script type="text/template" class="dropDownTemplate">
+        {{#each list}}
+            <option value="{{this}}">{{this}}</option>
+        {{/each}}
+    </script>
+
+</head>
+
+<body>
+    <div class="container">
+        <h1><u>Dyllans Shoe Catalogue</u></h1>
+        <div class="row center">
+            <div class="col-8 border sideRight">
+                <table class="center">
+                    <tr>
+                        <td>
+                            <h4>Colour:</h4>
+                        </td>
+                        <td><select id="colourDrop" style="float: none;margin:0px" class="colourData center"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Brand:</h4>
+                        </td>
+                        <td><select id="brandDrop" style="float: none" class="brandData center"></select></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Size:</h4>
+                        </td>
+                        <td><select id="sizeDrop" style="float: none" class="sizeData center"></select></td>
+                    </tr>
+                </table>
+                <div>
+                    <button style="margin:5px" class="searchButton">Search</button>
+                    <button style="margin:5px" class="addButton">Add to basket</button>
+                </div>
+                <div class="filterData center">
+
+                </div>
+            </div>
+            <div style="background-color:rgb(204, 88, 53);border-radius:5px;border: 1px solid black"
+                class="col-4 sideLeft">
+                <h3><u>Shopping Basket:</u></h3>
+                <div class="listData">
+
+                </div>
+                <div>
+                    <strong class="totalText" style="color: white;float: none">Total: R<span id="total"></span></strong>
+                </div>
+                <div style="float: right">
+                    <button class="clearButton basket">Clear basket</button>
+                </div>
+                <div style="float: right">
+                    <button class="checkoutButton basket">Checkout</button>
+                </div>
+            </div>
+        </div>
+        <div class="row ">
+            <div class="col-4">
+                <button class="showRecordEditor clear">Update records</button>
+                <button class="hideButton clear">Hide</button>
+            </div>
+            <div class="col-4 info recordUpdate">
+                <div>
+                    <h3 style="margin: 2px;color:black"><u>Update records</u></h3>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <h4>Colour:</h4>
+                            </td>
+                            <td><input class="colourUp" style="margin:5px; float:none" type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4>Brand:</h4>
+                            </td>
+                            <td><input class="brandUp" style="margin:5px" type="text"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4>Price:</h4>
+                            </td>
+                            <td> <input class="priceUp" style="margin:5px;width:50px" type="number"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4>Size:</h4>
+                            </td>
+                            <td><input class="sizeUp" style="margin:5px;width:50px" type="number"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <h4>Stock:</h4>
+                            </td>
+                            <td><input class="stockUp" style="margin:5px;width:50px" type="number"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <h4 style="margin:5px" id="messageRecord"></h4>
+                    <button style="margin-bottom: 6px" class="updateRecords clear">Add record</button>
+                </div>
+            </div>
+            <div class="col-4"></div>
+        </div>
+    </div>
+</body>
+<script src="js/data.js"></script>
+<script src="js/shoe-catalog-manager.js"></script>
+<script src="js/shoe-catalog-DOM.js"></script>
+
+</html>
