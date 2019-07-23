@@ -291,7 +291,7 @@ var records = [
         id: 37,
         colour: 'Blue',
         brand: 'New Balance',
-        price: 400,
+        price: 300,
         size: 8,
         item_stock: 7
     },
@@ -299,7 +299,7 @@ var records = [
         id: 38,
         colour: 'Blue',
         brand: 'New Balance',
-        price: 400,
+        price: 300,
         size: 9,
         item_stock: 3
     },
@@ -307,7 +307,7 @@ var records = [
         id: 39,
         colour: 'Blue',
         brand: 'New Balance',
-        price: 400,
+        price: 300,
         size: 10,
         item_stock: 5
     },
@@ -315,7 +315,7 @@ var records = [
         id: 40,
         colour: 'Blue',
         brand: 'New Balance',
-        price: 400,
+        price: 300,
         size: 11,
         item_stock: 2
     },

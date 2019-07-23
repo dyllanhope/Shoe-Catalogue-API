@@ -43,59 +43,26 @@ function ShoeCatalogManager (data) {
                 }
             }
 
-            console.log(filteredItemData);
-            var availItems;
-            var data = {};
-            if (chosenItems === 'colour,') {
-                availItems = 'brand';
-            } else if (chosenItems === 'brand,') {
-                availItems = 'colour';
-            } else if (chosenItems === 'colour,brand') {
-                availItems = 'both';
-            };
-            for (var x = 0; x < filteredItemData.length; x++) {
-                if (data[filteredItemData[x][availItems]] === undefined) {
-                    var test = filteredItemData[x][availItems];
-                    for (var y = 0; y < filteredItemData.length; y++) {
-                        if (test === filteredItemData[y][availItems]) {
-                            data[filteredItemData[x][availItems]] += filteredItemData[y].size + '(Qty: ' + filteredItemData[y].item_stock + ') ';
-                            if (data[filteredItemData[x][availItems]].startsWith('undefined')) {
-                                data[filteredItemData[x][availItems]] = data[filteredItemData[x][availItems]].substring(9);
-                            };
-                        };
-                    };
-                };
-            };
-            console.log(data);
-            for (var k = 0; k < filteredItemData.length; k++) {
-                var sizes = {};
-                var displaySizes = '';
-                if (filteredItemData[k].item_stock) {
-                    if (chosenItems.endsWith('size')) {
-                        if (filteredItemData[k].size === size) {
-                            displaySizes = filteredItemData[k].item_stock;
-                        }
-                    } else if (sizes[filteredItemData[k].size] === undefined) {
-                        sizes[filteredItemData[k].size] = filteredItemData[k].item_stock;
-                        displaySizes += filteredItemData[k].size + '(Qty: ' + filteredItemData[k].item_stock + ') ';
-                    }
-                }
+            var data = buildDataForDisplay(chosenItems, filteredItemData, colour, brand, size);
+
+            for (var k = 0; k < data.length; k++) {
+                var categoryInfo = Object.keys(data[k]);
+                var availItems = categoryInfo[0];
+                var displaySizes = data[k][availItems];
+
                 if (chosenItems !== 'colour,brand,size') {
                     if (displaySizes === '') {
                         displaySizes = 'None in stock';
                     }
                     switch (chosenItems) {
                     case 'colour,':
-                        availItems = filteredItemData[k].brand;
-                        filteredItem.push({ Avail_item: availItems, Avail_sizes: displaySizes, price: Number(filteredItemData[k].price).toFixed(2) });
+                        filteredItem.push({ Avail_item: availItems, Avail_sizes: displaySizes, price: Number(data[k].price).toFixed(2) });
                         break;
                     case 'brand,':
-                        availItems = filteredItemData[k].colour;
-                        filteredItem.push({ Avail_item: availItems, Avail_sizes: displaySizes, price: Number(filteredItemData[k].price).toFixed(2) });
+                        filteredItem.push({ Avail_item: availItems, Avail_sizes: displaySizes, price: Number(data[k].price).toFixed(2) });
                         break;
                     case 'colour,brand,':
-                        availItems = filteredItemData[k].colour + ' ' + filteredItemData[k].brand;
-                        filteredItem.push({ Avail_item: availItems, Avail_sizes: displaySizes, price: Number(filteredItemData[k].price).toFixed(2) });
+                        filteredItem.push({ Avail_item: availItems, Avail_sizes: displaySizes, price: Number(data[k].price).toFixed(2) });
                         break;
                     case 'size':
                         filteredItem.push({ Avail_item: filteredItemData[k].colour + ' ' + filteredItemData[k].brand, Avail_sizes: displaySizes, price: Number(filteredItemData[k].price).toFixed(2) });
@@ -120,6 +87,64 @@ function ShoeCatalogManager (data) {
             return filteredItem;
         }
     }
+
+    function buildDataForDisplay (chosenItems, filteredItemData, colour, brand, size) {
+        var category;
+        var data = [];
+        if (chosenItems === 'colour,') {
+            category = 'brand';
+        } else if (chosenItems === 'brand,') {
+            category = 'colour';
+        } else if (chosenItems === 'colour,brand,') {
+            category = 'both';
+        } else if (chosenItems === 'size') {
+            category = 'size';
+        } else if (chosenItems === 'colour,size') {
+            category = 'colour size';
+        } else if (chosenItems === 'brand,size') {
+            category = 'brand size';
+        };
+        if (category === 'both') {
+            var sizeList = '';
+            var productName = colour + ' ' + brand;
+            for (var i = 0; i < filteredItemData.length; i++) {
+                sizeList += filteredItemData[i].size + '(Qty: ' + filteredItemData[i].item_stock + ') ';
+            };
+            data.push({ [productName]: sizeList, price: filteredItemData[0].price });
+        } else if (category === 'colour' || category === 'brand') {
+            for (var x = 0; x < filteredItemData.length; x++) {
+                sizeList = '';
+                var test = filteredItemData[x][category];
+
+                for (var y = 0; y < filteredItemData.length; y++) {
+                    if (test === filteredItemData[y][category]) {
+                        sizeList += filteredItemData[y].size + '(Qty: ' + filteredItemData[y].item_stock + ') ';
+                        if (sizeList.startsWith('undefined')) {
+                            sizeList = sizeList.substring(9);
+                        };
+                    };
+                };
+                var send = { [test]: sizeList, price: filteredItemData[x].price };
+                var exists = false;
+                for (var z = 0; z < data.length; z++) {
+                    var list = Object.keys(data[z]);
+                    if (test === list[0]) {
+                        exists = true;
+                    };
+                };
+                if (exists === false) {
+                    data.push(send);
+                };
+            };
+        } else if (category === 'size') {
+
+        } else if (category === 'colour size') {
+
+        } else if (category === 'brand size') {
+
+        };
+        return data;
+    };
 
     function buildLists (info) {
         if (info !== 'size') {
