@@ -131,7 +131,7 @@ var records = [
         id: 17,
         colour: 'Red',
         brand: 'Adidas',
-        price: 400,
+        price: 700,
         size: 8,
         item_stock: 6
     },
@@ -139,7 +139,7 @@ var records = [
         id: 18,
         colour: 'Red',
         brand: 'Adidas',
-        price: 400,
+        price: 700,
         size: 9,
         item_stock: 2
     },
@@ -147,7 +147,7 @@ var records = [
         id: 19,
         colour: 'Red',
         brand: 'Adidas',
-        price: 400,
+        price: 700,
         size: 10,
         item_stock: 1
     },
@@ -155,7 +155,7 @@ var records = [
         id: 20,
         colour: 'Red',
         brand: 'Adidas',
-        price: 400,
+        price: 700,
         size: 11,
         item_stock: 5
     },
@@ -259,7 +259,7 @@ var records = [
         id: 33,
         colour: 'Red',
         brand: 'New Balance',
-        price: 400,
+        price: 455,
         size: 8,
         item_stock: 4
     },
@@ -267,7 +267,7 @@ var records = [
         id: 34,
         colour: 'Red',
         brand: 'New Balance',
-        price: 400,
+        price: 455,
         size: 9,
         item_stock: 1
     },
@@ -275,7 +275,7 @@ var records = [
         id: 35,
         colour: 'Red',
         brand: 'New Balance',
-        price: 400,
+        price: 455,
         size: 10,
         item_stock: 2
     },
@@ -283,7 +283,7 @@ var records = [
         id: 36,
         colour: 'Red',
         brand: 'New Balance',
-        price: 400,
+        price: 455,
         size: 11,
         item_stock: 3
     },
@@ -387,7 +387,7 @@ var records = [
         id: 49,
         colour: 'Red',
         brand: 'Vans',
-        price: 400,
+        price: 360,
         size: 8,
         item_stock: 1
     },
@@ -395,7 +395,7 @@ var records = [
         id: 50,
         colour: 'Red',
         brand: 'Vans',
-        price: 400,
+        price: 360,
         size: 9,
         item_stock: 5
     },
@@ -403,7 +403,7 @@ var records = [
         id: 51,
         colour: 'Red',
         brand: 'Vans',
-        price: 400,
+        price: 360,
         size: 10,
         item_stock: 6
     },
@@ -411,7 +411,7 @@ var records = [
         id: 52,
         colour: 'Red',
         brand: 'Vans',
-        price: 400,
+        price: 360,
         size: 11,
         item_stock: 2
     },
