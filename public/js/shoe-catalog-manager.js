@@ -38,7 +38,7 @@ function ShoeCatalogManager (data) {
                     });
                 } else {
                     filteredItemData = loadData.filter(function (shoe) {
-                        return shoe.size === size;
+                        return shoe.size === Number(size);
                     });
                 }
             }
