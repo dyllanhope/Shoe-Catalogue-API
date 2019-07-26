@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Shoe Catalogue</title>
 
     <script type="text/template" class="filteredListTemplate">
@@ -61,7 +62,7 @@
 
     <script type="text/template" class="dropDownTemplate">
         {{#each list}}
-            <option value="{{this}}">{{this}}</option>
+            <option name="{{this}}" value="{{this}}">{{this}}</option>
         {{/each}}
     </script>
 
@@ -170,7 +171,6 @@
         </div>
     </div>
 </body>
-<script src="js/data.js"></script>
 <script src="js/shoe-catalog-manager.js"></script>
 <script src="js/shoe-catalog-DOM.js"></script>
 

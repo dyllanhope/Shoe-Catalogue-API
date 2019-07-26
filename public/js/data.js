@@ -1,4 +1,4 @@
-var records = [
+module.exports = [
     {
         id: 1,
         colour: 'Red',
