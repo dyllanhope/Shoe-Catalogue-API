@@ -144,40 +144,40 @@ function ShoeCatalogManager () {
         return list;
     };
 
-    function createBasketItems (colourP, brandP, sizeP) {
+    function createBasketItems (loadData, colourP, brandP, sizeP) {
         if (colourP && brandP && sizeP) {
             if (!colourP.startsWith('Select') &&
-            !brandP.startsWith('Select') &&
-            !sizeP.startsWith('Select')) {
+                !brandP.startsWith('Select') &&
+                !sizeP.startsWith('Select')) {
                 var currentShoe = { size: Number(sizeP), colour: colourP, brand: brandP, qty: 1, cost: 0 };
 
                 var existingShoeLoc = getExistingShoeLoc(currentShoe);
-                var dataIndex = getStockLoc(currentShoe);
+                var dataIndex = getStockLoc(loadData, currentShoe);
 
                 if (existingShoeLoc > -1) {
                     if (loadData[dataIndex].item_stock > 0) {
                         basketList[existingShoeLoc].qty++;
                         basketList[existingShoeLoc].cost += loadData[dataIndex].price;
                         total += loadData[dataIndex].price;
-                        loadData[dataIndex].item_stock--;
                     }
                 } else if (loadData[dataIndex].item_stock > 0) {
                     currentShoe.cost = loadData[dataIndex].price;
                     total += loadData[dataIndex].price;
                     basketList.push(currentShoe);
-                    loadData[dataIndex].item_stock--;
                 }
             }
         }
+    };
+    function basket () {
         return basketList;
-    }
+    };
 
-    function getStockLoc (shoeData) {
+    function getStockLoc (loadData, shoeData) {
         var coords;
         for (var x = 0; x < loadData.length; x++) {
             if (loadData[x].colour === shoeData.colour &&
-            loadData[x].brand === shoeData.brand &&
-            loadData[x].size === shoeData.size) {
+                loadData[x].brand === shoeData.brand &&
+                loadData[x].size === shoeData.size) {
                 coords = x;
                 return coords;
             }
@@ -189,8 +189,8 @@ function ShoeCatalogManager () {
     function getExistingShoeLoc (shoeData) {
         for (var x = 0; x < basketList.length; x++) {
             if (basketList[x].size === shoeData.size &&
-            basketList[x].colour === shoeData.colour &&
-            basketList[x].brand === shoeData.brand) {
+                basketList[x].colour === shoeData.colour &&
+                basketList[x].brand === shoeData.brand) {
                 return x;
             }
         }
@@ -201,8 +201,8 @@ function ShoeCatalogManager () {
         for (var x = 0; x < loadData.length; x++) {
             for (var y = 0; y < basketList.length; y++) {
                 if (loadData[x].colour === basketList[y].colour &&
-                loadData[x].brand === basketList[y].brand &&
-                loadData[x].size === basketList[y].size) {
+                    loadData[x].brand === basketList[y].brand &&
+                    loadData[x].size === basketList[y].size) {
                     loadData[x].item_stock += basketList[y].qty;
                 }
             }
@@ -280,6 +280,7 @@ function ShoeCatalogManager () {
         showList: displayBasketList,
         stock: displayStock,
         newStockCount: changeCurrentStockAdded,
-        find: getStockLoc
+        find: getStockLoc,
+        basket
     };
 };

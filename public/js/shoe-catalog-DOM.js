@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const dropDownTemplateSource = document.querySelector('.dropDownTemplate').innerHTML;
 const basketTemplateSource = document.querySelector('.basketListTemplate').innerHTML;
 const filterTemplateSource = document.querySelector('.filteredListTemplate').innerHTML;
@@ -105,12 +106,31 @@ Handlebars.registerHelper('isSizeSelected', function () {
 });
 
 addBtn.addEventListener('click', function () {
-    var basketItems = { items: shoeInstance.buildBasket(colourDropDown.value, brandDropDown.value, sizeDropDown.value) };
-    var basketHTML = basketTemplate(basketItems);
-    listData.innerHTML = basketHTML;
-    dispTotal.style.display = 'unset';
-    total.innerHTML = shoeInstance.total();
-    displayFilter();
+    axios
+        .get('/api/shoes')
+        .then(function (results) {
+            const response = results.data;
+            const data = response.shoes;
+            const shoes = data.rows;
+
+            const colour = colourDropDown.value;
+            const brand = brandDropDown.value;
+            const size = sizeDropDown.value;
+
+            shoeInstance.buildBasket(shoes, colour, brand, size);
+            const basketItems = { items: shoeInstance.basket() };
+            const basketHTML = basketTemplate(basketItems);
+            listData.innerHTML = basketHTML;
+
+            let id = 0;
+            for (let x = 0; x < shoes.length; x++) {
+                if (colour === shoes[x].colour && brand === shoes[x].brand && Number(size) === shoes[x].size) {
+                    id = shoes[x].id;
+                };
+            };
+
+            updateStock(id);
+        });
 });
 
 clearBtn.addEventListener('click', function () {
@@ -239,5 +259,18 @@ function buildDisplayColourBrandSize (colour, brand, size) {
             const data = response.shoes;
             const shoes = data.rows;
             displayFilter(shoes);
+        });
+};
+function updateStock (id) {
+    axios
+        .post('/api/shoes/sold/' + id)
+        .then(function () {
+            dispTotal.style.display = 'unset';
+            total.innerHTML = shoeInstance.total();
+
+            buildDisplayColourBrandSize(colourDropDown.value, brandDropDown.value, sizeDropDown.value);
+        })
+        .catch(function (err) {
+            alert(err);
         });
 };

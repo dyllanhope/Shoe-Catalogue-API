@@ -145,6 +145,27 @@ module.exports = function (pool, data) {
         };
     };
 
+    async function update (req, res) {
+        try {
+            const id = req.params.id;
+            const result = await pool.query('SELECT id,colour,brand,size,item_stock FROM shoe_data WHERE id = $1', [id]);
+            let stock = result.rows[0].item_stock;
+            if (stock !== 0) {
+                stock--;
+            };
+            await pool.query('UPDATE shoe_data SET item_stock = $2 WHERE id = $1', [id, stock]);
+
+            res.json({
+                status: 'success'
+            });
+        } catch (err) {
+            res.json({
+                status: 'error',
+                error: err.stack
+            });
+        };
+    };
+
     return {
         load,
         all,
@@ -154,6 +175,7 @@ module.exports = function (pool, data) {
         colourBrand,
         colourSize,
         brandSize,
-        specific
+        specific,
+        update
     };
 };
