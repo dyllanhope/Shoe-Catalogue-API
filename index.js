@@ -64,6 +64,7 @@ app.get('/api/shoes/size/:size', shoeManager.size);
 app.get('/api/shoes/brand/:brandname/size/:size', shoeManager.brandSize);
 app.get('/api/shoes/brand/:brandname/size/:size/colour/:colour', shoeManager.specific);
 app.post('/api/shoes/sold/:id', shoeManager.update);
+app.post('/api/shoes/clear', shoeManager.returnItems);
 
 const PORT = process.env.PORT || 3021;
 

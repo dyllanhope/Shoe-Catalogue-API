@@ -9,7 +9,7 @@ module.exports = function (pool, data) {
                 data[x].price,
                 data[x].size,
                 data[x].item_stock]
-            ;
+                ;
             await pool.query('INSERT INTO shoe_data(id, colour, brand, price, size, item_stock) VALUES($1,$2,$3,$4,$5,$6)', input);
         };
     };
@@ -166,6 +166,29 @@ module.exports = function (pool, data) {
         };
     };
 
+    async function returnItems (req, res) {
+        try {
+            const items = req.body;
+            for (let i = 0; i < items.length; i++) {
+                const id = items[i].id;
+                const result = await pool.query('SELECT item_stock FROM shoe_data WHERE id = $1', [id]);
+                let stock = result.rows[0].item_stock;
+                stock += items[i].qty;
+
+                await pool.query('UPDATE shoe_data SET item_stock = $2 WHERE id = $1', [id, stock]);
+            };
+
+            res.json({
+                status: 'success'
+            });
+        } catch (err) {
+            res.json({
+                status: 'error',
+                error: err.stack
+            });
+        };
+    };
+
     return {
         load,
         all,
@@ -176,6 +199,7 @@ module.exports = function (pool, data) {
         colourSize,
         brandSize,
         specific,
-        update
+        update,
+        returnItems
     };
 };

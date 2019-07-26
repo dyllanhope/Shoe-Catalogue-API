@@ -162,6 +162,7 @@ function ShoeCatalogManager () {
                     }
                 } else if (loadData[dataIndex].item_stock > 0) {
                     currentShoe.cost = loadData[dataIndex].price;
+                    currentShoe.id = loadData[dataIndex].id;
                     total += loadData[dataIndex].price;
                     basketList.push(currentShoe);
                 }
@@ -198,15 +199,6 @@ function ShoeCatalogManager () {
     }
 
     function clearShoppingBasket () {
-        for (var x = 0; x < loadData.length; x++) {
-            for (var y = 0; y < basketList.length; y++) {
-                if (loadData[x].colour === basketList[y].colour &&
-                    loadData[x].brand === basketList[y].brand &&
-                    loadData[x].size === basketList[y].size) {
-                    loadData[x].item_stock += basketList[y].qty;
-                }
-            }
-        }
         total = 0.00;
         basketList = [];
     }

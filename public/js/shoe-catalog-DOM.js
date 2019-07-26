@@ -134,10 +134,7 @@ addBtn.addEventListener('click', function () {
 });
 
 clearBtn.addEventListener('click', function () {
-    shoeInstance.clear();
-    listData.innerHTML = '';
-    dispTotal.style.display = 'none';
-    displayFilter();
+    returnItems(shoeInstance.basket());
 });
 
 checkoutBtn.addEventListener('click', function () {
@@ -270,6 +267,18 @@ function updateStock (id) {
 
             buildDisplayColourBrandSize(colourDropDown.value, brandDropDown.value, sizeDropDown.value);
         })
+        .catch(function (err) {
+            alert(err);
+        });
+};
+function returnItems (basketItems) {
+    axios
+        .post('/api/shoes/clear', basketItems)
+        .then(function () {
+            shoeInstance.clear();
+            listData.innerHTML = '';
+            dispTotal.style.display = 'none';
+            buildDisplayColourBrandSize(colourDropDown.value, brandDropDown.value, sizeDropDown.value);        })
         .catch(function (err) {
             alert(err);
         });
