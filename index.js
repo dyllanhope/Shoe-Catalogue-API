@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const session = require('express-session');
 const ShoeAPI = require('./public/Shoe-manager-api');
-const data = require('../shoes_api/public/js/data');
+const data = require('./public/js/data');
 
 const app = express();
 
