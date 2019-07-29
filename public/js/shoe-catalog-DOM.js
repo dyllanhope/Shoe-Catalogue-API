@@ -44,6 +44,7 @@ window.onload = function () {
     recordEditor.style.display = 'none';
     dispTotal.style.display = 'none';
 };
+
 updateBtn.addEventListener('click', function () {
     if ((colourNew.value).trim() && (brandNew.value).trim() && priceNew.value && sizeNew.value && stockNew.value) {
         const shoeData = {
@@ -185,6 +186,7 @@ function displayFilter (shoes) {
     var filterHTML = filterTemplate(filterOptions);
     filterData.innerHTML = filterHTML;
 };
+
 function dropDownUpdate () {
     shoeService
         .all()

@@ -423,7 +423,7 @@ module.exports = [
         size: 8,
         item_stock: 4
     },
-    {
+    { 
         id: 54,
         colour: 'Blue',
         brand: 'Vans',

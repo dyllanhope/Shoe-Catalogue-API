@@ -1,7 +1,24 @@
 language: node_js
 
 env:
-  - DATABASE_URL=postgresql://postgres@localhost:5432/waiter_shifts
+  - DATABASE_URL=postgresql://postgres@localhost:5432/shoe_service_tests
 
 node_js:
   - "v9.11.2"
+
+before_script:
+  - sudo cp /etc/postgresql/9.4/main/pg_hba.conf /etc/postgresql/9.5/main/pg_hba.conf
+  - sudo /etc/init.d/postgresql restart
+  - psql -c 'create database  shoe_service_tests;' -U postgres
+  - psql -U postgres -d shoe_service_tests -a -f sql/tables.sql
+
+after_success: npm run coverage
+
+addons:
+  apt:
+    sources:
+    - precise-pgdg-9.5
+    packages:
+    - postgresql-9.5
+    - postgresql-contrib-9.5
+  postgresql: 9.5

@@ -6,6 +6,7 @@ const flash = require('express-flash');
 const session = require('express-session');
 const ShoeAPI = require('./public/Shoe-manager-api');
 const data = require('./public/js/data');
+const ShoeService = require('./shoes-service');
 
 const app = express();
 
@@ -25,7 +26,8 @@ const pool = new Pool({
     ssl: useSSL
 });
 
-const shoeManagerAPI = ShoeAPI(pool, data);
+const shoeService = ShoeService(pool);
+const shoeManagerAPI = ShoeAPI(shoeService, data);
 
 app.use(session({
     secret: 'yikes',
@@ -49,7 +51,13 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-shoeManagerAPI.load();
+if (process.env.RELOAD_DATA) {
+    console.log('About to reload data');
+    shoeManagerAPI.load();
+} else {
+    console.log('Data not reloaded');
+};
+
 // routes
 app.get('/', function (req, res) {
     res.render('index');
