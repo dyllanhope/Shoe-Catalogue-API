@@ -85,6 +85,10 @@ showEditor.addEventListener('click', function () {
 searchBtn.addEventListener('click', function () {
     if ((colourDropDown.value).startsWith('Select') && (brandDropDown.value).startsWith('Select') && (sizeDropDown.value).startsWith('Select')) {
         filterData.innerHTML = '';
+        displayField.innerHTML = 'Please select one or more of the above fields';
+        setTimeout(function () {
+            displayField.innerHTML = '';
+        }, 3000);
     } else {
         if (!(colourDropDown.value).startsWith('Select') && !(brandDropDown.value).startsWith('Select') && !(sizeDropDown.value).startsWith('Select')) {
             buildDisplayColourBrandSize(colourDropDown.value, brandDropDown.value, sizeDropDown.value);
@@ -144,7 +148,10 @@ addBtn.addEventListener('click', function () {
                 updateStock(id);
             });
     } else {
-        displayField.innerHTML = 'Please fill out all fields before attempting to add to your basket';
+        displayField.innerHTML = 'Please fill out all the above fields before attempting to add to your basket';
+        setTimeout(function () {
+            displayField.innerHTML = '';
+        }, 3000);
     };
 });
 
