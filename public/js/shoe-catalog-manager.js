@@ -1,8 +1,6 @@
 function ShoeCatalogManager () {
     var basketList = [];
-    var passed = false;
     var total = 0.00;
-    var keepStock = 0;
 
     function createDisplayString (loadData, colour, brand, size) {
         var chosenItems = '';
@@ -85,21 +83,21 @@ function ShoeCatalogManager () {
         } else if (category === 'colour' || category === 'brand') {
             for (var x = 0; x < loadData.length; x++) {
                 sizeList = '';
-                var test = loadData[x][category];
+                var product = loadData[x][category];
 
                 for (var y = 0; y < loadData.length; y++) {
-                    if (test === loadData[y][category]) {
+                    if (product === loadData[y][category]) {
                         sizeList += loadData[y].size + '(Qty: ' + loadData[y].item_stock + ') ';
                         if (sizeList.startsWith('undefined')) {
                             sizeList = sizeList.substring(9);
                         };
                     };
                 };
-                var send = { [test]: sizeList, price: loadData[x].price };
+                var send = { [product]: sizeList, price: loadData[x].price };
                 var exists = false;
                 for (var z = 0; z < data.length; z++) {
                     var list = Object.keys(data[z]);
-                    if (test === list[0]) {
+                    if (product === list[0]) {
                         exists = true;
                     };
                 };
@@ -203,38 +201,6 @@ function ShoeCatalogManager () {
         basketList = [];
     }
 
-    function updateRecords (colour, brand, price, size, stock) {
-        passed = false;
-        if (colour && brand && price && size && stock) {
-            var regexNumberCheck = /\d/;
-            var numberCheckCol = regexNumberCheck.test(colour);
-            var numberCheckBrand = regexNumberCheck.test(brand);
-            if (numberCheckCol === false && numberCheckBrand === false) {
-                passed = true;
-                var upColour = colour.charAt(0).toUpperCase() + (colour.slice(1)).toLowerCase();
-                var upBrand = brand.charAt(0).toUpperCase() + (brand.slice(1)).toLowerCase();
-                var searchData = { size: Number(size), colour: upColour, brand: upBrand };
-                var stockLoc = getStockLoc(searchData);
-                console.log(stockLoc);
-                if (stockLoc === -1) {
-                    loadData.push({
-                        id: Number(loadData.length + 1),
-                        colour: upColour,
-                        brand: upBrand,
-                        price: Number(price),
-                        size: Number(size),
-                        item_stock: Number(stock)
-                    });
-                    keepStock += Number(stock);
-                } else {
-                    loadData[stockLoc].item_stock += Number(stock);
-                    loadData[stockLoc].price += Number(price);
-                    keepStock += Number(stock);
-                };
-            };
-        };
-    };
-
     function resetBasket () {
         if (!basketList || !basketList.length) {
             return 'You have no items in your basket';
@@ -244,34 +210,21 @@ function ShoeCatalogManager () {
             return 'Items checked out successfully';
         }
     }
-
-    function displayPassing () {
-        return passed;
-    }
     function displayTotal () {
         return total.toFixed(2);
     }
     function displayBasketList () {
         return basketList;
     }
-    function displayStock () {
-        return keepStock;
-    }
-    function changeCurrentStockAdded () {
-        keepStock = 0;
-    }
+
     return {
         lists: buildLists,
         createString: createDisplayString,
         buildBasket: createBasketItems,
         clear: clearShoppingBasket,
         checkout: resetBasket,
-        update: updateRecords,
-        passing: displayPassing,
         total: displayTotal,
         showList: displayBasketList,
-        stock: displayStock,
-        newStockCount: changeCurrentStockAdded,
         find: getStockLoc,
         basket
     };

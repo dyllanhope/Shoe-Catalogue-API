@@ -4,7 +4,7 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const session = require('express-session');
-const ShoeManager = require('../shoes_api/public/js/Shoe-manager-api');
+const ShoeManager = require('./public/Shoe-manager-api');
 const data = require('../shoes_api/public/js/data');
 
 const app = express();
@@ -65,6 +65,7 @@ app.get('/api/shoes/brand/:brandname/size/:size', shoeManager.brandSize);
 app.get('/api/shoes/brand/:brandname/size/:size/colour/:colour', shoeManager.specific);
 app.post('/api/shoes/sold/:id', shoeManager.update);
 app.post('/api/shoes/clear', shoeManager.returnItems);
+app.post('/api/shoes', shoeManager.addShoe);
 
 const PORT = process.env.PORT || 3021;
 

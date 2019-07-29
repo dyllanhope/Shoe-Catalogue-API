@@ -189,6 +189,48 @@ module.exports = function (pool, data) {
         };
     };
 
+    async function addShoe (req, res) {
+        try {
+            const specialCheck = /[!@#$%^&*(),.?":{}|<>\d]/;
+            const shoeData = req.body;
+            if (shoeData.colour && shoeData.brand && shoeData.price && shoeData.size && shoeData.stock) {
+                const colourTest = specialCheck.test(shoeData.colour);
+                const brandTest = specialCheck.test(shoeData.brand);
+                if (!colourTest && !brandTest) {
+                    shoeData.colour = (shoeData.colour).charAt(0).toUpperCase() + ((shoeData.colour).slice(1)).toLowerCase();
+                    shoeData.brand = (shoeData.brand).charAt(0).toUpperCase() + ((shoeData.brand).slice(1)).toLowerCase();
+                    const results = await pool.query('SELECT * FROM shoe_data WHERE colour = $1 AND brand = $2 AND size = $3', [shoeData.colour, shoeData.brand, shoeData.size]);
+                    if (results.rowCount === 1) {
+                        const id = results.rows[0].id;
+                        const stock = results.rows[0].item_stock + shoeData.stock;
+                        await pool.query('UPDATE shoe_data SET item_stock = $1, price = $2 WHERE id = $3', [stock, shoeData.price, id]);
+                    } else if (results.rowCount === 0) {
+                        const lengthSearch = await pool.query('SELECT COUNT (id) FROM shoe_data');
+                        const id = Number(lengthSearch.rows[0].count) + 1;
+                        const data = [
+                            id,
+                            shoeData.colour,
+                            shoeData.brand,
+                            shoeData.price,
+                            shoeData.size,
+                            shoeData.stock
+                        ];
+                        await pool.query('INSERT INTO shoe_data (id, colour, brand, price, size, item_stock) VALUES ($1,$2,$3,$4,$5,$6)', data);
+                    };
+                };
+            };
+
+            res.json({
+                status: 'success'
+            });
+        } catch (err) {
+            res.json({
+                status: 'error',
+                error: err.stack
+            });
+        };
+    };
+
     return {
         load,
         all,
@@ -200,6 +242,7 @@ module.exports = function (pool, data) {
         brandSize,
         specific,
         update,
-        returnItems
+        returnItems,
+        addShoe
     };
 };
