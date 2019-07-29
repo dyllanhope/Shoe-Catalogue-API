@@ -4,7 +4,7 @@ const exphbs = require('express-handlebars');
 const bodyParser = require('body-parser');
 const flash = require('express-flash');
 const session = require('express-session');
-const ShoeManager = require('./public/Shoe-manager-api');
+const ShoeAPI = require('./public/Shoe-manager-api');
 const data = require('../shoes_api/public/js/data');
 
 const app = express();
@@ -25,7 +25,7 @@ const pool = new Pool({
     ssl: useSSL
 });
 
-const shoeManager = ShoeManager(pool, data);
+const shoeManagerAPI = ShoeAPI(pool, data);
 
 app.use(session({
     secret: 'yikes',
@@ -49,23 +49,23 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-shoeManager.load();
+shoeManagerAPI.load();
 // routes
 app.get('/', function (req, res) {
     res.render('index');
 });
 
-app.get('/api/shoes', shoeManager.all);
-app.get('/api/shoes/colour/:colour', shoeManager.colour);
-app.get('/api/shoes/colour/:colour/brand/:brandname', shoeManager.colourBrand);
-app.get('/api/shoes/colour/:colour/size/:size', shoeManager.colourSize);
-app.get('/api/shoes/brand/:brandname', shoeManager.brand);
-app.get('/api/shoes/size/:size', shoeManager.size);
-app.get('/api/shoes/brand/:brandname/size/:size', shoeManager.brandSize);
-app.get('/api/shoes/brand/:brandname/size/:size/colour/:colour', shoeManager.specific);
-app.post('/api/shoes/sold/:id', shoeManager.update);
-app.post('/api/shoes/clear', shoeManager.returnItems);
-app.post('/api/shoes', shoeManager.addShoe);
+app.get('/api/shoes', shoeManagerAPI.all);
+app.get('/api/shoes/colour/:colour', shoeManagerAPI.colour);
+app.get('/api/shoes/colour/:colour/brand/:brandname', shoeManagerAPI.colourBrand);
+app.get('/api/shoes/colour/:colour/size/:size', shoeManagerAPI.colourSize);
+app.get('/api/shoes/brand/:brandname', shoeManagerAPI.brand);
+app.get('/api/shoes/size/:size', shoeManagerAPI.size);
+app.get('/api/shoes/brand/:brandname/size/:size', shoeManagerAPI.brandSize);
+app.get('/api/shoes/brand/:brandname/size/:size/colour/:colour', shoeManagerAPI.specific);
+app.post('/api/shoes/sold/:id', shoeManagerAPI.update);
+app.post('/api/shoes/clear', shoeManagerAPI.returnItems);
+app.post('/api/shoes', shoeManagerAPI.addShoe);
 
 const PORT = process.env.PORT || 3021;
 
