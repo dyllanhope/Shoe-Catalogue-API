@@ -45,22 +45,24 @@ window.onload = function () {
     dispTotal.style.display = 'none';
 };
 updateBtn.addEventListener('click', function () {
-    // shoeInstance.update(colourNew.value, brandNew.value, priceNew.value, sizeNew.value, stockNew.value);
-    // if (shoeInstance.passing() === true) {
-    //     messageField.innerHTML = 'The record has been successfully added. Total stock added: ' + shoeInstance.stock();
-    // } else {
-    //     messageField.innerHTML = 'You have not filled every field correctly.';
-    // }
+    if ((colourNew.value).trim() && (brandNew.value).trim() && priceNew.value && sizeNew.value && stockNew.value) {
+        const shoeData = {
+            colour: (colourNew.value).trim(),
+            brand: (brandNew.value).trim(),
+            price: Number(priceNew.value),
+            size: Number(sizeNew.value),
+            stock: Number(stockNew.value)
+        };
 
-    const shoeData = {
-        colour: (colourNew.value).trim(),
-        brand: (brandNew.value).trim(),
-        price: Number(priceNew.value),
-        size: Number(sizeNew.value),
-        stock: Number(stockNew.value)
-    };
+        addShoe(shoeData);
+        messageField.innerHTML = 'Item added successfully!';
 
-    addShoe(shoeData);
+        setTimeout(function () {
+            messageField.innerHTML = '';
+        }, 2000);
+    } else {
+        messageField.innerHTML = 'You have not filled every field correctly.';
+    }
 });
 
 showEditor.addEventListener('click', function () {
@@ -142,7 +144,7 @@ addBtn.addEventListener('click', function () {
                 updateStock(id);
             });
     } else {
-        filterData.innerHTML = 'Please fill out all fields before attempting to add to your basket';
+        displayField.innerHTML = 'Please fill out all fields before attempting to add to your basket';
     };
 });
 
@@ -301,10 +303,6 @@ function addShoe (shoeInfo) {
     shoeService
         .add(shoeInfo)
         .then(function () {
-            colourDropDown.innerHTML = '';
-            brandDropDown.innerHTML = '';
-            sizeDropDown.innerHTML = '';
-
             dropDownUpdate();
             filterData.innerHTML = '';
         })
