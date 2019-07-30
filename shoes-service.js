@@ -34,27 +34,27 @@ module.exports = function (pool) {
         return result.rows;
     };
 
-    async function brand (brand) {
+    const brand = async (brand) => {
         const result = await pool.query('SELECT * FROM shoe_data WHERE brand = $1', [brand]);
         return result.rows;
     };
 
-    async function size (size) {
+    const size = async (size) => {
         const result = await pool.query('SELECT * FROM shoe_data WHERE size = $1', [size]);
         return result.rows;
     };
 
-    async function brandSize (brand, size) {
+    const brandSize = async (brand, size) => {
         const result = await pool.query('SELECT * FROM shoe_data WHERE brand = $1 AND size = $2', [brand, size]);
         return result.rows;
     };
 
-    async function specific (colour, brand, size) {
+    const specific = async (colour, brand, size) => {
         const result = await pool.query('SELECT * FROM shoe_data WHERE brand = $1 AND size = $2 AND colour = $3', [brand, size, colour]);
         return result.rows;
     };
 
-    async function update (id) {
+    const update = async (id) => {
         const result = await pool.query('SELECT id,colour,brand,size,item_stock FROM shoe_data WHERE id = $1', [id]);
         let stock = result.rows[0].item_stock;
         if (stock !== 0) {
@@ -63,7 +63,7 @@ module.exports = function (pool) {
         await pool.query('UPDATE shoe_data SET item_stock = $2 WHERE id = $1', [id, stock]);
     };
 
-    async function returnItems (items) {
+    const returnItems = async (items) => {
         for (let i = 0; i < items.length; i++) {
             const id = items[i].id;
             const result = await pool.query('SELECT item_stock FROM shoe_data WHERE id = $1', [id]);
@@ -74,7 +74,7 @@ module.exports = function (pool) {
         };
     };
 
-    async function add (shoeData) {
+    const add = async (shoeData) => {
         const specialCheck = /[!@#$%^&*(),.?":{}|<>\d]/;
         if (shoeData.colour && shoeData.brand && shoeData.price && shoeData.size && shoeData.stock) {
             const colourTest = specialCheck.test(shoeData.colour);

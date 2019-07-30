@@ -12,14 +12,17 @@ var expect = chai.expect;
 describe('API Tests', () => {
     app = express();
     app.use(bodyParser.json());
+
     const shoeService = ShoeService();
     const shoeMockAPI = ShoeMockAPI(shoeService);
     AppRouting(shoeMockAPI, app);
+
     describe('Testing fetching APIs that return lists from the database', () => {
         it('should return a list of all records in the database', (done) => {
             request(app)
                 .get('/api/shoes')
                 .end(function (err, res) {
+                    expect(res.body.status).to.be.equal('success');
                     expect(res.body.shoes).to.be.equal('success');
                     expect(res.statusCode).to.be.equal(200);
                     done();
@@ -29,6 +32,7 @@ describe('API Tests', () => {
             request(app)
                 .get('/api/shoes/colour/' + 'Red')
                 .end(function (err, res) {
+                    expect(res.body.status).to.be.equal('success');
                     expect(res.body.shoes).to.be.equal('success');
                     expect(res.statusCode).to.be.equal(200);
                     done();
@@ -38,6 +42,7 @@ describe('API Tests', () => {
             request(app)
                 .get('/api/shoes/brand/' + 'Nike')
                 .end(function (err, res) {
+                    expect(res.body.status).to.be.equal('success');
                     expect(res.body.shoes).to.be.equal('success');
                     expect(res.statusCode).to.be.equal(200);
                     done();
@@ -47,6 +52,7 @@ describe('API Tests', () => {
             request(app)
                 .get('/api/shoes/size/' + '9')
                 .end(function (err, res) {
+                    expect(res.body.status).to.be.equal('success');
                     expect(res.body.shoes).to.be.equal('success');
                     expect(res.statusCode).to.be.equal(200);
                     done();
@@ -56,6 +62,7 @@ describe('API Tests', () => {
             request(app)
                 .get('/api/shoes/colour/' + 'Blue' + '/brand/' + 'Adidas')
                 .end(function (err, res) {
+                    expect(res.body.status).to.be.equal('success');
                     expect(res.body.shoes).to.be.equal('success');
                     expect(res.statusCode).to.be.equal(200);
                     done();
@@ -65,6 +72,7 @@ describe('API Tests', () => {
             request(app)
                 .get('/api/shoes/colour/' + 'Black' + '/size/' + '11')
                 .end(function (err, res) {
+                    expect(res.body.status).to.be.equal('success');
                     expect(res.body.shoes).to.be.equal('success');
                     expect(res.statusCode).to.be.equal(200);
                     done();
@@ -74,6 +82,7 @@ describe('API Tests', () => {
             request(app)
                 .get('/api/shoes/brand/' + 'New Balance' + '/size/' + '10')
                 .end(function (err, res) {
+                    expect(res.body.status).to.be.equal('success');
                     expect(res.body.shoes).to.be.equal('success');
                     expect(res.statusCode).to.be.equal(200);
                     done();
@@ -83,6 +92,7 @@ describe('API Tests', () => {
             request(app)
                 .get('/api/shoes/brand/' + 'Vans' + '/size/' + '9' + '/colour/' + 'White')
                 .end(function (err, res) {
+                    expect(res.body.status).to.be.equal('success');
                     expect(res.body.shoes).to.be.equal('success');
                     expect(res.statusCode).to.be.equal(200);
                     done();

@@ -59,17 +59,12 @@ if (process.env.RELOAD_DATA) {
     console.log('Data not reloaded');
 };
 
-// routes
-app.get('/', function (req, res) {
-    res.render('index');
-});
-
 AppRouting(shoeManagerAPI, app);
 
-var PORT = process.env.PORT || 3022;
+// var PORT = process.env.PORT || 3022;
 
-app.listen(PORT, () => {
-    console.log('App started on port:', PORT);
-});
+// app.listen(PORT, () => {
+//     console.log('App started on port:', PORT);
+// });
 
 module.exports = app;

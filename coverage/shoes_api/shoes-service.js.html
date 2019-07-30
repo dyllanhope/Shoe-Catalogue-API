@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>56/56</span>
+        <span class='fraction'>63/63</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">86.67% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>54/54</span>
+        <span class='fraction'>61/61</span>
       </div>
     </div>
     <p class="quiet">
@@ -203,27 +203,27 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">3x</span>
@@ -232,7 +232,7 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -243,7 +243,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -324,27 +324,27 @@
         return result.rows;
     };
 &nbsp;
-    async function brand (brand) {
+    const brand = async (brand) =&gt; {
         const result = await pool.query('SELECT * FROM shoe_data WHERE brand = $1', [brand]);
         return result.rows;
     };
 &nbsp;
-    async function size (size) {
+    const size = async (size) =&gt; {
         const result = await pool.query('SELECT * FROM shoe_data WHERE size = $1', [size]);
         return result.rows;
     };
 &nbsp;
-    async function brandSize (brand, size) {
+    const brandSize = async (brand, size) =&gt; {
         const result = await pool.query('SELECT * FROM shoe_data WHERE brand = $1 AND size = $2', [brand, size]);
         return result.rows;
     };
 &nbsp;
-    async function specific (colour, brand, size) {
+    const specific = async (colour, brand, size) =&gt; {
         const result = await pool.query('SELECT * FROM shoe_data WHERE brand = $1 AND size = $2 AND colour = $3', [brand, size, colour]);
         return result.rows;
     };
 &nbsp;
-    async function update (id) {
+    const update = async (id) =&gt; {
         const result = await pool.query('SELECT id,colour,brand,size,item_stock FROM shoe_data WHERE id = $1', [id]);
         let stock = result.rows[0].item_stock;
         if (stock !== 0) {
@@ -353,7 +353,7 @@
         await pool.query('UPDATE shoe_data SET item_stock = $2 WHERE id = $1', [id, stock]);
     };
 &nbsp;
-    async function returnItems (items) {
+    const returnItems = async (items) =&gt; {
         for (let i = 0; i &lt; items.length; i++) {
             const id = items[i].id;
             const result = await pool.query('SELECT item_stock FROM shoe_data WHERE id = $1', [id]);
@@ -364,7 +364,7 @@
         };
     };
 &nbsp;
-    async function add (shoeData) {
+    const add = async (shoeData) =&gt; {
         const specialCheck = /[!@#$%^&amp;*(),.?":{}|&lt;&gt;\d]/;
         <span class="missing-if-branch" title="else path not taken" >E</span>if (shoeData.colour &amp;&amp; shoeData.brand &amp;&amp; shoeData.price &amp;&amp; shoeData.size &amp;&amp; shoeData.stock) {
             const colourTest = specialCheck.test(shoeData.colour);
@@ -415,7 +415,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 30 2019 14:41:05 GMT+0200 (SAST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Jul 30 2019 16:38:10 GMT+0200 (SAST)
 </div>
 </div>
 <script src="../prettify.js"></script>

@@ -48,7 +48,7 @@ module.exports = function () {
     function specific (colour, brand, size) {
         if (colour === 'White' && brand === 'Vans' && size === '9') {
             return 'success';
-        }
+        };
     };
 
     function update (id) {
