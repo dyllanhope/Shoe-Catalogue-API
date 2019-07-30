@@ -1,5 +1,5 @@
 module.exports = function (pool) {
-    async function reloadData (data) {
+    const reloadData = async (data) => {
         await pool.query('DELETE FROM shoe_data');
         for (let x = 0; x < data.length; x++) {
             const input = [
@@ -14,44 +14,44 @@ module.exports = function (pool) {
         };
     };
 
-    async function all () {
+    const all = async () => {
         const result = await pool.query('SELECT * FROM shoe_data');
-        return result;
+        return result.rows;
     };
 
-    async function colour (colour) {
+    const colour = async (colour) => {
         const result = await pool.query('SELECT * FROM shoe_data WHERE colour = $1', [colour]);
-        return result;
+        return result.rows;
     };
 
-    async function colourBrand (colour, brand) {
+    const colourBrand = async (colour, brand) => {
         const result = await pool.query('SELECT * FROM shoe_data WHERE brand = $1 AND colour = $2', [brand, colour]);
-        return result;
+        return result.rows;
     };
 
-    async function colourSize (colour, size) {
+    const colourSize = async (colour, size) => {
         const result = await pool.query('SELECT * FROM shoe_data WHERE size = $1 AND colour = $2', [size, colour]);
-        return result;
+        return result.rows;
     };
 
     async function brand (brand) {
         const result = await pool.query('SELECT * FROM shoe_data WHERE brand = $1', [brand]);
-        return result;
+        return result.rows;
     };
 
     async function size (size) {
         const result = await pool.query('SELECT * FROM shoe_data WHERE size = $1', [size]);
-        return result;
+        return result.rows;
     };
 
     async function brandSize (brand, size) {
         const result = await pool.query('SELECT * FROM shoe_data WHERE brand = $1 AND size = $2', [brand, size]);
-        return result;
+        return result.rows;
     };
 
     async function specific (colour, brand, size) {
         const result = await pool.query('SELECT * FROM shoe_data WHERE brand = $1 AND size = $2 AND colour = $3', [brand, size, colour]);
-        return result;
+        return result.rows;
     };
 
     async function update (id) {

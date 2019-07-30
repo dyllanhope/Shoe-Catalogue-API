@@ -1,9 +1,9 @@
-module.exports = function (shoeService, data) {
-    async function load () {
+module.exports = function (shoeService) {
+    async function load (data) {
         await shoeService.reloadData(data);
     };
 
-    async function all (req, res) {
+    const all = async (req, res) => {
         try {
             res.json({
                 status: 'success',
@@ -14,6 +14,7 @@ module.exports = function (shoeService, data) {
                 status: 'error',
                 error: err.stack
             });
+            console.log(err.stack);
         };
     };
 
@@ -30,7 +31,7 @@ module.exports = function (shoeService, data) {
     //     }
     // });
 
-    async function colour (req, res) {
+    const colour = async (req, res) => {
         try {
             const colour = req.params.colour;
             res.json({
@@ -42,10 +43,11 @@ module.exports = function (shoeService, data) {
                 status: 'error',
                 error: err.stack
             });
+            console.log(err.stack);
         };
     };
 
-    async function colourBrand (req, res) {
+    const colourBrand = async (req, res) => {
         try {
             const colour = req.params.colour;
             const brand = req.params.brandname;
@@ -58,10 +60,11 @@ module.exports = function (shoeService, data) {
                 status: 'error',
                 error: err.stack
             });
+            console.log(err.stack);
         };
     };
 
-    async function colourSize (req, res) {
+    const colourSize = async (req, res) => {
         try {
             const colour = req.params.colour;
             const size = req.params.size;
@@ -74,10 +77,11 @@ module.exports = function (shoeService, data) {
                 status: 'error',
                 error: err.stack
             });
+            console.log(err.stack);
         };
     };
 
-    async function brand (req, res) {
+    const brand = async (req, res) => {
         try {
             const brand = req.params.brandname;
             res.json({
@@ -89,10 +93,11 @@ module.exports = function (shoeService, data) {
                 status: 'error',
                 error: err.stack
             });
+            console.log(err.stack);        
         };
     };
 
-    async function size (req, res) {
+    const size = async (req, res) => {
         try {
             const size = req.params.size;
             res.json({
@@ -104,10 +109,11 @@ module.exports = function (shoeService, data) {
                 status: 'error',
                 error: err.stack
             });
+            console.log(err.stack);
         };
     };
 
-    async function brandSize (req, res) {
+    const brandSize = async (req, res) => {
         try {
             const brand = req.params.brandname;
             const size = req.params.size;
@@ -120,10 +126,11 @@ module.exports = function (shoeService, data) {
                 status: 'error',
                 error: err.stack
             });
+            console.log(err.stack);
         };
     };
 
-    async function specific (req, res) {
+    const specific = async (req, res) => {
         try {
             const brand = req.params.brandname;
             const size = req.params.size;
@@ -137,10 +144,11 @@ module.exports = function (shoeService, data) {
                 status: 'error',
                 error: err.stack
             });
+            console.log(err.stack);
         };
     };
 
-    async function update (req, res) {
+    const update = async (req, res) => {
         try {
             const id = req.params.id;
             await shoeService.update(id);
@@ -153,10 +161,11 @@ module.exports = function (shoeService, data) {
                 status: 'error',
                 error: err.stack
             });
+            console.log(err.stack);
         };
     };
 
-    async function returnItems (req, res) {
+    const returnItems = async (req, res) => {
         try {
             const items = req.body;
             await shoeService.returnItems(items);
@@ -169,10 +178,11 @@ module.exports = function (shoeService, data) {
                 status: 'error',
                 error: err.stack
             });
+            console.log(err.stack);
         };
     };
 
-    async function addShoe (req, res) {
+    const addShoe = async (req, res) => {
         try {
             const shoeData = req.body;
             shoeService.add(shoeData);
@@ -185,6 +195,7 @@ module.exports = function (shoeService, data) {
                 status: 'error',
                 error: err.stack
             });
+            console.log(err.stack);
         };
     };
 

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 const assert = require('assert');
 const ShoeService = require('../shoes-service');
 const pg = require('pg');
@@ -46,7 +47,7 @@ describe('Shoe catalogue service tests', function () {
                 }]);
 
             const result = await shoeService.all();
-            assert.strict.deepEqual(result.rows, [
+            assert.strict.deepEqual(result, [
                 {
                     id: 1,
                     colour: 'Red',
@@ -77,7 +78,7 @@ describe('Shoe catalogue service tests', function () {
             await shoeService.reloadData(data);
 
             const result = await shoeService.colour('Red');
-            assert.strict.deepEqual(result.rows, [
+            assert.strict.deepEqual(result, [
                 {
                     brand: 'Nike',
                     colour: 'Red',
@@ -214,7 +215,7 @@ describe('Shoe catalogue service tests', function () {
             await shoeService.reloadData(data);
 
             const result = await shoeService.brand('Nike');
-            assert.strict.deepEqual(result.rows, [
+            assert.strict.deepEqual(result, [
                 {
                     brand: 'Nike',
                     colour: 'Red',
@@ -350,7 +351,7 @@ describe('Shoe catalogue service tests', function () {
             await shoeService.reloadData(data);
 
             const result = await shoeService.size(8);
-            assert.strict.deepEqual(result.rows, [
+            assert.strict.deepEqual(result, [
                 {
                     brand: 'Nike',
                     colour: 'Red',
@@ -486,7 +487,7 @@ describe('Shoe catalogue service tests', function () {
             await shoeService.reloadData(data);
 
             const result = await shoeService.colourBrand('Red', 'Nike');
-            assert.strict.deepEqual(result.rows, [
+            assert.strict.deepEqual(result, [
                 {
                     brand: 'Nike',
                     colour: 'Red',
@@ -526,7 +527,7 @@ describe('Shoe catalogue service tests', function () {
             await shoeService.reloadData(data);
 
             const result = await shoeService.colourSize('Blue', 8);
-            assert.strict.deepEqual(result.rows, [
+            assert.strict.deepEqual(result, [
                 {
                     brand: 'Nike',
                     colour: 'Blue',
@@ -567,7 +568,7 @@ describe('Shoe catalogue service tests', function () {
             await shoeService.reloadData(data);
 
             const result = await shoeService.brandSize('Adidas', 11);
-            assert.strict.deepEqual(result.rows, [
+            assert.strict.deepEqual(result, [
                 {
                     brand: 'Adidas',
                     colour: 'Red',
@@ -607,7 +608,7 @@ describe('Shoe catalogue service tests', function () {
             await shoeService.reloadData(data);
 
             const result = await shoeService.specific('Black', 'Adidas', 11);
-            assert.strict.deepEqual(result.rows, [
+            assert.strict.deepEqual(result, [
                 {
                     brand: 'Adidas',
                     colour: 'Black',

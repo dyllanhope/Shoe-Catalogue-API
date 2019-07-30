@@ -7,6 +7,7 @@ const session = require('express-session');
 const ShoeAPI = require('./public/Shoe-manager-api');
 const data = require('./public/js/data');
 const ShoeService = require('./shoes-service');
+const AppRouting = require('./app-routing');
 
 const app = express();
 
@@ -27,7 +28,7 @@ const pool = new Pool({
 });
 
 const shoeService = ShoeService(pool);
-const shoeManagerAPI = ShoeAPI(shoeService, data);
+const shoeManagerAPI = ShoeAPI(shoeService);
 
 app.use(session({
     secret: 'yikes',
@@ -53,7 +54,7 @@ app.use(bodyParser.json());
 
 if (process.env.RELOAD_DATA) {
     console.log('About to reload data');
-    shoeManagerAPI.load();
+    shoeManagerAPI.load(data);
 } else {
     console.log('Data not reloaded');
 };
@@ -63,20 +64,12 @@ app.get('/', function (req, res) {
     res.render('index');
 });
 
-app.get('/api/shoes', shoeManagerAPI.all);
-app.get('/api/shoes/colour/:colour', shoeManagerAPI.colour);
-app.get('/api/shoes/colour/:colour/brand/:brandname', shoeManagerAPI.colourBrand);
-app.get('/api/shoes/colour/:colour/size/:size', shoeManagerAPI.colourSize);
-app.get('/api/shoes/brand/:brandname', shoeManagerAPI.brand);
-app.get('/api/shoes/size/:size', shoeManagerAPI.size);
-app.get('/api/shoes/brand/:brandname/size/:size', shoeManagerAPI.brandSize);
-app.get('/api/shoes/brand/:brandname/size/:size/colour/:colour', shoeManagerAPI.specific);
-app.post('/api/shoes/sold/:id', shoeManagerAPI.update);
-app.post('/api/shoes/clear', shoeManagerAPI.returnItems);
-app.post('/api/shoes', shoeManagerAPI.addShoe);
+AppRouting(shoeManagerAPI, app);
 
-const PORT = process.env.PORT || 3021;
+var PORT = process.env.PORT || 3022;
 
-app.listen(PORT, function () {
-    console.log('app started at port: ' + PORT);
+app.listen(PORT, () => {
+    console.log('App started on port:', PORT);
 });
+
+module.exports = app;

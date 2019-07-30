@@ -127,8 +127,7 @@ addBtn.addEventListener('click', function () {
             .get('/api/shoes')
             .then(function (results) {
                 const response = results.data;
-                const data = response.shoes;
-                const shoes = data.rows;
+                const shoes = response.shoes;
 
                 const colour = colourDropDown.value;
                 const brand = brandDropDown.value;
@@ -192,8 +191,7 @@ function dropDownUpdate () {
         .all()
         .then(function (results) {
             const response = results.data;
-            const data = response.shoes;
-            const shoes = data.rows;
+            const shoes = response.shoes;
             let items;
             let type;
             for (let i = 1; i <= 3; i++) {
@@ -215,8 +213,7 @@ function buildDisplayColour (colour) {
         .colour(colour)
         .then(function (results) {
             const response = results.data;
-            const data = response.shoes;
-            const shoes = data.rows;
+            const shoes = response.shoes;
             displayFilter(shoes);
         });
 };
@@ -226,8 +223,7 @@ function buildDisplayBrand (brand) {
         .brand(brand)
         .then(function (results) {
             const response = results.data;
-            const data = response.shoes;
-            const shoes = data.rows;
+            const shoes = response.shoes;
             displayFilter(shoes);
         });
 };
@@ -237,8 +233,7 @@ function buildDisplaySize (size) {
         .size(size)
         .then(function (results) {
             const response = results.data;
-            const data = response.shoes;
-            const shoes = data.rows;
+            const shoes = response.shoes;
             displayFilter(shoes);
         });
 };
@@ -247,8 +242,7 @@ function buildDisplayBrandSize (brand, size) {
         .brandSize(brand, size)
         .then(function (results) {
             const response = results.data;
-            const data = response.shoes;
-            const shoes = data.rows;
+            const shoes = response.shoes;
             displayFilter(shoes);
         });
 };
@@ -257,8 +251,7 @@ function buildDisplayColourBrand (colour, brand) {
         .colourBrand(colour, brand)
         .then(function (results) {
             const response = results.data;
-            const data = response.shoes;
-            const shoes = data.rows;
+            const shoes = response.shoes;
             displayFilter(shoes);
         });
 };
@@ -267,8 +260,7 @@ function buildDisplayColourSize (colour, size) {
         .colourSize(colour, size)
         .then(function (results) {
             const response = results.data;
-            const data = response.shoes;
-            const shoes = data.rows;
+            const shoes = response.shoes;
             displayFilter(shoes);
         });
 };
@@ -277,8 +269,7 @@ function buildDisplayColourBrandSize (colour, brand, size) {
         .colourBrandSize(colour, brand, size)
         .then(function (results) {
             const response = results.data;
-            const data = response.shoes;
-            const shoes = data.rows;
+            const shoes = response.shoes;
             displayFilter(shoes);
         });
 };
