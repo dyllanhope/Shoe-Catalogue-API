@@ -1,8 +1,4 @@
 module.exports = function (shoeService) {
-    async function load (data) {
-        await shoeService.reloadData(data);
-    };
-
     const all = async (req, res) => {
         try {
             res.json({
@@ -16,19 +12,6 @@ module.exports = function (shoeService) {
             });
         };
     };
-
-    // colour({
-    //     params : {
-    //         colour:""
-    //     }
-    // }, {
-    //     res : {
-    //         json : function(result) {
-    //             // result.status
-    //             // result.shoes
-    //         }
-    //     }
-    // });
 
     const colour = async (req, res) => {
         try {
@@ -189,7 +172,6 @@ module.exports = function (shoeService) {
     };
 
     return {
-        load,
         all,
         colour,
         brand,

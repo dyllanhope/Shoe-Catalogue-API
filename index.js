@@ -54,7 +54,7 @@ app.use(bodyParser.json());
 
 if (process.env.RELOAD_DATA) {
     console.log('About to reload data');
-    shoeManagerAPI.load(data);
+    shoeService.reloadData(data);
 } else {
     console.log('Data not reloaded');
 };
