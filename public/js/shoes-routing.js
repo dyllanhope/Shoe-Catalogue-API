@@ -1,7 +1,7 @@
 /* eslint-disable no-undef */
 function ShoeService () {
-    function all () {
-        return axios.get('/api/shoes');
+    function all (type) {
+        return axios.get('/api/shoes/' + type);
     };
 
     function colour (type) {

@@ -1,5 +1,5 @@
 module.exports = (shoeManagerAPI, app) => {
-    app.get('/api/shoes', shoeManagerAPI.all);
+    app.get('/api/shoes/:type', shoeManagerAPI.all);
     app.get('/api/shoes/colour/:colour', shoeManagerAPI.colour);
     app.get('/api/shoes', shoeManagerAPI.all);
     app.get('/api/shoes/colour/:colour', shoeManagerAPI.colour);

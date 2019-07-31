@@ -1,9 +1,10 @@
 module.exports = function (shoeService) {
     const all = async (req, res) => {
         try {
+            const type = req.params.type;
             res.json({
                 status: 'success',
-                shoes: await shoeService.all()
+                shoes: await shoeService.all(type)
             });
         } catch (err) {
             res.json({

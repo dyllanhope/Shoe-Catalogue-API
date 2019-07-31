@@ -14,8 +14,18 @@ module.exports = function (pool) {
         };
     };
 
-    const all = async () => {
-        const result = await pool.query('SELECT * FROM shoe_data');
+    const all = async (type) => {
+        let result;
+
+        if (type === 'colour') {
+            result = await pool.query('SELECT DISTINCT colour FROM shoe_data');
+        } else if (type === 'brand') {
+            result = await pool.query('SELECT DISTINCT brand FROM shoe_data');
+        } else if (type === 'size') {
+            result = await pool.query('SELECT DISTINCT size FROM shoe_data');
+        } else {
+            result = await pool.query('SELECT * FROM shoe_data');
+        }
         return result.rows;
     };
 

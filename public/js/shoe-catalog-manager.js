@@ -121,28 +121,6 @@ function ShoeCatalogManager () {
         return data;
     };
 
-    function buildLists (loadData, info) {
-        if (info !== 'size') {
-            var string = 'Select ' + info;
-            var list = [string];
-        } else {
-            list = [];
-        }
-        var dataMap = {};
-        for (var x = 0; x < loadData.length; x++) {
-            if (dataMap[loadData[x][info]] === undefined) {
-                dataMap[loadData[x][info]] = 0;
-                list.push(loadData[x][info]);
-            }
-        };
-        if (info === 'size') {
-            list = list.sort((a, b) => a - b);
-            list.unshift('Select size');
-        };
-
-        return list;
-    };
-
     function createBasketItems (loadData, colourP, brandP, sizeP) {
         if (colourP && brandP && sizeP) {
             if (!colourP.startsWith('Select') &&
@@ -219,7 +197,6 @@ function ShoeCatalogManager () {
     }
 
     return {
-        lists: buildLists,
         createString: createDisplayString,
         buildBasket: createBasketItems,
         clear: clearShoppingBasket,

@@ -40,7 +40,10 @@ const shoeInstance = ShoeCatalogManager();
 const shoeService = ShoeService();
 
 window.onload = function () {
-    dropDownUpdate();
+    dropDownUpdate('colour');
+    dropDownUpdate('brand');
+    dropDownUpdate('size');
+
     recordEditor.style.display = 'none';
     dispTotal.style.display = 'none';
 };
@@ -172,16 +175,21 @@ checkoutBtn.addEventListener('click', function () {
 });
 
 function buildDropDowns (items, type) {
+    const list = [];
+    for (var i = 0; i < items.length; i++) {
+        list.push(items[i][type]);
+    };
+    list.unshift('Select ' + type);
     if (type === 'colour') {
-        const colourOptions = { list: items };
+        const colourOptions = { list: list };
         const colourHTML = dropDownTemplate(colourOptions);
         colourData.innerHTML = colourHTML;
     } else if (type === 'brand') {
-        const brandOptions = { list: items };
+        const brandOptions = { list: list };
         const brandHTML = dropDownTemplate(brandOptions);
         brandData.innerHTML = brandHTML;
     } else if (type === 'size') {
-        const sizeOptions = { list: items };
+        const sizeOptions = { list: list };
         const sizeHTML = dropDownTemplate(sizeOptions);
         sizeData.innerHTML = sizeHTML;
     };
@@ -192,25 +200,13 @@ function displayFilter (shoes) {
     filterData.innerHTML = filterHTML;
 };
 
-function dropDownUpdate () {
+function dropDownUpdate (type) {
     shoeService
-        .all()
+        .all(type)
         .then(function (results) {
             const response = results.data;
             const shoes = response.shoes;
-            let items;
-            let type;
-            for (let i = 1; i <= 3; i++) {
-                if (i === 1) {
-                    type = 'colour';
-                } else if (i === 2) {
-                    type = 'brand';
-                } else {
-                    type = 'size';
-                };
-                items = shoeInstance.lists(shoes, type);
-                buildDropDowns(items, type);
-            };
+            buildDropDowns(shoes, type);
         });
 };
 
@@ -309,7 +305,10 @@ function addShoe (shoeInfo) {
     shoeService
         .add(shoeInfo)
         .then(function () {
-            dropDownUpdate();
+            dropDownUpdate('colour');
+            dropDownUpdate('brand');
+            dropDownUpdate('size');
+
             filterData.innerHTML = '';
         })
         .catch(function (err) {
