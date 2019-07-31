@@ -14,7 +14,6 @@ module.exports = function (shoeService) {
                 status: 'error',
                 error: err.stack
             });
-            console.log(err.stack);
         };
     };
 
@@ -43,7 +42,6 @@ module.exports = function (shoeService) {
                 status: 'error',
                 error: err.stack
             });
-            console.log(err.stack);
         };
     };
 
@@ -60,7 +58,6 @@ module.exports = function (shoeService) {
                 status: 'error',
                 error: err.stack
             });
-            console.log(err.stack);
         };
     };
 
@@ -77,7 +74,6 @@ module.exports = function (shoeService) {
                 status: 'error',
                 error: err.stack
             });
-            console.log(err.stack);
         };
     };
 
@@ -93,7 +89,6 @@ module.exports = function (shoeService) {
                 status: 'error',
                 error: err.stack
             });
-            console.log(err.stack);
         };
     };
 
@@ -109,7 +104,6 @@ module.exports = function (shoeService) {
                 status: 'error',
                 error: err.stack
             });
-            console.log(err.stack);
         };
     };
 
@@ -126,7 +120,6 @@ module.exports = function (shoeService) {
                 status: 'error',
                 error: err.stack
             });
-            console.log(err.stack);
         };
     };
 
@@ -144,7 +137,6 @@ module.exports = function (shoeService) {
                 status: 'error',
                 error: err.stack
             });
-            console.log(err.stack);
         };
     };
 
@@ -161,7 +153,6 @@ module.exports = function (shoeService) {
                 status: 'error',
                 error: err.stack
             });
-            console.log(err.stack);
         };
     };
 
@@ -178,7 +169,6 @@ module.exports = function (shoeService) {
                 status: 'error',
                 error: err.stack
             });
-            console.log(err.stack);
         };
     };
 
@@ -195,7 +185,6 @@ module.exports = function (shoeService) {
                 status: 'error',
                 error: err.stack
             });
-            console.log(err.stack);
         };
     };
 
