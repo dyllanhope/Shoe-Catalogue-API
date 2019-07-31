@@ -87,6 +87,7 @@ searchBtn.addEventListener('click', function () {
     if ((colourDropDown.value).startsWith('Select') && (brandDropDown.value).startsWith('Select') && (sizeDropDown.value).startsWith('Select')) {
         filterData.innerHTML = '';
         displayField.innerHTML = 'Please select one or more of the above fields';
+
         setTimeout(function () {
             displayField.innerHTML = '';
         }, 3000);
@@ -119,6 +120,11 @@ Handlebars.registerHelper('isSizeSelected', function () {
     if (!(sizeDropDown.value).startsWith('Select')) {
         return true;
     }
+});
+Handlebars.registerHelper('noStock', function (stock) {
+    if (stock === 0) {
+        return true;
+    };
 });
 
 addBtn.addEventListener('click', function () {

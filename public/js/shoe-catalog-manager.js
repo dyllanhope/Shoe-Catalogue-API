@@ -59,6 +59,7 @@ function ShoeCatalogManager () {
 
     function buildDataForDisplay (chosenItems, loadData, colour, brand) {
         var category;
+
         var data = [];
         if (chosenItems === 'colour,') {
             category = 'brand';

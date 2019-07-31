@@ -258,7 +258,7 @@ module.exports = [
     {
         id: 33,
         colour: 'Red',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 455,
         size: 8,
         item_stock: 4
@@ -266,7 +266,7 @@ module.exports = [
     {
         id: 34,
         colour: 'Red',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 455,
         size: 9,
         item_stock: 1
@@ -274,7 +274,7 @@ module.exports = [
     {
         id: 35,
         colour: 'Red',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 455,
         size: 10,
         item_stock: 2
@@ -282,7 +282,7 @@ module.exports = [
     {
         id: 36,
         colour: 'Red',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 455,
         size: 11,
         item_stock: 3
@@ -290,7 +290,7 @@ module.exports = [
     {
         id: 37,
         colour: 'Blue',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 300,
         size: 8,
         item_stock: 7
@@ -298,7 +298,7 @@ module.exports = [
     {
         id: 38,
         colour: 'Blue',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 300,
         size: 9,
         item_stock: 3
@@ -306,7 +306,7 @@ module.exports = [
     {
         id: 39,
         colour: 'Blue',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 300,
         size: 10,
         item_stock: 5
@@ -314,7 +314,7 @@ module.exports = [
     {
         id: 40,
         colour: 'Blue',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 300,
         size: 11,
         item_stock: 2
@@ -322,7 +322,7 @@ module.exports = [
     {
         id: 41,
         colour: 'Black',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 1000,
         size: 8,
         item_stock: 3
@@ -330,7 +330,7 @@ module.exports = [
     {
         id: 42,
         colour: 'Black',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 1000,
         size: 9,
         item_stock: 5
@@ -338,7 +338,7 @@ module.exports = [
     {
         id: 43,
         colour: 'Black',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 1000,
         size: 10,
         item_stock: 1
@@ -346,7 +346,7 @@ module.exports = [
     {
         id: 44,
         colour: 'Black',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 1000,
         size: 11,
         item_stock: 0
@@ -354,7 +354,7 @@ module.exports = [
     {
         id: 45,
         colour: 'White',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 950,
         size: 8,
         item_stock: 1
@@ -362,7 +362,7 @@ module.exports = [
     {
         id: 46,
         colour: 'White',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 950,
         size: 9,
         item_stock: 5
@@ -370,7 +370,7 @@ module.exports = [
     {
         id: 47,
         colour: 'White',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 950,
         size: 10,
         item_stock: 2
@@ -378,7 +378,7 @@ module.exports = [
     {
         id: 48,
         colour: 'White',
-        brand: 'New Balance',
+        brand: 'New balance',
         price: 950,
         size: 11,
         item_stock: 4

@@ -9,12 +9,16 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <title>Shoe Catalogue</title>
+    <title>Shoe Catalogue</title> 
 
     <script type="text/template" class="filteredListTemplate">
             {{#if (isAllSelected)}}
                 {{#each filter}}
-                    <h4>We have <span style="color:red">{{stock}}</span> {{colour}} {{brand}}(s) - size: {{size}} at R{{price}} in stock.</h4>
+                    {{#if (noStock stock)}}
+                        <h4>We are out of stock of this shoe</h4>
+                    {{else}}
+                        <h4>We have <span style="color:red">{{stock}}</span> {{colour}} {{brand}}(s) - size: {{size}} at R{{price}} in stock.</h4>
+                    {{/if}}
                 {{/each}}
             {{else if (isSizeSelected)}}
             <h4>Shoes:</h4>
