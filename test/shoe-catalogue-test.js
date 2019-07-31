@@ -144,7 +144,7 @@ describe('Shoe catalogue service tests', function () {
                     size: 11
                 },
                 {
-                    brand: 'New Balance',
+                    brand: 'New balance',
                     colour: 'Red',
                     id: 33,
                     item_stock: 4,
@@ -152,7 +152,7 @@ describe('Shoe catalogue service tests', function () {
                     size: 8
                 },
                 {
-                    brand: 'New Balance',
+                    brand: 'New balance',
                     colour: 'Red',
                     id: 34,
                     item_stock: 1,
@@ -160,7 +160,7 @@ describe('Shoe catalogue service tests', function () {
                     size: 9
                 },
                 {
-                    brand: 'New Balance',
+                    brand: 'New balance',
                     colour: 'Red',
                     id: 35,
                     item_stock: 2,
@@ -168,7 +168,7 @@ describe('Shoe catalogue service tests', function () {
                     size: 10
                 },
                 {
-                    brand: 'New Balance',
+                    brand: 'New balance',
                     colour: 'Red',
                     id: 36,
                     item_stock: 3,
@@ -417,7 +417,7 @@ describe('Shoe catalogue service tests', function () {
                     size: 8
                 },
                 {
-                    brand: 'New Balance',
+                    brand: 'New balance',
                     colour: 'Red',
                     id: 33,
                     item_stock: 4,
@@ -425,7 +425,7 @@ describe('Shoe catalogue service tests', function () {
                     size: 8
                 },
                 {
-                    brand: 'New Balance',
+                    brand: 'New balance',
                     colour: 'Blue',
                     id: 37,
                     item_stock: 7,
@@ -433,7 +433,7 @@ describe('Shoe catalogue service tests', function () {
                     size: 8
                 },
                 {
-                    brand: 'New Balance',
+                    brand: 'New balance',
                     colour: 'Black',
                     id: 41,
                     item_stock: 3,
@@ -441,7 +441,7 @@ describe('Shoe catalogue service tests', function () {
                     size: 8
                 },
                 {
-                    brand: 'New Balance',
+                    brand: 'New balance',
                     colour: 'White',
                     id: 45,
                     item_stock: 1,
@@ -545,7 +545,7 @@ describe('Shoe catalogue service tests', function () {
                     size: 8
                 },
                 {
-                    brand: 'New Balance',
+                    brand: 'New balance',
                     colour: 'Blue',
                     id: 37,
                     item_stock: 7,
