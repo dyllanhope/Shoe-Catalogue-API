@@ -1,5 +1,5 @@
-function ShoeCatalogManager () {
-    var basketList = [];
+function ShoeCatalogManager (basketData) {
+    var basketList = basketData;
     var total = 0.00;
 
     function createDisplayString (loadData, colour, brand, size) {
