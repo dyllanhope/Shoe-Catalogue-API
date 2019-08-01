@@ -278,11 +278,11 @@ function buildDisplayColourBrandSize (colour, brand, size) {
 function updateStock (id) {
     shoeService
         .update(id)
-        .then(function () {
+        .then(async function () {
             dispTotal.style.display = 'unset';
             total.innerHTML = shoeInstance.total();
 
-            buildDisplayColourBrandSize(colourDropDown.value, brandDropDown.value, sizeDropDown.value);
+            await buildDisplayColourBrandSize(colourDropDown.value, brandDropDown.value, sizeDropDown.value);
         })
         .catch(function (err) {
             alert(err);

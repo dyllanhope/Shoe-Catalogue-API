@@ -61,10 +61,10 @@ if (process.env.RELOAD_DATA) {
 
 AppRouting(shoeManagerAPI, app);
 
-// var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 3000;
 
-// app.listen(PORT, () => {
-//     console.log('App started on port:', PORT);
-// });
+app.listen(PORT, () => {
+    console.log('App started on port:', PORT);
+});
 
 module.exports = app;
