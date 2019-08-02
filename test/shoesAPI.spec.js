@@ -1,5 +1,4 @@
 /* eslint-disable handle-callback-err */
-var app = require('../index');
 var chai = require('chai');
 var request = require('supertest');
 const express = require('express');
