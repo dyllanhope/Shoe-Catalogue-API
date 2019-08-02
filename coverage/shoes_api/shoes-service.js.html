@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">95.65% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>63/63</span>
+        <span class='fraction'>66/69</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">86.67% </span>
+        <span class="strong">76.19% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>13/15</span>
+        <span class='fraction'>16/21</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>13/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">95.52% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>61/61</span>
+        <span class='fraction'>64/67</span>
       </div>
     </div>
     <p class="quiet">
@@ -177,7 +177,9 @@
 <a name='L129'></a><a href='#L129'>129</a>
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
@@ -189,12 +191,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">771x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -284,16 +298,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -318,21 +322,23 @@
                 data[x].brand,
                 data[x].price,
                 data[x].size,
-                data[x].item_stock];
+                data[x].item_stock,
+                data[x].image
+            ];
 &nbsp;
-            await pool.query('INSERT INTO shoe_data(id, colour, brand, price, size, item_stock) VALUES($1,$2,$3,$4,$5,$6)', input);
+            await pool.query('INSERT INTO shoe_data(id, colour, brand, price, size, item_stock, image) VALUES($1,$2,$3,$4,$5,$6,$7)', input);
         };
     };
 &nbsp;
     const all = async (type) =&gt; {
         let result;
 &nbsp;
-        if (type === 'colour') {
-            result = await pool.query('SELECT DISTINCT colour FROM shoe_data');
-        } else if (type === 'brand') {
-            result = await pool.query('SELECT DISTINCT brand FROM shoe_data');
-        } else if (type === 'size') {
-            result = await pool.query('SELECT DISTINCT size FROM shoe_data');
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (type === 'colour') {
+<span class="cstat-no" title="statement not covered" >            result = await pool.query('SELECT DISTINCT colour FROM shoe_data');</span>
+        } else <span class="missing-if-branch" title="if path not taken" >I</span>if (type === 'brand') {
+<span class="cstat-no" title="statement not covered" >            result = await pool.query('SELECT DISTINCT brand FROM shoe_data');</span>
+        } else <span class="missing-if-branch" title="if path not taken" >I</span>if (type === 'size') {
+<span class="cstat-no" title="statement not covered" >            result = await pool.query('SELECT DISTINCT size FROM shoe_data');</span>
         } else {
             result = await pool.query('SELECT * FROM shoe_data');
         }
@@ -386,20 +392,20 @@
     const returnItems = async (items) =&gt; {
         for (let i = 0; i &lt; items.length; i++) {
             const id = items[i].id;
-        <span class="missing-if-branch" title="else path not taken" >E</span>    const result = await pool.query('SELECT item_stock FROM shoe_data WHERE id = $1', [id]);
+            const result = await pool.query('SELECT item_stock FROM shoe_data WHERE id = $1', [id]);
             let stock = result.rows[0].item_stock;
             stock += items[i].qty;
-<span class="missing-if-branch" title="else path not taken" >E</span>
+&nbsp;
             await pool.query('UPDATE shoe_data SET item_stock = $2 WHERE id = $1', [id, stock]);
         };
     };
 &nbsp;
     const add = async (shoeData) =&gt; {
         const specialCheck = /[!@#$%^&amp;*(),.?":{}|&lt;&gt;\d]/;
-        if (shoeData.colour &amp;&amp; shoeData.brand &amp;&amp; shoeData.price &amp;&amp; shoeData.size &amp;&amp; shoeData.stock) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (shoeData.colour &amp;&amp; shoeData.brand &amp;&amp; shoeData.price &amp;&amp; shoeData.size &amp;&amp; shoeData.stock) {
             const colourTest = specialCheck.test(shoeData.colour);
             const brandTest = specialCheck.test(shoeData.brand);
-            if (!colourTest &amp;&amp; !brandTest) {
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (!colourTest &amp;&amp; !brandTest) {
                 shoeData.colour = (shoeData.colour).charAt(0).toUpperCase() + ((shoeData.colour).slice(1)).toLowerCase();
                 shoeData.brand = (shoeData.brand).charAt(0).toUpperCase() + ((shoeData.brand).slice(1)).toLowerCase();
                 const results = await pool.query('SELECT * FROM shoe_data WHERE colour = $1 AND brand = $2 AND size = $3', [shoeData.colour, shoeData.brand, shoeData.size]);
@@ -445,7 +451,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Wed Jul 31 2019 14:20:43 GMT+0200 (SAST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Fri Aug 02 2019 12:44:24 GMT+0200 (SAST)
 </div>
 </div>
 <script src="../prettify.js"></script>
