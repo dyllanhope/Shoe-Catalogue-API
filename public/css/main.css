@@ -71,6 +71,12 @@ li{
     color:black !important;
     text-align: left !important;
 }
+img{
+    width: 200px;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 3px;
+}
 @media(min-width:720px){
     div.sideRight{
         margin-right : 15px !important;

@@ -8,9 +8,11 @@ module.exports = function (pool) {
                 data[x].brand,
                 data[x].price,
                 data[x].size,
-                data[x].item_stock];
+                data[x].item_stock,
+                data[x].image
+            ];
 
-            await pool.query('INSERT INTO shoe_data(id, colour, brand, price, size, item_stock) VALUES($1,$2,$3,$4,$5,$6)', input);
+            await pool.query('INSERT INTO shoe_data(id, colour, brand, price, size, item_stock, image) VALUES($1,$2,$3,$4,$5,$6,$7)', input);
         };
     };
 

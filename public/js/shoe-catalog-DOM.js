@@ -209,6 +209,7 @@ function buildDropDowns (items, type) {
 }
 function displayFilter (shoes) {
     var filterOptions = { filter: shoeInstance.createString(shoes, colourDropDown.value, brandDropDown.value, sizeDropDown.value) };
+    console.log(filterOptions);
     var filterHTML = filterTemplate(filterOptions);
     filterData.innerHTML = filterHTML;
 };

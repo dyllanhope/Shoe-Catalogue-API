@@ -17,6 +17,7 @@
                     {{#if (noStock stock)}}
                         <h4>We are out of stock of this shoe</h4>
                     {{else}}
+                        <img src="{{image}}" alt="{{colour}} {{brand}}">
                         <h4>We have <span style="color:red">{{stock}}</span> {{colour}} {{brand}}(s) - size: {{size}} at R{{price}} in stock.</h4>
                     {{/if}}
                 {{/each}}
@@ -30,7 +31,7 @@
                 </tr>
                 {{#each filter}}
                 <tr>
-                    <td>{{Avail_item}} </td>
+                    <td><img src="{{image}}" alt="{{Avail_items}}"> </td>
                     <td>{{Avail_sizes}}</td>
                     <td>R{{price}}</td>
                 </tr>
@@ -46,7 +47,7 @@
                 </tr>
                 {{#each filter}}
                 <tr>
-                    <td>{{Avail_item}} </td>
+                    <td><img src="{{image}}" alt="{{Avail_items}}"> </td>
                     <td>{{Avail_sizes}} </td>
                     <td>R{{price}} </td>
                     </tr>
