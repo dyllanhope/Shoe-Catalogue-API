@@ -27,7 +27,8 @@ describe('Shoe catalogue service tests', function () {
                     brand: 'Nike',
                     price: 350,
                     size: 8,
-                    item_stock: 1
+                    item_stock: 1,
+                    image: 'picture'
                 },
                 {
                     id: 2,
@@ -35,7 +36,8 @@ describe('Shoe catalogue service tests', function () {
                     brand: 'Nike',
                     price: 350,
                     size: 9,
-                    item_stock: 4
+                    item_stock: 4,
+                    image: 'picture'
                 },
                 {
                     id: 3,
@@ -43,7 +45,8 @@ describe('Shoe catalogue service tests', function () {
                     brand: 'Nike',
                     price: 350,
                     size: 10,
-                    item_stock: 3
+                    item_stock: 3,
+                    image: 'picture'
                 }]);
 
             const result = await shoeService.all();
@@ -54,7 +57,8 @@ describe('Shoe catalogue service tests', function () {
                     brand: 'Nike',
                     price: 350,
                     size: 8,
-                    item_stock: 1
+                    item_stock: 1,
+                    image: 'picture'
                 },
                 {
                     id: 2,
@@ -62,7 +66,8 @@ describe('Shoe catalogue service tests', function () {
                     brand: 'Nike',
                     price: 350,
                     size: 9,
-                    item_stock: 4
+                    item_stock: 4,
+                    image: 'picture'
                 },
                 {
                     id: 3,
@@ -70,7 +75,8 @@ describe('Shoe catalogue service tests', function () {
                     brand: 'Nike',
                     price: 350,
                     size: 10,
-                    item_stock: 3
+                    item_stock: 3,
+                    image: 'picture'
                 }]);
         });
         it('Should return all shoes that are "red"', async function () {
@@ -80,132 +86,148 @@ describe('Shoe catalogue service tests', function () {
             const result = await shoeService.colour('Red');
             assert.strict.deepEqual(result, [
                 {
-                    brand: 'Nike',
-                    colour: 'Red',
                     id: 1,
-                    item_stock: 1,
+                    colour: 'Red',
+                    brand: 'Nike',
                     price: 350,
-                    size: 8
+                    size: 8,
+                    item_stock: 1,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/65nwl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=C90023&show&obj=/s/g4/solid&color=BE2B3B&show&obj=/s/g5/solid&color=c60429&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=a5062c&show&obj=/s/g7/lace&color=E7002C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'Red',
                     id: 2,
-                    item_stock: 4,
+                    colour: 'Red',
+                    brand: 'Nike',
                     price: 350,
-                    size: 9
+                    size: 9,
+                    item_stock: 4,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/65nwl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=C90023&show&obj=/s/g4/solid&color=BE2B3B&show&obj=/s/g5/solid&color=c60429&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=a5062c&show&obj=/s/g7/lace&color=E7002C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'Red',
                     id: 3,
-                    item_stock: 3,
-                    price: 350,
-                    size: 10
-                },
-                {
+                    colour: 'Red',
                     brand: 'Nike',
-                    colour: 'Red',
-                    id: 4,
-                    item_stock: 2,
                     price: 350,
-                    size: 11
-                },
-                {
-                    brand: 'Adidas',
-                    colour: 'Red',
-                    id: 17,
-                    item_stock: 6,
-                    price: 700,
-                    size: 8
-                },
-                {
-                    brand: 'Adidas',
-                    colour: 'Red',
-                    id: 18,
-                    item_stock: 2,
-                    price: 700,
-                    size: 9
-                },
-                {
-                    brand: 'Adidas',
-                    colour: 'Red',
-                    id: 19,
-                    item_stock: 1,
-                    price: 700,
-                    size: 10
-                },
-                {
-                    brand: 'Adidas',
-                    colour: 'Red',
-                    id: 20,
-                    item_stock: 5,
-                    price: 700,
-                    size: 11
-                },
-                {
-                    brand: 'New balance',
-                    colour: 'Red',
-                    id: 33,
-                    item_stock: 4,
-                    price: 455,
-                    size: 8
-                },
-                {
-                    brand: 'New balance',
-                    colour: 'Red',
-                    id: 34,
-                    item_stock: 1,
-                    price: 455,
-                    size: 9
-                },
-                {
-                    brand: 'New balance',
-                    colour: 'Red',
-                    id: 35,
-                    item_stock: 2,
-                    price: 455,
-                    size: 10
-                },
-                {
-                    brand: 'New balance',
-                    colour: 'Red',
-                    id: 36,
+                    size: 10,
                     item_stock: 3,
-                    price: 455,
-                    size: 11
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/65nwl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=C90023&show&obj=/s/g4/solid&color=BE2B3B&show&obj=/s/g5/solid&color=c60429&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=a5062c&show&obj=/s/g7/lace&color=E7002C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Vans',
+                    id: 4,
                     colour: 'Red',
-                    id: 49,
-                    item_stock: 1,
-                    price: 360,
-                    size: 8
-                },
-                {
-                    brand: 'Vans',
-                    colour: 'Red',
-                    id: 50,
-                    item_stock: 5,
-                    price: 360,
-                    size: 9
-                },
-                {
-                    brand: 'Vans',
-                    colour: 'Red',
-                    id: 51,
-                    item_stock: 6,
-                    price: 360,
-                    size: 10
-                },
-                {
-                    brand: 'Vans',
-                    colour: 'Red',
-                    id: 52,
+                    brand: 'Nike',
+                    price: 350,
+                    size: 11,
                     item_stock: 2,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/65nwl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=C90023&show&obj=/s/g4/solid&color=BE2B3B&show&obj=/s/g5/solid&color=c60429&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=a5062c&show&obj=/s/g7/lace&color=E7002C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
+                },
+                {
+                    id: 17,
+                    colour: 'Red',
+                    brand: 'Adidas',
+                    price: 700,
+                    size: 8,
+                    item_stock: 6,
+                    image: 'https://cdn.zando.co.za/p/342201-1862-102243-2-catalog1.jpg'
+                },
+                {
+                    id: 18,
+                    colour: 'Red',
+                    brand: 'Adidas',
+                    price: 700,
+                    size: 9,
+                    item_stock: 2,
+                    image: 'https://cdn.zando.co.za/p/342201-1862-102243-2-catalog1.jpg'
+                },
+                {
+                    id: 19,
+                    colour: 'Red',
+                    brand: 'Adidas',
+                    price: 700,
+                    size: 10,
+                    item_stock: 1,
+                    image: 'https://cdn.zando.co.za/p/342201-1862-102243-2-catalog1.jpg'
+                },
+                {
+                    id: 20,
+                    colour: 'Red',
+                    brand: 'Adidas',
+                    price: 700,
+                    size: 11,
+                    item_stock: 5,
+                    image: 'https://cdn.zando.co.za/p/342201-1862-102243-2-catalog1.jpg'
+                },
+                {
+                    id: 33,
+                    colour: 'Red',
+                    brand: 'New balance',
+                    price: 455,
+                    size: 8,
+                    item_stock: 4,
+                    image: 'https://www.newbalance.co.za/media/product/685/997-classic-running-cm997hdc-9ac.jpg'
+                },
+                {
+                    id: 34,
+                    colour: 'Red',
+                    brand: 'New balance',
+                    price: 455,
+                    size: 9,
+                    item_stock: 1,
+                    image: 'https://www.newbalance.co.za/media/product/685/997-classic-running-cm997hdc-9ac.jpg'
+                },
+                {
+                    id: 35,
+                    colour: 'Red',
+                    brand: 'New balance',
+                    price: 455,
+                    size: 10,
+                    item_stock: 2,
+                    image: 'https://www.newbalance.co.za/media/product/685/997-classic-running-cm997hdc-9ac.jpg'
+                },
+                {
+                    id: 36,
+                    colour: 'Red',
+                    brand: 'New balance',
+                    price: 455,
+                    size: 11,
+                    item_stock: 3,
+                    image: 'https://www.newbalance.co.za/media/product/685/997-classic-running-cm997hdc-9ac.jpg'
+                },
+                {
+                    id: 49,
+                    colour: 'Red',
+                    brand: 'Vans',
                     price: 360,
-                    size: 11
+                    size: 8,
+                    item_stock: 1,
+                    image: 'https://images.vans.com/is/image/Vans/4OJGYK-HERO?$356x356$'
+                },
+                {
+                    id: 50,
+                    colour: 'Red',
+                    brand: 'Vans',
+                    price: 360,
+                    size: 9,
+                    item_stock: 5,
+                    image: 'https://images.vans.com/is/image/Vans/4OJGYK-HERO?$356x356$'
+                },
+                {
+                    id: 51,
+                    colour: 'Red',
+                    brand: 'Vans',
+                    price: 360,
+                    size: 10,
+                    item_stock: 6,
+                    image: 'https://images.vans.com/is/image/Vans/4OJGYK-HERO?$356x356$'
+                },
+                {
+                    id: 52,
+                    colour: 'Red',
+                    brand: 'Vans',
+                    price: 360,
+                    size: 11,
+                    item_stock: 2,
+                    image: 'https://images.vans.com/is/image/Vans/4OJGYK-HERO?$356x356$'
                 }
             ]
             );
@@ -217,132 +239,148 @@ describe('Shoe catalogue service tests', function () {
             const result = await shoeService.brand('Nike');
             assert.strict.deepEqual(result, [
                 {
-                    brand: 'Nike',
-                    colour: 'Red',
                     id: 1,
-                    item_stock: 1,
+                    colour: 'Red',
+                    brand: 'Nike',
                     price: 350,
-                    size: 8
+                    size: 8,
+                    item_stock: 1,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/65nwl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=C90023&show&obj=/s/g4/solid&color=BE2B3B&show&obj=/s/g5/solid&color=c60429&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=a5062c&show&obj=/s/g7/lace&color=E7002C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'Red',
                     id: 2,
-                    item_stock: 4,
+                    colour: 'Red',
+                    brand: 'Nike',
                     price: 350,
-                    size: 9
+                    size: 9,
+                    item_stock: 4,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/65nwl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=C90023&show&obj=/s/g4/solid&color=BE2B3B&show&obj=/s/g5/solid&color=c60429&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=a5062c&show&obj=/s/g7/lace&color=E7002C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'Red',
                     id: 3,
-                    item_stock: 3,
-                    price: 350,
-                    size: 10
-                },
-                {
-                    brand: 'Nike',
                     colour: 'Red',
-                    id: 4,
-                    item_stock: 2,
+                    brand: 'Nike',
                     price: 350,
-                    size: 11
+                    size: 10,
+                    item_stock: 3,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/65nwl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=C90023&show&obj=/s/g4/solid&color=BE2B3B&show&obj=/s/g5/solid&color=c60429&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=a5062c&show&obj=/s/g7/lace&color=E7002C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
+                    id: 4,
+                    colour: 'Red',
                     brand: 'Nike',
-                    colour: 'Blue',
+                    price: 350,
+                    size: 11,
+                    item_stock: 2,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/65nwl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=C90023&show&obj=/s/g4/solid&color=BE2B3B&show&obj=/s/g5/solid&color=c60429&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=a5062c&show&obj=/s/g7/lace&color=E7002C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
+                },
+                {
                     id: 5,
+                    colour: 'Blue',
+                    brand: 'Nike',
+                    price: 400,
+                    size: 8,
                     item_stock: 0,
-                    price: 400,
-                    size: 8
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/4pawl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=0063a9&show&obj=/s/g4/solid&color=0960A9&show&obj=/s/g5/solid&color=1F263D&show&obj=/s/g6&color=FFA021&show&obj=/s/g8&color=142149&show&obj=/s/g7/lace&color=007ebd&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'Blue',
                     id: 6,
-                    item_stock: 2,
+                    colour: 'Blue',
+                    brand: 'Nike',
                     price: 400,
-                    size: 9
+                    size: 9,
+                    item_stock: 2,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/4pawl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=0063a9&show&obj=/s/g4/solid&color=0960A9&show&obj=/s/g5/solid&color=1F263D&show&obj=/s/g6&color=FFA021&show&obj=/s/g8&color=142149&show&obj=/s/g7/lace&color=007ebd&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'Blue',
                     id: 7,
-                    item_stock: 7,
-                    price: 400,
-                    size: 10
-                },
-                {
-                    brand: 'Nike',
                     colour: 'Blue',
-                    id: 8,
-                    item_stock: 5,
+                    brand: 'Nike',
                     price: 400,
-                    size: 11
+                    size: 10,
+                    item_stock: 7,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/4pawl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=0063a9&show&obj=/s/g4/solid&color=0960A9&show&obj=/s/g5/solid&color=1F263D&show&obj=/s/g6&color=FFA021&show&obj=/s/g8&color=142149&show&obj=/s/g7/lace&color=007ebd&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
+                    id: 8,
+                    colour: 'Blue',
                     brand: 'Nike',
-                    colour: 'Black',
+                    price: 400,
+                    size: 11,
+                    item_stock: 5,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/4pawl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=0063a9&show&obj=/s/g4/solid&color=0960A9&show&obj=/s/g5/solid&color=1F263D&show&obj=/s/g6&color=FFA021&show&obj=/s/g8&color=142149&show&obj=/s/g7/lace&color=007ebd&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
+                },
+                {
                     id: 9,
-                    item_stock: 5,
+                    colour: 'Black',
+                    brand: 'Nike',
                     price: 1200,
-                    size: 8
+                    size: 8,
+                    item_stock: 5,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/00awl&show&obj=/s/g11&color=2c2c2c&show&obj=/s/g12&color=333133&show&obj=/s/g3/eye&color=2a2a2a&show&obj=/s/g4/met&color=D3A852&show&obj=/s/g5/met&color=a99052&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=1c1c1c&show&obj=/s/g7/lace&color=1C1C1C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'Black',
                     id: 10,
-                    item_stock: 1,
+                    colour: 'Black',
+                    brand: 'Nike',
                     price: 1200,
-                    size: 9
+                    size: 9,
+                    item_stock: 1,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/00awl&show&obj=/s/g11&color=2c2c2c&show&obj=/s/g12&color=333133&show&obj=/s/g3/eye&color=2a2a2a&show&obj=/s/g4/met&color=D3A852&show&obj=/s/g5/met&color=a99052&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=1c1c1c&show&obj=/s/g7/lace&color=1C1C1C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'Black',
                     id: 11,
-                    item_stock: 3,
-                    price: 1200,
-                    size: 10
-                },
-                {
-                    brand: 'Nike',
                     colour: 'Black',
-                    id: 12,
-                    item_stock: 3,
+                    brand: 'Nike',
                     price: 1200,
-                    size: 11
+                    size: 10,
+                    item_stock: 3,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/00awl&show&obj=/s/g11&color=2c2c2c&show&obj=/s/g12&color=333133&show&obj=/s/g3/eye&color=2a2a2a&show&obj=/s/g4/met&color=D3A852&show&obj=/s/g5/met&color=a99052&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=1c1c1c&show&obj=/s/g7/lace&color=1C1C1C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
+                    id: 12,
+                    colour: 'Black',
                     brand: 'Nike',
-                    colour: 'White',
+                    price: 1200,
+                    size: 11,
+                    item_stock: 3,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/00awl&show&obj=/s/g11&color=2c2c2c&show&obj=/s/g12&color=333133&show&obj=/s/g3/eye&color=2a2a2a&show&obj=/s/g4/met&color=D3A852&show&obj=/s/g5/met&color=a99052&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=1c1c1c&show&obj=/s/g7/lace&color=1C1C1C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
+                },
+                {
                     id: 13,
+                    colour: 'White',
+                    brand: 'Nike',
+                    price: 1100,
+                    size: 8,
                     item_stock: 2,
-                    price: 1100,
-                    size: 8
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/10awl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=fffef9&show&obj=/s/g4/solid&color=f9fcff&show&obj=/s/g5/solid&color=ffffff&show&obj=/s/g6&color=ffffff&show&obj=/s/g8&color=cad3d5&show&obj=/s/g7/lace&color=F8F7FD&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'White',
                     id: 14,
+                    colour: 'White',
+                    brand: 'Nike',
+                    price: 1100,
+                    size: 9,
                     item_stock: 4,
-                    price: 1100,
-                    size: 9
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/10awl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=fffef9&show&obj=/s/g4/solid&color=f9fcff&show&obj=/s/g5/solid&color=ffffff&show&obj=/s/g6&color=ffffff&show&obj=/s/g8&color=cad3d5&show&obj=/s/g7/lace&color=F8F7FD&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'White',
                     id: 15,
-                    item_stock: 1,
+                    colour: 'White',
+                    brand: 'Nike',
                     price: 1100,
-                    size: 10
+                    size: 10,
+                    item_stock: 1,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/10awl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=fffef9&show&obj=/s/g4/solid&color=f9fcff&show&obj=/s/g5/solid&color=ffffff&show&obj=/s/g6&color=ffffff&show&obj=/s/g8&color=cad3d5&show&obj=/s/g7/lace&color=F8F7FD&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'White',
                     id: 16,
-                    item_stock: 5,
+                    colour: 'White',
+                    brand: 'Nike',
                     price: 1100,
-                    size: 11
+                    size: 11,
+                    item_stock: 5,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/10awl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=fffef9&show&obj=/s/g4/solid&color=f9fcff&show&obj=/s/g5/solid&color=ffffff&show&obj=/s/g6&color=ffffff&show&obj=/s/g8&color=cad3d5&show&obj=/s/g7/lace&color=F8F7FD&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 }
             ]);
         });
@@ -358,7 +396,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 1,
                     item_stock: 1,
                     price: 350,
-                    size: 8
+                    size: 8,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/65nwl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=C90023&show&obj=/s/g4/solid&color=BE2B3B&show&obj=/s/g5/solid&color=c60429&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=a5062c&show&obj=/s/g7/lace&color=E7002C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
                     brand: 'Nike',
@@ -366,7 +405,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 5,
                     item_stock: 0,
                     price: 400,
-                    size: 8
+                    size: 8,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/4pawl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=0063a9&show&obj=/s/g4/solid&color=0960A9&show&obj=/s/g5/solid&color=1F263D&show&obj=/s/g6&color=FFA021&show&obj=/s/g8&color=142149&show&obj=/s/g7/lace&color=007ebd&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
                     brand: 'Nike',
@@ -374,7 +414,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 9,
                     item_stock: 5,
                     price: 1200,
-                    size: 8
+                    size: 8,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/00awl&show&obj=/s/g11&color=2c2c2c&show&obj=/s/g12&color=333133&show&obj=/s/g3/eye&color=2a2a2a&show&obj=/s/g4/met&color=D3A852&show&obj=/s/g5/met&color=a99052&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=1c1c1c&show&obj=/s/g7/lace&color=1C1C1C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
                     brand: 'Nike',
@@ -382,7 +423,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 13,
                     item_stock: 2,
                     price: 1100,
-                    size: 8
+                    size: 8,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/10awl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=fffef9&show&obj=/s/g4/solid&color=f9fcff&show&obj=/s/g5/solid&color=ffffff&show&obj=/s/g6&color=ffffff&show&obj=/s/g8&color=cad3d5&show&obj=/s/g7/lace&color=F8F7FD&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
                     brand: 'Adidas',
@@ -390,7 +432,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 17,
                     item_stock: 6,
                     price: 700,
-                    size: 8
+                    size: 8,
+                    image: 'https://cdn.zando.co.za/p/342201-1862-102243-2-catalog1.jpg'
                 },
                 {
                     brand: 'Adidas',
@@ -398,7 +441,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 21,
                     item_stock: 5,
                     price: 450,
-                    size: 8
+                    size: 8,
+                    image: 'https://cdn.zando.co.za/p/342204-1906-402243-2-catalog1.jpg'
                 },
                 {
                     brand: 'Adidas',
@@ -406,7 +450,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 25,
                     item_stock: 3,
                     price: 1250,
-                    size: 8
+                    size: 8,
+                    image: 'https://cdn.zando.co.za/p/342223-1704-322243-2-catalog1.jpg'
                 },
                 {
                     brand: 'Adidas',
@@ -414,7 +459,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 29,
                     item_stock: 4,
                     price: 1300,
-                    size: 8
+                    size: 8,
+                    image: 'https://cdn.zando.co.za/p/319634-1801-436913-2-catalog1.jpg'
                 },
                 {
                     brand: 'New balance',
@@ -422,7 +468,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 33,
                     item_stock: 4,
                     price: 455,
-                    size: 8
+                    size: 8,
+                    image: 'https://www.newbalance.co.za/media/product/685/997-classic-running-cm997hdc-9ac.jpg'
                 },
                 {
                     brand: 'New balance',
@@ -430,7 +477,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 37,
                     item_stock: 7,
                     price: 300,
-                    size: 8
+                    size: 8,
+                    image: 'https://www.newbalance.co.za/media/product/a9e/997-classic-running-cw997hdc-1aa.png'
                 },
                 {
                     brand: 'New balance',
@@ -438,7 +486,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 41,
                     item_stock: 3,
                     price: 1000,
-                    size: 8
+                    size: 8,
+                    image: 'https://www.newbalance.co.za/media/product/88b/997-classic-running-cw997hdb-45c.png'
                 },
                 {
                     brand: 'New balance',
@@ -446,7 +495,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 45,
                     item_stock: 1,
                     price: 950,
-                    size: 8
+                    size: 8,
+                    image: 'https://www.newbalance.co.za/media/product/fe3/997-classic-running-cw997hda-d11.png'
                 },
                 {
                     brand: 'Vans',
@@ -454,7 +504,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 49,
                     item_stock: 1,
                     price: 360,
-                    size: 8
+                    size: 8,
+                    image: 'https://images.vans.com/is/image/Vans/4OJGYK-HERO?$356x356$'
                 },
                 {
                     brand: 'Vans',
@@ -462,7 +513,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 53,
                     item_stock: 4,
                     price: 500,
-                    size: 8
+                    size: 8,
+                    image: 'https://images.vans.com/is/image/Vans/ZD40NS-HERO?$356x356$'
                 },
                 {
                     brand: 'Vans',
@@ -470,7 +522,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 57,
                     item_stock: 2,
                     price: 900,
-                    size: 8
+                    size: 8,
+                    image: 'https://images.vans.com/is/image/Vans/D3HY28-HERO?$356x356$'
                 },
                 {
                     brand: 'Vans',
@@ -478,7 +531,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 61,
                     item_stock: 7,
                     price: 800,
-                    size: 8
+                    size: 8,
+                    image: 'https://images.vans.com/is/image/Vans/D3HW00-HERO?$356x356$'
                 }
             ]);
         });
@@ -489,36 +543,40 @@ describe('Shoe catalogue service tests', function () {
             const result = await shoeService.colourBrand('Red', 'Nike');
             assert.strict.deepEqual(result, [
                 {
-                    brand: 'Nike',
-                    colour: 'Red',
                     id: 1,
+                    colour: 'Red',
+                    brand: 'Nike',
+                    price: 350,
+                    size: 8,
                     item_stock: 1,
-                    price: 350,
-                    size: 8
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/65nwl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=C90023&show&obj=/s/g4/solid&color=BE2B3B&show&obj=/s/g5/solid&color=c60429&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=a5062c&show&obj=/s/g7/lace&color=E7002C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'Red',
                     id: 2,
+                    colour: 'Red',
+                    brand: 'Nike',
+                    price: 350,
+                    size: 9,
                     item_stock: 4,
-                    price: 350,
-                    size: 9
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/65nwl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=C90023&show&obj=/s/g4/solid&color=BE2B3B&show&obj=/s/g5/solid&color=c60429&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=a5062c&show&obj=/s/g7/lace&color=E7002C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'Red',
                     id: 3,
-                    item_stock: 3,
+                    colour: 'Red',
+                    brand: 'Nike',
                     price: 350,
-                    size: 10
+                    size: 10,
+                    item_stock: 3,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/65nwl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=C90023&show&obj=/s/g4/solid&color=BE2B3B&show&obj=/s/g5/solid&color=c60429&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=a5062c&show&obj=/s/g7/lace&color=E7002C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
-                    brand: 'Nike',
-                    colour: 'Red',
                     id: 4,
-                    item_stock: 2,
+                    colour: 'Red',
+                    brand: 'Nike',
                     price: 350,
-                    size: 11
+                    size: 11,
+                    item_stock: 2,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/65nwl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=C90023&show&obj=/s/g4/solid&color=BE2B3B&show&obj=/s/g5/solid&color=c60429&show&obj=/s/g6&color=141414&show&obj=/s/g8&color=a5062c&show&obj=/s/g7/lace&color=E7002C&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 }
             ]);
         });
@@ -534,7 +592,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 5,
                     item_stock: 0,
                     price: 400,
-                    size: 8
+                    size: 8,
+                    image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/4pawl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=0063a9&show&obj=/s/g4/solid&color=0960A9&show&obj=/s/g5/solid&color=1F263D&show&obj=/s/g6&color=FFA021&show&obj=/s/g8&color=142149&show&obj=/s/g7/lace&color=007ebd&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
                 },
                 {
                     brand: 'Adidas',
@@ -542,7 +601,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 21,
                     item_stock: 5,
                     price: 450,
-                    size: 8
+                    size: 8,
+                    image: 'https://cdn.zando.co.za/p/342204-1906-402243-2-catalog1.jpg'
                 },
                 {
                     brand: 'New balance',
@@ -550,7 +610,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 37,
                     item_stock: 7,
                     price: 300,
-                    size: 8
+                    size: 8,
+                    image: 'https://www.newbalance.co.za/media/product/a9e/997-classic-running-cw997hdc-1aa.png'
                 },
                 {
                     brand: 'Vans',
@@ -558,7 +619,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 53,
                     item_stock: 4,
                     price: 500,
-                    size: 8
+                    size: 8,
+                    image: 'https://images.vans.com/is/image/Vans/ZD40NS-HERO?$356x356$'
                 }
             ]
             );
@@ -575,7 +637,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 20,
                     item_stock: 5,
                     price: 700,
-                    size: 11
+                    size: 11,
+                    image: 'https://cdn.zando.co.za/p/342201-1862-102243-2-catalog1.jpg'
                 },
                 {
                     brand: 'Adidas',
@@ -583,7 +646,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 24,
                     item_stock: 0,
                     price: 450,
-                    size: 11
+                    size: 11,
+                    image: 'https://cdn.zando.co.za/p/342204-1906-402243-2-catalog1.jpg'
                 },
                 {
                     brand: 'Adidas',
@@ -591,7 +655,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 28,
                     item_stock: 5,
                     price: 1250,
-                    size: 11
+                    size: 11,
+                    image: 'https://cdn.zando.co.za/p/342223-1704-322243-2-catalog1.jpg'
                 },
                 {
                     brand: 'Adidas',
@@ -599,7 +664,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 32,
                     item_stock: 2,
                     price: 1300,
-                    size: 11
+                    size: 11,
+                    image: 'https://cdn.zando.co.za/p/319634-1801-436913-2-catalog1.jpg'
                 }
             ]);
         });
@@ -615,7 +681,8 @@ describe('Shoe catalogue service tests', function () {
                     id: 28,
                     item_stock: 5,
                     price: 1250,
-                    size: 11
+                    size: 11,
+                    image: 'https://cdn.zando.co.za/p/342223-1704-322243-2-catalog1.jpg'
                 }
             ]);
         });
@@ -661,7 +728,7 @@ describe('Shoe catalogue service tests', function () {
                 stock: 3
             });
 
-            const result = await pool.query('SELECT * FROM shoe_data WHERE id = $1', [65]);
+            const result = await pool.query('SELECT id, colour, brand, price, size, item_stock FROM shoe_data WHERE id = $1', [65]);
             assert.strict.deepEqual(result.rows[0], {
                 id: 65,
                 colour: 'Green',
@@ -683,7 +750,7 @@ describe('Shoe catalogue service tests', function () {
                 stock: 2
             });
 
-            const result = await pool.query('SELECT * FROM shoe_data WHERE id = $1', [3]);
+            const result = await pool.query('SELECT id, colour, brand, price, size, item_stock FROM shoe_data WHERE id = $1', [3]);
             assert.strict.deepEqual(result.rows[0], {
                 id: 3,
                 colour: 'Red',

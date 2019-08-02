@@ -5,5 +5,5 @@ create table shoe_data(
     price real not null,
     size int not null,
     item_stock int not null,
-    image text not null
+    image text 
 );
