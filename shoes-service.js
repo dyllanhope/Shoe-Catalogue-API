@@ -116,6 +116,32 @@ module.exports = function (pool) {
         };
     };
 
+    const display = async (id) => {
+        const result = await pool.query('SELECT * FROM shoe_data WHERE id = $1', [id]);
+        return result.rows;
+    };
+
+    const updateBasket = async (items) => {
+        await pool.query('DELETE FROM basket');
+        let item;
+        for (item of items) {
+            const data = [
+                item.id,
+                item.colour,
+                item.brand,
+                item.size,
+                item.qty,
+                item.cost
+            ];
+            await pool.query('INSERT INTO basket (id, colour, brand, size, qty, cost) VALUES ($1,$2,$3,$4,$5,$6)', data);
+        };
+    };
+
+    const basket = async () => {
+        const results = await pool.query('SELECT * FROM basket');
+        return results.rows;
+    };
+
     return {
         reloadData,
         all,
@@ -128,6 +154,9 @@ module.exports = function (pool) {
         specific,
         update,
         returnItems,
-        add
+        add,
+        display,
+        updateBasket,
+        basket
     };
 };

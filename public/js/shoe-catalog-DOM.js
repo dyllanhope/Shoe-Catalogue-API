@@ -36,26 +36,20 @@ const basketTemplate = Handlebars.compile(basketTemplateSource);
 const dropDownTemplate = Handlebars.compile(dropDownTemplateSource);
 const filterTemplate = Handlebars.compile(filterTemplateSource);
 
-if (localStorage['basket']) {
-    var basketData = JSON.parse(localStorage['basket']);
-} else {
-    basketData = [];
-};
-
-const shoeInstance = ShoeCatalogManager(basketData);
+const shoeInstance = ShoeCatalogManager();
 const shoeService = ShoeService();
 
 window.onload = function () {
-    const basketItems = { items: shoeInstance.basket() };
-    const basketHTML = basketTemplate(basketItems);
-    listData.innerHTML = basketHTML;
+    basket();
 
     dropDownUpdate('colour');
     dropDownUpdate('brand');
     dropDownUpdate('size');
 
     recordEditor.style.display = 'none';
-    dispTotal.style.display = 'none';
+    if (!shoeInstance.total > 0) {
+        dispTotal.style.display = 'none';
+    }
 };
 
 updateBtn.addEventListener('click', function () {
@@ -129,11 +123,6 @@ Handlebars.registerHelper('isAllSelected', function () {
         return true;
     }
 });
-Handlebars.registerHelper('isSizeSelected', function () {
-    if (!(sizeDropDown.value).startsWith('Select')) {
-        return true;
-    }
-});
 Handlebars.registerHelper('noStock', function (stock) {
     if (stock === 0) {
         return true;
@@ -153,10 +142,9 @@ addBtn.addEventListener('click', function () {
                 const size = sizeDropDown.value;
 
                 shoeInstance.buildBasket(shoes, colour, brand, size);
-                const basket = shoeInstance.basket();
-                const basketItems = { items: shoeInstance.basket() };
-                const basketHTML = basketTemplate(basketItems);
-                listData.innerHTML = basketHTML;
+                updateBasket();
+
+                buildBasket();
 
                 let id = 0;
                 for (let x = 0; x < shoes.length; x++) {
@@ -166,7 +154,6 @@ addBtn.addEventListener('click', function () {
                 };
 
                 updateStock(id);
-                localStorage['basket'] = JSON.stringify(basket);
             });
     } else {
         displayField.innerHTML = 'Please fill out all the above fields before attempting to add to your basket';
@@ -177,8 +164,9 @@ addBtn.addEventListener('click', function () {
 });
 
 clearBtn.addEventListener('click', function () {
-    localStorage.clear();
     returnItems(shoeInstance.basket());
+    shoeInstance.newBasket([]);
+    updateBasket();
 });
 
 checkoutBtn.addEventListener('click', function () {
@@ -186,6 +174,12 @@ checkoutBtn.addEventListener('click', function () {
     listData.innerHTML = '';
     dispTotal.style.display = 'none';
 });
+
+function buildBasket () {
+    const basketItems = { items: shoeInstance.basket() };
+    const basketHTML = basketTemplate(basketItems);
+    listData.innerHTML = basketHTML;
+};
 
 function buildDropDowns (items, type) {
     const list = [];
@@ -209,7 +203,6 @@ function buildDropDowns (items, type) {
 }
 function displayFilter (shoes) {
     var filterOptions = { filter: shoeInstance.createString(shoes, colourDropDown.value, brandDropDown.value, sizeDropDown.value) };
-    console.log(filterOptions);
     var filterHTML = filterTemplate(filterOptions);
     filterData.innerHTML = filterHTML;
 };
@@ -312,6 +305,30 @@ function returnItems (basketItems) {
             dispTotal.style.display = 'none';
             buildDisplayColourBrandSize(colourDropDown.value, brandDropDown.value, sizeDropDown.value);
         })
+        .catch(function (err) {
+            alert(err);
+        });
+};
+function basket () {
+    shoeService
+        .displayBasket()
+        .then(function (results) {
+            const response = results.data;
+            const items = response.shoes;
+
+            shoeInstance.newBasket(items);
+            total.innerHTML = shoeInstance.total();
+
+            buildBasket();
+        })
+        .catch(function (err) {
+            alert(err);
+        });
+}
+function updateBasket () {
+    const items = shoeInstance.basket();
+    shoeService
+        .updateBasket(items)
         .catch(function (err) {
             alert(err);
         });

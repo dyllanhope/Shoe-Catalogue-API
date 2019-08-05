@@ -32,6 +32,14 @@ function ShoeService () {
         return axios.get('/api/shoes/brand/' + brand + '/size/' + size + '/colour/' + colour);
     };
 
+    function displayBasket () {
+        return axios.get('/api/shoes/display/basket');
+    };
+
+    function updateBasket (items) {
+        return axios.post('/api/shoes/basket', items);
+    };
+
     function update (id) {
         return axios.post('/api/shoes/sold/' + id);
     };
@@ -55,6 +63,8 @@ function ShoeService () {
         colourBrandSize,
         update,
         returnItems,
-        add
+        add,
+        updateBasket,
+        displayBasket
     };
 };

@@ -7,3 +7,12 @@ create table shoe_data(
     item_stock int not null,
     image text 
 );
+
+create table basket(
+    id int not null primary key,
+    colour text not null,
+	brand text not null,
+    size int not null,
+    qty int not null,
+    cost int not null
+);
