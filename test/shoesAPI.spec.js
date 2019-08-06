@@ -9,7 +9,7 @@ const bodyParser = require('body-parser');
 
 var expect = chai.expect;
 describe('API Tests', () => {
-    app = express();
+    const app = express();
     app.use(bodyParser.json());
 
     const shoeService = ShoeService();

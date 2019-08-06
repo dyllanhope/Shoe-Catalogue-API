@@ -583,24 +583,24 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">module.exports = function (shoeService) {
-    const all = async (req, res) =&gt; {
+    const allType = async (req, res) =&gt; {
         try {
             const type = req.params.type;
             res.json({
                 status: 'success',
-                shoes: await shoeService.all(type)
+                shoes: await shoeService.allType(type)
             });
         } catch (err) {
 <span class="cstat-no" title="statement not covered" >            returnError(res, err);</span>
         };
     };
 &nbsp;
-    const colour = async (req, res) =&gt; {
+    const filterColour = async (req, res) =&gt; {
         try {
             const colour = req.params.colour;
             res.json({
                 status: 'success',
-                shoes: await shoeService.colour(colour)
+                shoes: await shoeService.filterColour(colour)
             });
         } catch (err) {
 <span class="cstat-no" title="statement not covered" >            returnError(res, err);</span>
@@ -633,24 +633,24 @@
         };
     };
 &nbsp;
-    const brand = async (req, res) =&gt; {
+    const filterBrand = async (req, res) =&gt; {
         try {
             const brand = req.params.brandname;
             res.json({
                 status: 'success',
-                shoes: await shoeService.brand(brand)
+                shoes: await shoeService.filterBrand(brand)
             });
         } catch (err) {
 <span class="cstat-no" title="statement not covered" >            returnError(res, err);</span>
         };
     };
 &nbsp;
-    const size = async (req, res) =&gt; {
+    const filterSize = async (req, res) =&gt; {
         try {
             const size = req.params.size;
             res.json({
                 status: 'success',
-                shoes: await shoeService.size(size)
+                shoes: await shoeService.filterSize(size)
             });
         } catch (err) {
 <span class="cstat-no" title="statement not covered" >            returnError(res, err);</span>
@@ -670,14 +670,14 @@
         };
     };
 &nbsp;
-    const specific = async (req, res) =&gt; {
+    const filterByAll = async (req, res) =&gt; {
         try {
             const brand = req.params.brandname;
             const size = req.params.size;
             const colour = req.params.colour;
             res.json({
                 status: 'success',
-                shoes: await shoeService.specific(colour, brand, size)
+                shoes: await shoeService.filterByAll(colour, brand, size)
             });
         } catch (err) {
 <span class="cstat-no" title="statement not covered" >            returnError(res, err);</span>
@@ -695,10 +695,10 @@
         };
     };
 &nbsp;
-    const update = async (req, res) =&gt; {
+    const updateShoeStock = async (req, res) =&gt; {
         try {
             const id = req.params.id;
-            await shoeService.update(id);
+            await shoeService.updateShoeStock(id);
 &nbsp;
             res.json({
                 status: 'success'
@@ -724,7 +724,7 @@
     const addShoe = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
 <span class="cstat-no" title="statement not covered" >        try {</span>
             const shoeData = <span class="cstat-no" title="statement not covered" >req.body;</span>
-<span class="cstat-no" title="statement not covered" >            shoeService.add(shoeData);</span>
+<span class="cstat-no" title="statement not covered" >            shoeService.addNewShoe(shoeData);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >            res.json({</span>
                 status: 'success'
@@ -756,7 +756,7 @@
 &nbsp;
     const display = <span class="fstat-no" title="function not covered" >as</span>ync (req, res) =&gt; {
         const id = <span class="cstat-no" title="statement not covered" >req.params.id;</span>
-        const shoes = <span class="cstat-no" title="statement not covered" >await shoeService.display(id);</span>
+        const shoes = <span class="cstat-no" title="statement not covered" >await shoeService.displayByID(id);</span>
         const colour = <span class="cstat-no" title="statement not covered" >shoes[0].colour;</span>
         const brand = <span class="cstat-no" title="statement not covered" >shoes[0].brand;</span>
         const shoeOptions = <span class="cstat-no" title="statement not covered" >await shoeService.colourBrand(colour, brand);</span>
@@ -790,7 +790,7 @@
         let found = <span class="cstat-no" title="statement not covered" >false;</span>
         const id = <span class="cstat-no" title="statement not covered" >req.params.id;</span>
         const basket = <span class="cstat-no" title="statement not covered" >await shoeService.basket();</span>
-        const shoe = <span class="cstat-no" title="statement not covered" >await shoeService.display(id);</span>
+        const shoe = <span class="cstat-no" title="statement not covered" >await shoeService.displayByID(id);</span>
         const currentShoe = <span class="cstat-no" title="statement not covered" >{ id: id, colour: shoe[0].colour, brand: shoe[0].brand, size: shoe[0].size, qty: 1, cost: shoe[0].price };</span>
         let item;
 <span class="cstat-no" title="statement not covered" >        if (basket.length &gt; 0) {</span>
@@ -815,7 +815,7 @@
         };
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        await shoeService.updateBasket(newList);</span>
-<span class="cstat-no" title="statement not covered" >        await shoeService.update(id);</span>
+<span class="cstat-no" title="statement not covered" >        await shoeService.updateShoeStock(id);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        res.redirect('/shoes/display/' + id);</span>
     };
@@ -833,15 +833,15 @@
     };
 &nbsp;
     return {
-        all,
-        colour,
-        brand,
-        size,
+        allType,
+        filterColour,
+        filterBrand,
+        filterSize,
         colourBrand,
         colourSize,
         brandSize,
-        specific,
-        update,
+        filterByAll,
+        updateShoeStock,
         returnItems,
         addShoe,
         display,
@@ -856,7 +856,7 @@
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 06 2019 09:20:15 GMT+0200 (SAST)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Aug 06 2019 10:39:22 GMT+0200 (SAST)
 </div>
 </div>
 <script src="../prettify.js"></script>

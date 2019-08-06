@@ -5,7 +5,7 @@ module.exports = function () {
         };
     };
 
-    function all () {
+    function allType () {
         const returnData = [
             { id: 1, colour: 'White', brand: 'New balance', price: 1000, size: 10, item_stock: 3 },
             { id: 2, colour: 'Red', brand: 'Nike', price: 400, size: 10, item_stock: 4 },
@@ -14,7 +14,7 @@ module.exports = function () {
         return returnData;
     };
 
-    function colour (colour) {
+    function filterColour (colour) {
         if (colour === 'Red') {
             const returnData = [
                 { id: 1, colour: 'Red', brand: 'New balance', price: 1000, size: 10, item_stock: 3 },
@@ -45,7 +45,7 @@ module.exports = function () {
         };
     };
 
-    function brand (brand) {
+    function filterBrand (brand) {
         if (brand === 'Nike') {
             const returnData = [
                 { id: 1, colour: 'White', brand: 'Nike', price: 1000, size: 10, item_stock: 3 },
@@ -56,7 +56,7 @@ module.exports = function () {
         }
     };
 
-    function size (size) {
+    function filterSize (size) {
         if (size === '9') {
             const returnData = [
                 { id: 1, colour: 'White', brand: 'New balance', price: 1000, size: 9, item_stock: 3 },
@@ -78,7 +78,7 @@ module.exports = function () {
         };
     };
 
-    function specific (colour, brand, size) {
+    function filterByAll (colour, brand, size) {
         if (colour === 'White' && brand === 'Vans' && size === '9') {
             const returnData = [
                 { id: 1, colour: 'White', brand: 'Vans', price: 1000, size: 9, item_stock: 3 }
@@ -87,7 +87,7 @@ module.exports = function () {
         };
     };
 
-    function update (id) {
+    function updateShoeStock (id) {
         if (id === '48') {
             return 'success';
         }
@@ -99,7 +99,7 @@ module.exports = function () {
         };
     };
 
-    function add (shoeData) {
+    function addNewShoe (shoeData) {
         if (shoeData.colour === 'Red' && shoeData.brand === 'Vans' && shoeData.price === 400 && shoeData.size === 10 && shoeData.stock === 4) {
             return 'success';
         }
@@ -107,16 +107,16 @@ module.exports = function () {
 
     return {
         reloadData,
-        all,
-        colour,
+        allType,
+        filterColour,
         colourBrand,
         colourSize,
-        brand,
-        size,
+        filterBrand,
+        filterSize,
         brandSize,
-        specific,
-        update,
+        filterByAll,
+        updateShoeStock,
         returnItems,
-        add
+        addNewShoe
     };
 };
