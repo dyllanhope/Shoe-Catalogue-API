@@ -191,6 +191,7 @@ const buildDropDowns = (items, type) => {
     for (var i = 0; i < items.length; i++) {
         list.push(items[i][type]);
     };
+    list.sort((a, b) => { return a - b; });
     list.unshift('Select ' + type);
     if (type === 'colour') {
         const colourOptions = { list: list };
