@@ -1,31 +1,25 @@
 module.exports = function (shoeService) {
-    const all = async (req, res) => {
+    const allType = async (req, res) => {
         try {
             const type = req.params.type;
             res.json({
                 status: 'success',
-                shoes: await shoeService.all(type)
+                shoes: await shoeService.allType(type)
             });
         } catch (err) {
-            res.json({
-                status: 'error',
-                error: err.stack
-            });
+            returnError(res, err);
         };
     };
 
-    const colour = async (req, res) => {
+    const filterColour = async (req, res) => {
         try {
             const colour = req.params.colour;
             res.json({
                 status: 'success',
-                shoes: await shoeService.colour(colour)
+                shoes: await shoeService.filterColour(colour)
             });
         } catch (err) {
-            res.json({
-                status: 'error',
-                error: err.stack
-            });
+            returnError(res, err);
         };
     };
 
@@ -38,10 +32,7 @@ module.exports = function (shoeService) {
                 shoes: await shoeService.colourBrand(colour, brand)
             });
         } catch (err) {
-            res.json({
-                status: 'error',
-                error: err.stack
-            });
+            returnError(res, err);
         };
     };
 
@@ -54,40 +45,31 @@ module.exports = function (shoeService) {
                 shoes: await shoeService.colourSize(colour, size)
             });
         } catch (err) {
-            res.json({
-                status: 'error',
-                error: err.stack
-            });
+            returnError(res, err);
         };
     };
 
-    const brand = async (req, res) => {
+    const filterBrand = async (req, res) => {
         try {
             const brand = req.params.brandname;
             res.json({
                 status: 'success',
-                shoes: await shoeService.brand(brand)
+                shoes: await shoeService.filterBrand(brand)
             });
         } catch (err) {
-            res.json({
-                status: 'error',
-                error: err.stack
-            });
+            returnError(res, err);
         };
     };
 
-    const size = async (req, res) => {
+    const filterSize = async (req, res) => {
         try {
             const size = req.params.size;
             res.json({
                 status: 'success',
-                shoes: await shoeService.size(size)
+                shoes: await shoeService.filterSize(size)
             });
         } catch (err) {
-            res.json({
-                status: 'error',
-                error: err.stack
-            });
+            returnError(res, err);
         };
     };
 
@@ -100,27 +82,21 @@ module.exports = function (shoeService) {
                 shoes: await shoeService.brandSize(brand, size)
             });
         } catch (err) {
-            res.json({
-                status: 'error',
-                error: err.stack
-            });
+            returnError(res, err);
         };
     };
 
-    const specific = async (req, res) => {
+    const filterByAll = async (req, res) => {
         try {
             const brand = req.params.brandname;
             const size = req.params.size;
             const colour = req.params.colour;
             res.json({
                 status: 'success',
-                shoes: await shoeService.specific(colour, brand, size)
+                shoes: await shoeService.filterByAll(colour, brand, size)
             });
         } catch (err) {
-            res.json({
-                status: 'error',
-                error: err.stack
-            });
+            returnError(res, err);
         };
     };
 
@@ -131,26 +107,20 @@ module.exports = function (shoeService) {
                 shoes: await shoeService.basket()
             });
         } catch (err) {
-            res.json({
-                status: 'error',
-                error: err.stack
-            });
+            returnError(res, err);
         };
     };
 
-    const update = async (req, res) => {
+    const updateShoeStock = async (req, res) => {
         try {
             const id = req.params.id;
-            await shoeService.update(id);
+            await shoeService.updateShoeStock(id);
 
             res.json({
                 status: 'success'
             });
         } catch (err) {
-            res.json({
-                status: 'error',
-                error: err.stack
-            });
+            returnError(res, err);
         };
     };
 
@@ -163,26 +133,20 @@ module.exports = function (shoeService) {
                 status: 'success'
             });
         } catch (err) {
-            res.json({
-                status: 'error',
-                error: err.stack
-            });
+            returnError(res, err);
         };
     };
 
     const addShoe = async (req, res) => {
         try {
             const shoeData = req.body;
-            shoeService.add(shoeData);
+            shoeService.addNewShoe(shoeData);
 
             res.json({
                 status: 'success'
             });
         } catch (err) {
-            res.json({
-                status: 'error',
-                error: err.stack
-            });
+            returnError(res, err);
         };
     };
 
@@ -208,7 +172,7 @@ module.exports = function (shoeService) {
 
     const display = async (req, res) => {
         const id = req.params.id;
-        const shoes = await shoeService.display(id);
+        const shoes = await shoeService.displayByID(id);
         const colour = shoes[0].colour;
         const brand = shoes[0].brand;
         const shoeOptions = await shoeService.colourBrand(colour, brand);
@@ -242,7 +206,7 @@ module.exports = function (shoeService) {
         let found = false;
         const id = req.params.id;
         const basket = await shoeService.basket();
-        const shoe = await shoeService.display(id);
+        const shoe = await shoeService.displayByID(id);
         const currentShoe = { id: id, colour: shoe[0].colour, brand: shoe[0].brand, size: shoe[0].size, qty: 1, cost: shoe[0].price };
         let item;
         if (basket.length > 0) {
@@ -267,7 +231,7 @@ module.exports = function (shoeService) {
         };
 
         await shoeService.updateBasket(newList);
-        await shoeService.update(id);
+        await shoeService.updateShoeStock(id);
 
         res.redirect('/shoes/display/' + id);
     };
@@ -277,16 +241,23 @@ module.exports = function (shoeService) {
         await shoeService.updateBasket(items);
     };
 
+    const returnError = (res, err) => {
+        res.json({
+            status: 'error',
+            error: err.stack
+        });
+    };
+
     return {
-        all,
-        colour,
-        brand,
-        size,
+        allType,
+        filterColour,
+        filterBrand,
+        filterSize,
         colourBrand,
         colourSize,
         brandSize,
-        specific,
-        update,
+        filterByAll,
+        updateShoeStock,
         returnItems,
         addShoe,
         display,

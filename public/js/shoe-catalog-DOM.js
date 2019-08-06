@@ -39,7 +39,7 @@ const filterTemplate = Handlebars.compile(filterTemplateSource);
 const shoeInstance = ShoeCatalogManager();
 const shoeService = ShoeService();
 
-window.onload = function () {
+window.onload = () => {
     basket();
 
     dropDownUpdate('colour');
@@ -52,7 +52,7 @@ window.onload = function () {
     }
 };
 
-updateBtn.addEventListener('click', function () {
+updateBtn.addEventListener('click', () => {
     if ((colourNew.value).trim() && (brandNew.value).trim() && priceNew.value && sizeNew.value && stockNew.value) {
         const shoeData = {
             colour: (colourNew.value).trim(),
@@ -65,7 +65,7 @@ updateBtn.addEventListener('click', function () {
         addShoe(shoeData);
         messageField.innerHTML = 'Item added successfully!';
 
-        setTimeout(function () {
+        setTimeout(() => {
             messageField.innerHTML = '';
         }, 2000);
     } else {
@@ -73,7 +73,7 @@ updateBtn.addEventListener('click', function () {
     }
 });
 
-showEditor.addEventListener('click', function () {
+showEditor.addEventListener('click', () => {
     if (showEditor.innerHTML === 'Hide') {
         recordEditor.style.display = 'none';
         colourNew.value = '';
@@ -90,12 +90,12 @@ showEditor.addEventListener('click', function () {
     shoeInstance.newStockCount();
 });
 
-searchBtn.addEventListener('click', function () {
+searchBtn.addEventListener('click', () => {
     if ((colourDropDown.value).startsWith('Select') && (brandDropDown.value).startsWith('Select') && (sizeDropDown.value).startsWith('Select')) {
         filterData.innerHTML = '';
         displayField.innerHTML = 'Please select one or more of the above fields';
 
-        setTimeout(function () {
+        setTimeout(() => {
             displayField.innerHTML = '';
         }, 3000);
     } else {
@@ -116,24 +116,24 @@ searchBtn.addEventListener('click', function () {
         }
     }
 });
-Handlebars.registerHelper('isAllSelected', function () {
+Handlebars.registerHelper('isAllSelected', () => {
     if (!(colourDropDown.value).startsWith('Select') &&
         !(brandDropDown.value).startsWith('Select') &&
         !(sizeDropDown.value).startsWith('Select')) {
         return true;
     }
 });
-Handlebars.registerHelper('noStock', function (stock) {
+Handlebars.registerHelper('noStock', (stock) => {
     if (stock === 0) {
         return true;
     };
 });
 
-addBtn.addEventListener('click', function () {
+addBtn.addEventListener('click', () => {
     if (!(colourDropDown.value).startsWith('Select') && !(brandDropDown.value).startsWith('Select') && !(sizeDropDown.value).startsWith('Select')) {
         axios
             .get('/api/shoes')
-            .then(function (results) {
+            .then((results) => {
                 const response = results.data;
                 const shoes = response.shoes;
 
@@ -157,31 +157,36 @@ addBtn.addEventListener('click', function () {
             });
     } else {
         displayField.innerHTML = 'Please fill out all the above fields before attempting to add to your basket';
-        setTimeout(function () {
+        setTimeout(() => {
             displayField.innerHTML = '';
         }, 3000);
     };
 });
 
-clearBtn.addEventListener('click', function () {
+clearBtn.addEventListener('click', () => {
     returnItems(shoeInstance.basket());
     shoeInstance.newBasket([]);
     updateBasket();
 });
 
-checkoutBtn.addEventListener('click', function () {
+checkoutBtn.addEventListener('click', () => {
     filterData.innerHTML = shoeInstance.checkout();
+    shoeInstance.newBasket([]);
+    updateBasket();
     listData.innerHTML = '';
     dispTotal.style.display = 'none';
+    setTimeout(() => {
+        filterData.innerHTML = '';
+    }, 3000);
 });
 
-function buildBasket () {
+const buildBasket = () => {
     const basketItems = { items: shoeInstance.basket() };
     const basketHTML = basketTemplate(basketItems);
     listData.innerHTML = basketHTML;
 };
 
-function buildDropDowns (items, type) {
+const buildDropDowns = (items, type) => {
     const list = [];
     for (var i = 0; i < items.length; i++) {
         list.push(items[i][type]);
@@ -200,83 +205,83 @@ function buildDropDowns (items, type) {
         const sizeHTML = dropDownTemplate(sizeOptions);
         sizeData.innerHTML = sizeHTML;
     };
-}
-function displayFilter (shoes) {
+};
+const displayFilter = (shoes) => {
     var filterOptions = { filter: shoeInstance.createString(shoes, colourDropDown.value, brandDropDown.value, sizeDropDown.value) };
     var filterHTML = filterTemplate(filterOptions);
     filterData.innerHTML = filterHTML;
 };
 
-function dropDownUpdate (type) {
+const dropDownUpdate = (type) => {
     shoeService
         .all(type)
-        .then(function (results) {
+        .then((results) => {
             const response = results.data;
             const shoes = response.shoes;
             buildDropDowns(shoes, type);
         });
 };
 
-function buildDisplayColour (colour) {
+const buildDisplayColour = (colour) => {
     shoeService
         .colour(colour)
-        .then(function (results) {
+        .then((results) => {
             const response = results.data;
             const shoes = response.shoes;
             displayFilter(shoes);
         });
 };
 
-function buildDisplayBrand (brand) {
+const buildDisplayBrand = (brand) => {
     shoeService
         .brand(brand)
-        .then(function (results) {
+        .then((results) => {
             const response = results.data;
             const shoes = response.shoes;
             displayFilter(shoes);
         });
 };
 
-function buildDisplaySize (size) {
+const buildDisplaySize = (size) => {
     shoeService
         .size(size)
-        .then(function (results) {
+        .then((results) => {
             const response = results.data;
             const shoes = response.shoes;
             displayFilter(shoes);
         });
 };
-function buildDisplayBrandSize (brand, size) {
+const buildDisplayBrandSize = (brand, size) => {
     shoeService
         .brandSize(brand, size)
-        .then(function (results) {
+        .then((results) => {
             const response = results.data;
             const shoes = response.shoes;
             displayFilter(shoes);
         });
 };
-function buildDisplayColourBrand (colour, brand) {
+const buildDisplayColourBrand = (colour, brand) => {
     shoeService
         .colourBrand(colour, brand)
-        .then(function (results) {
+        .then((results) => {
             const response = results.data;
             const shoes = response.shoes;
             displayFilter(shoes);
         });
 };
-function buildDisplayColourSize (colour, size) {
+const buildDisplayColourSize = (colour, size) => {
     shoeService
         .colourSize(colour, size)
-        .then(function (results) {
+        .then((results) => {
             const response = results.data;
             const shoes = response.shoes;
             displayFilter(shoes);
         });
 };
-function buildDisplayColourBrandSize (colour, brand, size) {
+const buildDisplayColourBrandSize = (colour, brand, size) => {
     shoeService
         .colourBrandSize(colour, brand, size)
-        .then(function (results) {
+        .then((results) => {
             const response = results.data;
             const shoes = response.shoes;
             if (!colourDropDown.value.startsWith('Select') && !brandDropDown.value.startsWith('Select') && !sizeDropDown.value.startsWith('Select')) {
@@ -284,35 +289,35 @@ function buildDisplayColourBrandSize (colour, brand, size) {
             };
         });
 };
-function updateStock (id) {
+const updateStock = (id) => {
     shoeService
         .update(id)
-        .then(function () {
+        .then(() => {
             dispTotal.style.display = 'unset';
             total.innerHTML = shoeInstance.total();
             buildDisplayColourBrandSize(colourDropDown.value, brandDropDown.value, sizeDropDown.value);
         })
-        .catch(function (err) {
+        .catch((err) => {
             alert(err);
         });
 };
-function returnItems (basketItems) {
+const returnItems = (basketItems) => {
     shoeService
         .returnItems(basketItems)
-        .then(function () {
+        .then(() => {
             shoeInstance.clear();
             listData.innerHTML = '';
             dispTotal.style.display = 'none';
             buildDisplayColourBrandSize(colourDropDown.value, brandDropDown.value, sizeDropDown.value);
         })
-        .catch(function (err) {
+        .catch((err) => {
             alert(err);
         });
 };
-function basket () {
+const basket = () => {
     shoeService
         .displayBasket()
-        .then(function (results) {
+        .then((results) => {
             const response = results.data;
             const items = response.shoes;
 
@@ -321,29 +326,29 @@ function basket () {
 
             buildBasket();
         })
-        .catch(function (err) {
-            alert(err);
-        });
-}
-function updateBasket () {
-    const items = shoeInstance.basket();
-    shoeService
-        .updateBasket(items)
-        .catch(function (err) {
+        .catch((err) => {
             alert(err);
         });
 };
-function addShoe (shoeInfo) {
+const updateBasket = () => {
+    const items = shoeInstance.basket();
+    shoeService
+        .updateBasket(items)
+        .catch((err) => {
+            alert(err);
+        });
+};
+const addShoe = (shoeInfo) => {
     shoeService
         .add(shoeInfo)
-        .then(function () {
+        .then(() => {
             dropDownUpdate('colour');
             dropDownUpdate('brand');
             dropDownUpdate('size');
 
             filterData.innerHTML = '';
         })
-        .catch(function (err) {
+        .catch((err) => {
             alert(err);
         });
 };

@@ -16,7 +16,7 @@ module.exports = function (pool) {
         };
     };
 
-    const all = async (type) => {
+    const allType = async (type) => {
         let result;
 
         if (type === 'colour') {
@@ -31,7 +31,7 @@ module.exports = function (pool) {
         return result.rows;
     };
 
-    const colour = async (colour) => {
+    const filterColour = async (colour) => {
         const result = await pool.query('SELECT * FROM shoe_data WHERE colour = $1', [colour]);
         return result.rows;
     };
@@ -46,12 +46,12 @@ module.exports = function (pool) {
         return result.rows;
     };
 
-    const brand = async (brand) => {
+    const filterBrand = async (brand) => {
         const result = await pool.query('SELECT * FROM shoe_data WHERE brand = $1', [brand]);
         return result.rows;
     };
 
-    const size = async (size) => {
+    const filterSize = async (size) => {
         const result = await pool.query('SELECT * FROM shoe_data WHERE size = $1', [size]);
         return result.rows;
     };
@@ -61,12 +61,12 @@ module.exports = function (pool) {
         return result.rows;
     };
 
-    const specific = async (colour, brand, size) => {
+    const filterByAll = async (colour, brand, size) => {
         const result = await pool.query('SELECT * FROM shoe_data WHERE brand = $1 AND size = $2 AND colour = $3', [brand, size, colour]);
         return result.rows;
     };
 
-    const update = async (id) => {
+    const updateShoeStock = async (id) => {
         const result = await pool.query('SELECT id,colour,brand,size,item_stock FROM shoe_data WHERE id = $1', [id]);
         let stock = result.rows[0].item_stock;
         if (stock !== 0) {
@@ -86,7 +86,7 @@ module.exports = function (pool) {
         };
     };
 
-    const add = async (shoeData) => {
+    const addNewShoe = async (shoeData) => {
         const specialCheck = /[!@#$%^&*(),.?":{}|<>\d]/;
         if (shoeData.colour && shoeData.brand && shoeData.price && shoeData.size && shoeData.stock) {
             const colourTest = specialCheck.test(shoeData.colour);
@@ -116,7 +116,7 @@ module.exports = function (pool) {
         };
     };
 
-    const display = async (id) => {
+    const displayByID = async (id) => {
         const result = await pool.query('SELECT * FROM shoe_data WHERE id = $1', [id]);
         return result.rows;
     };
@@ -144,18 +144,18 @@ module.exports = function (pool) {
 
     return {
         reloadData,
-        all,
-        colour,
+        allType,
+        filterColour,
         colourBrand,
         colourSize,
-        brand,
-        size,
+        filterBrand,
+        filterSize,
         brandSize,
-        specific,
-        update,
+        filterByAll,
+        updateShoeStock,
         returnItems,
-        add,
-        display,
+        addNewShoe,
+        displayByID,
         updateBasket,
         basket
     };

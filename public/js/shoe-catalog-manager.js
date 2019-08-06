@@ -1,8 +1,8 @@
-function ShoeCatalogManager (basketData) {
+const ShoeCatalogManager = (basketData) => {
     var basketList = basketData || [];
     var total = 0.00;
 
-    function createDisplayString (loadData, colour, brand, size) {
+    const createDisplayString = (loadData, colour, brand, size) => {
         var chosenItems = '';
         var filteredItem = [];
 
@@ -55,9 +55,9 @@ function ShoeCatalogManager (basketData) {
             }
         }
         return filteredItem;
-    }
+    };
 
-    function buildDataForDisplay (chosenItems, loadData, colour, brand) {
+    const buildDataForDisplay = (chosenItems, loadData, colour, brand) => {
         var category;
 
         var data = [];
