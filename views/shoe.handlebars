@@ -1,8 +1,6 @@
 <div class='row'>
     <div class='col-12'>
-        <form action="/">
-            <button class='basket' type='submit'>Back</button>
-        </form>
+        <a href="/"> <button class='basket'>Back</button></a>
     </div>
 </div>
 <div class='row'>
@@ -30,11 +28,13 @@
             </div>
         </div>
     </div>
-    <div style="background-color:rgb(204, 88, 53);border-radius:5px;border: 1px solid black" class="col-4 center sideLeft">
+    <div style="background-color:rgb(204, 88, 53);border-radius:5px;border: 1px solid black"
+        class="col-4 center sideLeft">
         <h3><u>Shopping Basket:</u></h3>
         <div class="listData">
             {{#each basket}}
-            <li style='list-style-type:none; padding-left:20px'>Size {{size}} {{colour}} {{brand}}  ({{qty}} - R{{cost}}) </li>
+            <li style='list-style-type:none; padding-left:20px'>Size {{size}} {{colour}} {{brand}} ({{qty}} - R{{cost}})
+            </li>
             {{/each}}
         </div>
         <div>

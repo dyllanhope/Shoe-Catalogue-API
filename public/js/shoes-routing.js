@@ -1,56 +1,32 @@
 /* eslint-disable no-undef */
-function ShoeService () {
-    function all (type) {
+const ShoeService = () => {
+    const all = (type) => {
         return axios.get('/api/shoes/' + type);
     };
 
-    function colour (type) {
-        return axios.get('/api/shoes/colour/' + type);
-    };
+    const colour = (type) => { return axios.get('/api/shoes/colour/' + type); };
 
-    function brand (type) {
-        return axios.get('/api/shoes/brand/' + type);
-    };
+    const brand = (type) => { return axios.get('/api/shoes/brand/' + type); };
 
-    function size (type) {
-        return axios.get('/api/shoes/size/' + type);
-    };
+    const size = (type) => { return axios.get('/api/shoes/size/' + type); };
 
-    function brandSize (brand, size) {
-        return axios.get('/api/shoes/brand/' + brand + '/size/' + size);
-    };
+    const brandSize = (brand, size) => { return axios.get('/api/shoes/brand/' + brand + '/size/' + size); };
 
-    function colourBrand (colour, brand) {
-        return axios.get('/api/shoes/colour/' + colour + '/brand/' + brand);
-    };
+    const colourBrand = (colour, brand) => { return axios.get('/api/shoes/colour/' + colour + '/brand/' + brand); };
 
-    function colourSize (colour, size) {
-        return axios.get('/api/shoes/colour/' + colour + '/size/' + size);
-    };
+    const colourSize = (colour, size) => { return axios.get('/api/shoes/colour/' + colour + '/size/' + size); };
 
-    function colourBrandSize (colour, brand, size) {
-        return axios.get('/api/shoes/brand/' + brand + '/size/' + size + '/colour/' + colour);
-    };
+    const colourBrandSize = (colour, brand, size) => { return axios.get('/api/shoes/brand/' + brand + '/size/' + size + '/colour/' + colour); };
 
-    function displayBasket () {
-        return axios.get('/api/shoes/display/basket');
-    };
+    const displayBasket = () => { return axios.get('/api/shoes/display/basket'); };
 
-    function updateBasket (items) {
-        return axios.post('/api/shoes/basket', items);
-    };
+    const updateBasket = (items) => { return axios.post('/api/shoes/basket', items); };
 
-    function update (id) {
-        return axios.post('/api/shoes/sold/' + id);
-    };
+    const update = (id) => { return axios.post('/api/shoes/sold/' + id); };
 
-    function returnItems (items) {
-        return axios.post('/api/shoes/clear', items);
-    };
+    const returnItems = (items) => { return axios.post('/api/shoes/clear', items); };
 
-    function add (shoeInfo) {
-        return axios.post('/api/shoes', shoeInfo);
-    };
+    const add = (shoeInfo) => { return axios.post('/api/shoes', shoeInfo); };
 
     return {
         all,

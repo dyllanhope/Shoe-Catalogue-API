@@ -121,7 +121,7 @@ const ShoeCatalogManager = (basketData) => {
         return data;
     };
 
-    function createBasketItems (loadData, colourP, brandP, sizeP) {
+    const createBasketItems = (loadData, colourP, brandP, sizeP) => {
         if (colourP && brandP && sizeP) {
             if (!colourP.startsWith('Select') &&
                 !brandP.startsWith('Select') &&
@@ -144,11 +144,9 @@ const ShoeCatalogManager = (basketData) => {
             }
         }
     };
-    function basket () {
-        return basketList;
-    };
+    const basket = () => { return basketList; };
 
-    function getStockLoc (loadData, shoeData) {
+    const getStockLoc = (loadData, shoeData) => {
         var coords;
         for (var x = 0; x < loadData.length; x++) {
             if (loadData[x].colour === shoeData.colour &&
@@ -160,9 +158,9 @@ const ShoeCatalogManager = (basketData) => {
         }
         coords = -1;
         return coords;
-    }
+    };
 
-    function getExistingShoeLoc (shoeData) {
+    const getExistingShoeLoc = (shoeData) => {
         for (var x = 0; x < basketList.length; x++) {
             if (basketList[x].size === shoeData.size &&
                 basketList[x].colour === shoeData.colour &&
@@ -171,18 +169,16 @@ const ShoeCatalogManager = (basketData) => {
             }
         }
         return -1;
-    }
-
-    function newBasket (data) {
-        basketList = data;
     };
 
-    function clearShoppingBasket () {
+    const newBasket = (data) => { basketList = data; };
+
+    const clearShoppingBasket = () => {
         total = 0.00;
         basketList = [];
-    }
+    };
 
-    function resetBasket () {
+    const resetBasket = () => {
         if (!basketList || !basketList.length) {
             return 'You have no items in your basket';
         } else {
@@ -190,18 +186,18 @@ const ShoeCatalogManager = (basketData) => {
             total = 0.00;
             return 'Items checked out successfully';
         }
-    }
-    function displayTotal () {
+    };
+    const displayTotal = () => {
         total = 0;
         let item;
         for (item of basketList) {
             total += item.cost;
         };
         return total.toFixed(2);
-    }
-    function displayBasketList () {
+    };
+    const displayBasketList = () => {
         return basketList;
-    }
+    };
 
     return {
         createString: createDisplayString,

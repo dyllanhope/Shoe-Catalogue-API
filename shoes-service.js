@@ -1,4 +1,4 @@
-module.exports = function (pool) {
+module.exports = (pool) => {
     const reloadData = async (data) => {
         await pool.query('DELETE FROM shoe_data');
         for (let x = 0; x < data.length; x++) {

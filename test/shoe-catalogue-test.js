@@ -11,14 +11,14 @@ const pool = new Pool({
     connectionString
 });
 
-describe('Shoe catalogue service tests', function () {
+describe('Shoe catalogue service tests', () => {
     // eslint-disable-next-line no-undef
-    beforeEach(async function () {
+    beforeEach(async () => {
         await pool.query('delete from shoe_data;');
     });
 
-    describe('Testing filtering', function () {
-        it('Should return all shoes in the database', async function () {
+    describe('Testing filtering', () => {
+        it('Should return all shoes in the database', async () => {
             shoeService = ShoeService(pool);
             await shoeService.reloadData([
                 {
@@ -79,7 +79,7 @@ describe('Shoe catalogue service tests', function () {
                     image: 'picture'
                 }]);
         });
-        it('Should return all shoes that are "red"', async function () {
+        it('Should return all shoes that are "red"', async () => {
             shoeService = ShoeService(pool);
             await shoeService.reloadData([
                 {
@@ -134,7 +134,7 @@ describe('Shoe catalogue service tests', function () {
             ]
             );
         });
-        it('Should return all shoes from "Nike"', async function () {
+        it('Should return all shoes from "Nike"', async () => {
             shoeService = ShoeService(pool);
             await shoeService.reloadData([
                 {
@@ -188,7 +188,7 @@ describe('Shoe catalogue service tests', function () {
                 }
             ]);
         });
-        it('Should return all shoes with size 8', async function () {
+        it('Should return all shoes with size 8', async () => {
             shoeService = ShoeService(pool);
             await shoeService.reloadData([{
                 brand: 'Nike',
@@ -238,7 +238,7 @@ describe('Shoe catalogue service tests', function () {
                 image: 'https://render.nikeid.com/ir/render/nikeidrender/EpicRea2EssSU19_v1?obj=/s/shadow/shad&show&color=000000&obj=/s/g2/4pawl&show&obj=/s/g11&color=f9fcff&show&obj=/s/g12&color=f9fcff&show&obj=/s/g3/eye&color=0063a9&show&obj=/s/g4/solid&color=0960A9&show&obj=/s/g5/solid&color=1F263D&show&obj=/s/g6&color=FFA021&show&obj=/s/g8&color=142149&show&obj=/s/g7/lace&color=007ebd&show&obj=/s/g10&color=474a4a&show&obj=/s&req=object&fmt=png-alpha&icc=AdobeRGB&wid=1500'
             }]);
         });
-        it('Should return all shoes with colour "Red" and brand "Nike"', async function () {
+        it('Should return all shoes with colour "Red" and brand "Nike"', async () => {
             shoeService = ShoeService(pool);
             await shoeService.reloadData([{
                 id: 1,
@@ -345,7 +345,7 @@ describe('Shoe catalogue service tests', function () {
                 }
             ]);
         });
-        it('Should return all shoes with colour "Blue" and size 8', async function () {
+        it('Should return all shoes with colour "Blue" and size 8', async () => {
             shoeService = ShoeService(pool);
             await shoeService.reloadData([{
                 brand: 'Nike',
@@ -452,7 +452,7 @@ describe('Shoe catalogue service tests', function () {
             ]
             );
         });
-        it('Should return all shoes with brand "Adidas" and size 11', async function () {
+        it('Should return all shoes with brand "Adidas" and size 11', async () => {
             shoeService = ShoeService(pool);
             await shoeService.reloadData([{
                 brand: 'Adidas',
@@ -559,7 +559,7 @@ describe('Shoe catalogue service tests', function () {
                 }
             ]);
         });
-        it('Should return all shoes with colour "Black", brand "Adidas" and size 11', async function () {
+        it('Should return all shoes with colour "Black", brand "Adidas" and size 11', async () => {
             shoeService = ShoeService(pool);
             await shoeService.reloadData([{
                 brand: 'Nike',
@@ -622,8 +622,8 @@ describe('Shoe catalogue service tests', function () {
             ]);
         });
     });
-    describe('Updating stock amounts', function () {
-        it('Should return stock of the chosen id (48) decremented by 1 (from 4 to 3)', async function () {
+    describe('Updating stock amounts', () => {
+        it('Should return stock of the chosen id (48) decremented by 1 (from 4 to 3)', async () => {
             shoeService = ShoeService(pool);
             await shoeService.reloadData(data);
 
@@ -631,7 +631,7 @@ describe('Shoe catalogue service tests', function () {
             const result = await pool.query('SELECT item_stock FROM shoe_data WHERE id = $1', [48]);
             assert.strict.equal(result.rows[0].item_stock, 3);
         });
-        it('Should return stock of the chosen id (24) decremented by 0 (stock was already at 0)', async function () {
+        it('Should return stock of the chosen id (24) decremented by 0 (stock was already at 0)', async () => {
             shoeService = ShoeService(pool);
             await shoeService.reloadData(data);
 
@@ -639,7 +639,7 @@ describe('Shoe catalogue service tests', function () {
             const result = await pool.query('SELECT item_stock FROM shoe_data WHERE id = $1', [24]);
             assert.strict.equal(result.rows[0].item_stock, 0);
         });
-        it('Should return stock of the chosen id (48) as its original stock before decrementing', async function () {
+        it('Should return stock of the chosen id (48) as its original stock before decrementing', async () => {
             shoeService = ShoeService(pool);
             await shoeService.reloadData(data);
 
@@ -650,8 +650,8 @@ describe('Shoe catalogue service tests', function () {
             assert.strict.equal(result.rows[0].item_stock, 4);
         });
     });
-    describe('Testing adding a new shoe', function () {
-        it('should return the new shoes info (green crocs, size 11, price 230 and 3 in stock)', async function () {
+    describe('Testing adding a new shoe', () => {
+        it('should return the new shoes info (green crocs, size 11, price 230 and 3 in stock)', async () => {
             shoeService = ShoeService(pool);
             await shoeService.reloadData(data);
 
@@ -673,7 +673,7 @@ describe('Shoe catalogue service tests', function () {
                 item_stock: 3
             });
         });
-        it('should return the new shoes info with increased stock(red nike, size 10, price 350 and 5 in stock)', async function () {
+        it('should return the new shoes info with increased stock(red nike, size 10, price 350 and 5 in stock)', async () => {
             shoeService = ShoeService(pool);
             await shoeService.reloadData(data);
 
@@ -698,7 +698,7 @@ describe('Shoe catalogue service tests', function () {
     });
 
     // eslint-disable-next-line no-undef
-    after(function () {
+    after(() => {
         pool.end();
     });
 });
