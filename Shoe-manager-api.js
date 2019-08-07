@@ -188,15 +188,18 @@ module.exports = function (shoeService) {
                 }
             }
             sizeStock = sortSizes(sizeStock);
-            res.render('shoe', {
-                id,
-                image: shoes[0].image,
-                colour: shoes[0].colour,
-                brand: shoes[0].brand,
-                price: shoes[0].price,
-                sizeStock,
-                basket,
-                total
+            res.json({
+                status: 'success',
+                shoeData: {
+                    id,
+                    image: shoes[0].image,
+                    colour: shoes[0].colour,
+                    brand: shoes[0].brand,
+                    price: shoes[0].price,
+                    sizeStock,
+                    basket,
+                    total
+                }
             });
         } catch (err) {
             returnError(res, err);
@@ -235,7 +238,9 @@ module.exports = function (shoeService) {
             await shoeService.updateBasket(newList);
             await shoeService.updateShoeStock(id);
 
-            res.redirect('/shoes/display/' + id);
+            res.json({
+                status: 'success'
+            });
         } catch (err) {
             returnError(res, err);
         }

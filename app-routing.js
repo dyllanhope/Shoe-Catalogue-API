@@ -11,7 +11,7 @@ module.exports = (shoeManagerAPI, app) => {
     app.get('/api/shoes/brand/:brandname/size/:size/colour/:colour', shoeManagerAPI.filterByAll);
     app.get('/api/shoes/display/basket', shoeManagerAPI.basket);
     app.post('/api/shoes/basket', (shoeManagerAPI.updateBasket));
-    app.post('/shoes/display/:id', shoeManagerAPI.updateDisplayShoes);
+    app.post('/shoes/update/display/:id', shoeManagerAPI.updateDisplayShoes);
     app.post('/api/shoes/sold/:id', shoeManagerAPI.updateShoeStock);
     app.post('/api/shoes/clear', shoeManagerAPI.returnItems);
     app.post('/api/shoes', shoeManagerAPI.addShoe);

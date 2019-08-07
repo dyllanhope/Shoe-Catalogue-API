@@ -2,6 +2,7 @@
 const dropDownTemplateSource = document.querySelector('.dropDownTemplate').innerHTML;
 const basketTemplateSource = document.querySelector('.basketListTemplate').innerHTML;
 const filterTemplateSource = document.querySelector('.filteredListTemplate').innerHTML;
+const diplayChosenShoe = document.querySelector('.diplayChosenShoe').innerHTML;
 // drop down menues
 const colourDropDown = document.querySelector('#colourDrop');
 const brandDropDown = document.querySelector('#brandDrop');
@@ -12,6 +13,7 @@ const brandData = document.querySelector('.brandData');
 const sizeData = document.querySelector('.sizeData');
 const listData = document.querySelector('.listData');
 const filterData = document.querySelector('.filterData');
+const chosenDisplayData = document.querySelector('.chosenDisplayData');
 // buttons
 const addBtn = document.querySelector('.addButton');
 const clearBtn = document.querySelector('.clearButton');
@@ -31,10 +33,12 @@ const dispTotal = document.querySelector('.totalText');
 const total = document.querySelector('#total');
 const messageField = document.querySelector('#messageRecord');
 const displayField = document.querySelector('#display');
+const filterDisplay = document.querySelector('.filterDisplay');
 // template compilations
 const basketTemplate = Handlebars.compile(basketTemplateSource);
 const dropDownTemplate = Handlebars.compile(dropDownTemplateSource);
 const filterTemplate = Handlebars.compile(filterTemplateSource);
+const displayTemplate = Handlebars.compile(diplayChosenShoe);
 
 const shoeInstance = ShoeCatalogManager();
 const shoeService = ShoeService();
@@ -50,6 +54,41 @@ window.onload = () => {
     if (!shoeInstance.total > 0) {
         dispTotal.style.display = 'none';
     }
+};
+
+window.onhashchange = () => {
+    const hash = location.hash;
+    const url = hash.split('/');
+    const id = Number(url[2]);
+    if (url[1] === 'display') {
+        filterDisplay.style.display = 'none';
+        buildShoeDisplay(id);
+    } else if (url[1] === 'update') {
+        filterDisplay.style.display = 'none';
+        axios
+            .get('/shoes/display/' + id)
+            .then((results) => {
+                const response = results.data;
+                const shoeData = response.shoeData;
+                const sizeLocate = shoeData.sizeStock;
+                for (item of sizeLocate) {
+                    if (item.id === id) {
+                        size = item.size;
+                    };
+                };
+
+                const colour = shoeData.colour;
+                const brand = shoeData.brand;
+                const price = shoeData.price;
+
+                shoeInstance.buildBasket(0, colour, brand, size, price, id);
+                updateBasket();
+                buildBasket();
+
+                updateStock(id);
+                window.location.href = '/#/display/' + id;
+            });
+    };
 };
 
 updateBtn.addEventListener('click', () => {
@@ -211,6 +250,17 @@ const displayFilter = (shoes) => {
     var filterOptions = { filter: shoeInstance.createString(shoes, colourDropDown.value, brandDropDown.value, sizeDropDown.value) };
     var filterHTML = filterTemplate(filterOptions);
     filterData.innerHTML = filterHTML;
+};
+
+const buildShoeDisplay = (id) => {
+    axios
+        .get('/shoes/display/' + id)
+        .then((results) => {
+            const response = results.data;
+            const shoeData = response.shoeData;
+            const displayHTML = displayTemplate(shoeData);
+            chosenDisplayData.innerHTML = displayHTML;
+        });
 };
 
 const dropDownUpdate = (type) => {

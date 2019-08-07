@@ -121,26 +121,49 @@ const ShoeCatalogManager = (basketData) => {
         return data;
     };
 
-    const createBasketItems = (loadData, colourP, brandP, sizeP) => {
-        if (colourP && brandP && sizeP) {
-            if (!colourP.startsWith('Select') &&
-                !brandP.startsWith('Select') &&
-                !sizeP.startsWith('Select')) {
-                var currentShoe = { size: Number(sizeP), colour: colourP, brand: brandP, qty: 1, cost: 0 };
+    const createBasketItems = (loadData, colourP, brandP, sizeP, priceP, id) => {
+        if (loadData) {
+            if (colourP && brandP && sizeP) {
+                if (!colourP.startsWith('Select') &&
+                    !brandP.startsWith('Select') &&
+                    !sizeP.startsWith('Select')) {
+                    var currentShoe = { size: Number(sizeP), colour: colourP, brand: brandP, qty: 1, cost: 0 };
 
-                var existingShoeLoc = getExistingShoeLoc(currentShoe);
-                var dataIndex = getStockLoc(loadData, currentShoe);
+                    var existingShoeLoc = getExistingShoeLoc(currentShoe);
+                    var dataIndex = getStockLoc(loadData, currentShoe);
 
-                if (existingShoeLoc > -1) {
-                    if (loadData[dataIndex].item_stock > 0) {
-                        basketList[existingShoeLoc].qty++;
-                        basketList[existingShoeLoc].cost += loadData[dataIndex].price;
+                    if (existingShoeLoc > -1) {
+                        if (loadData[dataIndex].item_stock > 0) {
+                            basketList[existingShoeLoc].qty++;
+                            basketList[existingShoeLoc].cost += loadData[dataIndex].price;
+                        }
+                    } else if (loadData[dataIndex].item_stock > 0) {
+                        currentShoe.cost = loadData[dataIndex].price;
+                        currentShoe.id = loadData[dataIndex].id;
+                        basketList.push(currentShoe);
                     }
-                } else if (loadData[dataIndex].item_stock > 0) {
-                    currentShoe.cost = loadData[dataIndex].price;
-                    currentShoe.id = loadData[dataIndex].id;
-                    basketList.push(currentShoe);
                 }
+            }
+        } else {
+            currentShoe = { size: Number(sizeP), colour: colourP, brand: brandP, qty: 1, cost: 0 };
+            let found = false;
+            if (basketList.length > 0) {
+                let x;
+                for (x in basketList) {
+                    if (basketList[x].size === sizeP && basketList[x].colour === colourP && basketList[x].brand === brandP) {
+                        found = true;
+                        basketList[x].qty++;
+                        basketList[x].cost += priceP;
+                    }
+                };
+            }
+
+            if (!found) {
+                currentShoe.cost = priceP;
+                currentShoe.id = id;
+                basketList.push(currentShoe);
+            } else {
+                found = false;
             }
         }
     };

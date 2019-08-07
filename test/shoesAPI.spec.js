@@ -184,5 +184,23 @@ describe('API Tests', () => {
                     done();
                 });
         });
+        it('should return successful post of updating the shoe display data', (done) => {
+            request(app)
+                .post('/shoes/update/display/48')
+                .end((err, res) => {
+                    expect(res.body.status).to.be.equal('success');
+                    expect(res.statusCode).to.be.equal(200);
+                    done();
+                });
+        });
+        it('should return successful post of updating the shoe display data with a shoe that isnt in the basket', (done) => {
+            request(app)
+                .post('/shoes/update/display/46')
+                .end((err, res) => {
+                    expect(res.body.status).to.be.equal('success');
+                    expect(res.statusCode).to.be.equal(200);
+                    done();
+                });
+        });
     });
 });

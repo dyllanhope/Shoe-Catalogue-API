@@ -11,6 +11,52 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Shoe Catalogue</title>
 
+    <script type='text/template' class='diplayChosenShoe'>
+        <div class='row'>
+            <div class='col-12'>
+                <a href='/'><button class='basket'>Back</button></a>
+            </div>
+        </div>
+        </div>
+            <div class='row'>
+                <div class='col-8 border'>
+                    <div class='row'>
+                        <div class='col-5'>
+                            <img src="{{image}}" alt="">
+                        </div>
+                        <div class='col-7'>
+                            <h3 style='color:black; margin:0px'>{{ colour }} {{ brand }}'s</h3>
+                            <h5 style='color:red; margin:0px'>Price - R{{ price }}</h5>
+                            <h5 style='margin-top:15px; margin-bottom: 0px'>Sizes:</h5>
+                            <table style='padding-left:21px'>
+                                {{#each sizeStock}}
+                                    <tr>
+                                        <td>size: {{ size }} - stock: {{ stock }}</td>
+                                        <td>
+                                            <a href="/#/update/{{id}}">
+                                                <button type='submit'> + </button>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                {{/ each}}
+                            </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div style="background-color:rgb(204, 88, 53);border-radius:5px;border: 1px solid black"
+                        class="col-4 center sideLeft">
+                        <h3><u>Shopping Basket:</u></h3>
+                        <div class="listData">
+                            {{#each basket}}
+                            <li style='list-style-type:none; padding-left:20px'>Size {{ size }} {{ colour }} {{ brand }} ({{ qty }} - R{{ cost }})</li>
+                            {{/ each}}
+                        </div>
+                        <div>
+                            <strong class="totalText" style="color: white;float: none">Total: R{{ total }}</strong>
+                        </div>
+                    </div>
+    </script>
+
     <script type="text/template" class="filteredListTemplate">
             {{#if (isAllSelected)}}
                 {{#each filter}}
@@ -25,7 +71,7 @@
             <h4>Shoes:</h4>
                 {{#each filter}}
                 <hr style='width:550px'>
-                <a href="/shoes/display/{{id}}"><div class='row'>
+                <a href="/#/display/{{id}}"><div class='row'>
                     <div class='col-5'>
                         <li style='list-style-type: none'><img style='float : right'src="{{image}}" alt="{{Avail_items}}"></li>
                     </div>
@@ -57,7 +103,8 @@
 <body>
     <div class="container">
         <h1><u>Dyllans Shoe Catalogue</u></h1>
-        <div class="row center">
+        <div class='row chosenDisplayData'></div>
+        <div class="row center filterDisplay">
             <div class="col-8 border sideRight">
                 <table class="center">
                     <tr>
