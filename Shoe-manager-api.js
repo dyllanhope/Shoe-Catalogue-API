@@ -114,10 +114,9 @@ module.exports = function (shoeService) {
     const updateShoeStock = async (req, res) => {
         try {
             const id = req.params.id;
-            await shoeService.updateShoeStock(id);
 
             res.json({
-                status: 'success'
+                status: await shoeService.updateShoeStock(id)
             });
         } catch (err) {
             returnError(res, err);
@@ -127,10 +126,9 @@ module.exports = function (shoeService) {
     const returnItems = async (req, res) => {
         try {
             const items = req.body;
-            await shoeService.returnItems(items);
 
             res.json({
-                status: 'success'
+                status: await shoeService.returnItems(items)
             });
         } catch (err) {
             returnError(res, err);
@@ -140,10 +138,9 @@ module.exports = function (shoeService) {
     const addShoe = async (req, res) => {
         try {
             const shoeData = req.body;
-            shoeService.addNewShoe(shoeData);
 
             res.json({
-                status: 'success'
+                status: await shoeService.addNewShoe(shoeData)
             });
         } catch (err) {
             returnError(res, err);
@@ -171,74 +168,88 @@ module.exports = function (shoeService) {
     };
 
     const display = async (req, res) => {
-        const id = req.params.id;
-        const shoes = await shoeService.displayByID(id);
-        const colour = shoes[0].colour;
-        const brand = shoes[0].brand;
-        const shoeOptions = await shoeService.colourBrand(colour, brand);
-        const basket = await shoeService.basket();
-        let item;
-        let total = 0;
-        for (item of basket) {
-            total += item.cost;
-        }
-        let sizeStock = [];
-        let shoe;
-        for (shoe of shoeOptions) {
-            if (shoe.item_stock !== 0) {
-                sizeStock.push({ id: shoe.id, size: shoe.size, stock: shoe.item_stock });
+        try {
+            const id = req.params.id;
+            const shoes = await shoeService.displayByID(id);
+            const colour = shoes[0].colour;
+            const brand = shoes[0].brand;
+            const shoeOptions = await shoeService.colourBrand(colour, brand);
+            const basket = await shoeService.basket();
+            let item;
+            let total = 0;
+            for (item of basket) {
+                total += item.cost;
             }
+            let sizeStock = [];
+            let shoe;
+            for (shoe of shoeOptions) {
+                if (shoe.item_stock !== 0) {
+                    sizeStock.push({ id: shoe.id, size: shoe.size, stock: shoe.item_stock });
+                }
+            }
+            sizeStock = sortSizes(sizeStock);
+            res.render('shoe', {
+                id,
+                image: shoes[0].image,
+                colour: shoes[0].colour,
+                brand: shoes[0].brand,
+                price: shoes[0].price,
+                sizeStock,
+                basket,
+                total
+            });
+        } catch (err) {
+            returnError(res, err);
         }
-        sizeStock = sortSizes(sizeStock);
-        res.render('shoe', {
-            id,
-            image: shoes[0].image,
-            colour: shoes[0].colour,
-            brand: shoes[0].brand,
-            price: shoes[0].price,
-            sizeStock,
-            basket,
-            total
-        });
     };
     const updateDisplayShoes = async (req, res) => {
-        const newList = [];
-        let found = false;
-        const id = req.params.id;
-        const basket = await shoeService.basket();
-        const shoe = await shoeService.displayByID(id);
-        const currentShoe = { id: id, colour: shoe[0].colour, brand: shoe[0].brand, size: shoe[0].size, qty: 1, cost: shoe[0].price };
-        let item;
-        if (basket.length > 0) {
-            for (item of basket) {
-                if (item.id === Number(currentShoe.id)) {
-                    currentShoe.qty += item.qty;
-                    currentShoe.cost += item.cost;
-                    newList.push(currentShoe);
-                    found = true;
-                } else {
-                    newList.push(item);
-                }
+        try {
+            const newList = [];
+            let found = false;
+            const id = req.params.id;
+            const basket = await shoeService.basket();
+            const shoe = await shoeService.displayByID(id);
+            const currentShoe = { id: id, colour: shoe[0].colour, brand: shoe[0].brand, size: shoe[0].size, qty: 1, cost: shoe[0].price };
+            let item;
+            if (basket.length > 0) {
+                for (item of basket) {
+                    if (item.id === Number(currentShoe.id)) {
+                        currentShoe.qty += item.qty;
+                        currentShoe.cost += item.cost;
+                        newList.push(currentShoe);
+                        found = true;
+                    } else {
+                        newList.push(item);
+                    }
+                };
+            } else {
+                newList.push(currentShoe);
+                found = true;
             };
-        } else {
-            newList.push(currentShoe);
-            found = true;
-        };
-        if (!found) {
-            newList.push(currentShoe);
-        } else {
-            found = false;
-        };
+            if (!found) {
+                newList.push(currentShoe);
+            } else {
+                found = false;
+            };
 
-        await shoeService.updateBasket(newList);
-        await shoeService.updateShoeStock(id);
+            await shoeService.updateBasket(newList);
+            await shoeService.updateShoeStock(id);
 
-        res.redirect('/shoes/display/' + id);
+            res.redirect('/shoes/display/' + id);
+        } catch (err) {
+            returnError(res, err);
+        }
     };
 
     const updateBasket = async (req, res) => {
-        const items = req.body;
-        await shoeService.updateBasket(items);
+        try {
+            const items = req.body;
+            res.json({
+                status: await shoeService.updateBasket(items)
+            });
+        } catch (err) {
+            returnError(res, err);
+        }
     };
 
     const returnError = (res, err) => {

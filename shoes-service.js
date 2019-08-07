@@ -87,10 +87,10 @@ module.exports = function (pool) {
     };
 
     const addNewShoe = async (shoeData) => {
-        const specialCheck = /[!@#$%^&*(),.?":{}|<>\d]/;
+        const numSpecialCharCheck = /[!@#$%^&*(),.?":{}|<>\d]/;
         if (shoeData.colour && shoeData.brand && shoeData.price && shoeData.size && shoeData.stock) {
-            const colourTest = specialCheck.test(shoeData.colour);
-            const brandTest = specialCheck.test(shoeData.brand);
+            const colourTest = numSpecialCharCheck.test(shoeData.colour);
+            const brandTest = numSpecialCharCheck.test(shoeData.brand);
             if (!colourTest && !brandTest) {
                 shoeData.colour = (shoeData.colour).charAt(0).toUpperCase() + ((shoeData.colour).slice(1)).toLowerCase();
                 shoeData.brand = (shoeData.brand).charAt(0).toUpperCase() + ((shoeData.brand).slice(1)).toLowerCase();

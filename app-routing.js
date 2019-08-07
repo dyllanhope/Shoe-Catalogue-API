@@ -10,7 +10,7 @@ module.exports = (shoeManagerAPI, app) => {
     app.get('/api/shoes/brand/:brandname/size/:size', shoeManagerAPI.brandSize);
     app.get('/api/shoes/brand/:brandname/size/:size/colour/:colour', shoeManagerAPI.filterByAll);
     app.get('/api/shoes/display/basket', shoeManagerAPI.basket);
-    app.post('/api/shoes/basket', shoeManagerAPI.updateBasket);
+    app.post('/api/shoes/basket', (shoeManagerAPI.updateBasket));
     app.post('/shoes/display/:id', shoeManagerAPI.updateDisplayShoes);
     app.post('/api/shoes/sold/:id', shoeManagerAPI.updateShoeStock);
     app.post('/api/shoes/clear', shoeManagerAPI.returnItems);
