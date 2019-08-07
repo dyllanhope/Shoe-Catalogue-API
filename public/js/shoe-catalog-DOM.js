@@ -65,29 +65,7 @@ window.onhashchange = () => {
         buildShoeDisplay(id);
     } else if (url[1] === 'update') {
         filterDisplay.style.display = 'none';
-        axios
-            .get('/shoes/display/' + id)
-            .then((results) => {
-                const response = results.data;
-                const shoeData = response.shoeData;
-                const sizeLocate = shoeData.sizeStock;
-                for (item of sizeLocate) {
-                    if (item.id === id) {
-                        size = item.size;
-                    };
-                };
-
-                const colour = shoeData.colour;
-                const brand = shoeData.brand;
-                const price = shoeData.price;
-
-                shoeInstance.buildBasket(0, colour, brand, size, price, id);
-                updateBasket();
-                buildBasket();
-
-                updateStock(id);
-                window.location.href = '/#/display/' + id;
-            });
+        updateShoeDisplay(id);
     };
 };
 
@@ -260,6 +238,13 @@ const buildShoeDisplay = (id) => {
             const shoeData = response.shoeData;
             const displayHTML = displayTemplate(shoeData);
             chosenDisplayData.innerHTML = displayHTML;
+        });
+};
+const updateShoeDisplay = (id) => {
+    axios
+        .post('/shoes/update/display/' + id)
+        .then(() => {
+            window.location.href = '/#/display/' + id;
         });
 };
 

@@ -61,7 +61,7 @@ if (process.env.RELOAD_DATA) {
 
 AppRouting(shoeManagerAPI, app);
 
-var PORT = process.env.PORT || 3002;
+var PORT = process.env.PORT || 3010;
 
 app.listen(PORT, () => {
     console.log('App started on port:', PORT);
