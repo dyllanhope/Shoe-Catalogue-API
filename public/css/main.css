@@ -11,6 +11,7 @@ div.info{
     border-radius: 5px;
     display: none;
     padding: 5px;
+    float: right;
 }
 button.basket{
     background-color: ;

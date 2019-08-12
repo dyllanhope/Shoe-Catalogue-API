@@ -44,6 +44,7 @@ const shoeInstance = ShoeCatalogManager();
 const shoeService = ShoeService();
 
 window.onload = () => {
+    window.location.href = '/#/home/';
     basket();
 
     dropDownUpdate('colour');
@@ -60,7 +61,9 @@ window.onhashchange = () => {
     const hash = location.hash;
     const url = hash.split('/');
     const id = Number(url[2]);
-    if (url[1] === 'display') {
+    if (url[1] === 'home') {
+        filterData.style = '';
+    } else if (url[1] === 'display') {
         filterDisplay.style.display = 'none';
         buildShoeDisplay(id);
     } else if (url[1] === 'update') {
@@ -103,8 +106,6 @@ showEditor.addEventListener('click', () => {
         recordEditor.style.display = 'unset';
         showEditor.innerHTML = 'Hide';
     };
-
-    shoeInstance.newStockCount();
 });
 
 searchBtn.addEventListener('click', () => {
