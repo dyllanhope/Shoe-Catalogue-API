@@ -8,7 +8,6 @@ const homeTemplateSource = document.querySelector('.homeTemplate').innerHTML;
 
 const displayField = document.querySelector('#display');
 const filterDisplay = document.querySelector('.filterDisplay');
-const chosenDisplayData = document.querySelector('.chosenDisplayData');
 
 // template compilations
 const basketTemplate = Handlebars.compile(basketTemplateSource);
@@ -36,10 +35,8 @@ window.onhashchange = () => {
         dropDownUpdate('brand');
         dropDownUpdate('size');
     } else if (url[1] === 'display') {
-        filterDisplay.style.display = 'none';
         buildShoeDisplay(id);
     } else if (url[1] === 'update') {
-        filterDisplay.style.display = 'none';
         updateShoeDisplay(id);
     };
 };
@@ -244,7 +241,7 @@ const buildShoeDisplay = (id) => {
             const response = results.data;
             const shoeData = response.shoeData;
             const displayHTML = displayTemplate(shoeData);
-            chosenDisplayData.innerHTML = displayHTML;
+            filterDisplay.innerHTML = displayHTML;
         });
 };
 const updateShoeDisplay = (id) => {
