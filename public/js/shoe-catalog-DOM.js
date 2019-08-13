@@ -3,58 +3,25 @@ const dropDownTemplateSource = document.querySelector('.dropDownTemplate').inner
 const basketTemplateSource = document.querySelector('.basketListTemplate').innerHTML;
 const filterTemplateSource = document.querySelector('.filteredListTemplate').innerHTML;
 const diplayChosenShoe = document.querySelector('.diplayChosenShoe').innerHTML;
-// drop down menues
-const colourDropDown = document.querySelector('#colourDrop');
-const brandDropDown = document.querySelector('#brandDrop');
-const sizeDropDown = document.querySelector('#sizeDrop');
-// data for templates
-const colourData = document.querySelector('.colourData');
-const brandData = document.querySelector('.brandData');
-const sizeData = document.querySelector('.sizeData');
-const listData = document.querySelector('.listData');
-const filterData = document.querySelector('.filterData');
-const chosenDisplayData = document.querySelector('.chosenDisplayData');
-// buttons
-const addBtn = document.querySelector('.addButton');
-const clearBtn = document.querySelector('.clearButton');
-const checkoutBtn = document.querySelector('.checkoutButton');
-const searchBtn = document.querySelector('.searchButton');
-const recordEditor = document.querySelector('.recordUpdate');
-const showEditor = document.querySelector('.showRecordEditor');
-const updateBtn = document.querySelector('.updateRecords');
-// inputs for updating
-const colourNew = document.querySelector('.colourUp');
-const brandNew = document.querySelector('.brandUp');
-const priceNew = document.querySelector('.priceUp');
-const sizeNew = document.querySelector('.sizeUp');
-const stockNew = document.querySelector('.stockUp');
+const homeTemplateSource = document.querySelector('.homeTemplate').innerHTML;
 // displays
-const dispTotal = document.querySelector('.totalText');
-const total = document.querySelector('#total');
-const messageField = document.querySelector('#messageRecord');
+
 const displayField = document.querySelector('#display');
 const filterDisplay = document.querySelector('.filterDisplay');
+const chosenDisplayData = document.querySelector('.chosenDisplayData');
+
 // template compilations
 const basketTemplate = Handlebars.compile(basketTemplateSource);
 const dropDownTemplate = Handlebars.compile(dropDownTemplateSource);
 const filterTemplate = Handlebars.compile(filterTemplateSource);
 const displayTemplate = Handlebars.compile(diplayChosenShoe);
+const homeTemplate = Handlebars.compile(homeTemplateSource);
 
 const shoeInstance = ShoeCatalogManager();
 const shoeService = ShoeService();
 
 window.onload = () => {
     window.location.href = '/#/home/';
-    basket();
-
-    dropDownUpdate('colour');
-    dropDownUpdate('brand');
-    dropDownUpdate('size');
-
-    recordEditor.style.display = 'none';
-    if (!shoeInstance.total > 0) {
-        dispTotal.style.display = 'none';
-    }
 };
 
 window.onhashchange = () => {
@@ -62,7 +29,12 @@ window.onhashchange = () => {
     const url = hash.split('/');
     const id = Number(url[2]);
     if (url[1] === 'home') {
-        filterData.style = '';
+        buildHomePage();
+        basket();
+
+        dropDownUpdate('colour');
+        dropDownUpdate('brand');
+        dropDownUpdate('size');
     } else if (url[1] === 'display') {
         filterDisplay.style.display = 'none';
         buildShoeDisplay(id);
@@ -72,68 +44,6 @@ window.onhashchange = () => {
     };
 };
 
-updateBtn.addEventListener('click', () => {
-    if ((colourNew.value).trim() && (brandNew.value).trim() && priceNew.value && sizeNew.value && stockNew.value) {
-        const shoeData = {
-            colour: (colourNew.value).trim(),
-            brand: (brandNew.value).trim(),
-            price: Number(priceNew.value),
-            size: Number(sizeNew.value),
-            stock: Number(stockNew.value)
-        };
-
-        addShoe(shoeData);
-        messageField.innerHTML = 'Item added successfully!';
-
-        setTimeout(() => {
-            messageField.innerHTML = '';
-        }, 2000);
-    } else {
-        messageField.innerHTML = 'You have not filled every field correctly.';
-    }
-});
-
-showEditor.addEventListener('click', () => {
-    if (showEditor.innerHTML === 'Hide') {
-        recordEditor.style.display = 'none';
-        colourNew.value = '';
-        brandNew.value = '';
-        priceNew.value = '';
-        sizeNew.value = '';
-        stockNew.value = '';
-        showEditor.innerHTML = 'Update records';
-    } else if (showEditor.innerHTML === 'Update records') {
-        recordEditor.style.display = 'unset';
-        showEditor.innerHTML = 'Hide';
-    };
-});
-
-searchBtn.addEventListener('click', () => {
-    if ((colourDropDown.value).startsWith('Select') && (brandDropDown.value).startsWith('Select') && (sizeDropDown.value).startsWith('Select')) {
-        filterData.innerHTML = '';
-        displayField.innerHTML = 'Please select one or more of the above fields';
-
-        setTimeout(() => {
-            displayField.innerHTML = '';
-        }, 3000);
-    } else {
-        if (!(colourDropDown.value).startsWith('Select') && !(brandDropDown.value).startsWith('Select') && !(sizeDropDown.value).startsWith('Select')) {
-            buildDisplayColourBrandSize(colourDropDown.value, brandDropDown.value, sizeDropDown.value);
-        } else if (!(colourDropDown.value).startsWith('Select') && !(brandDropDown.value).startsWith('Select')) {
-            buildDisplayColourBrand(colourDropDown.value, brandDropDown.value);
-        } else if (!(colourDropDown.value).startsWith('Select') && !(sizeDropDown.value).startsWith('Select')) {
-            buildDisplayColourSize(colourDropDown.value, sizeDropDown.value);
-        } else if (!(brandDropDown.value).startsWith('Select') && !(sizeDropDown.value).startsWith('Select')) {
-            buildDisplayBrandSize(brandDropDown.value, sizeDropDown.value);
-        } else if (!(colourDropDown.value).startsWith('Select')) {
-            buildDisplayColour(colourDropDown.value);
-        } else if (!(brandDropDown.value).startsWith('Select')) {
-            buildDisplayBrand(brandDropDown.value);
-        } else if (!(sizeDropDown.value).startsWith('Select')) {
-            buildDisplaySize(sizeDropDown.value);
-        }
-    }
-});
 Handlebars.registerHelper('isAllSelected', () => {
     if (!(colourDropDown.value).startsWith('Select') &&
         !(brandDropDown.value).startsWith('Select') &&
@@ -147,56 +57,152 @@ Handlebars.registerHelper('noStock', (stock) => {
     };
 });
 
-addBtn.addEventListener('click', () => {
-    if (!(colourDropDown.value).startsWith('Select') && !(brandDropDown.value).startsWith('Select') && !(sizeDropDown.value).startsWith('Select')) {
-        axios
-            .get('/api/shoes')
-            .then((results) => {
-                const response = results.data;
-                const shoes = response.shoes;
+const buildHomePage = () => {
+    const homeHTML = homeTemplate();
+    filterDisplay.innerHTML = homeHTML;
+    // menu dropdowns
+    colourDropDown = document.querySelector('#colourDrop');
+    brandDropDown = document.querySelector('#brandDrop');
+    sizeDropDown = document.querySelector('#sizeDrop');
+    // inputs for updating
+    colourNew = document.querySelector('.colourUp');
+    brandNew = document.querySelector('.brandUp');
+    priceNew = document.querySelector('.priceUp');
+    sizeNew = document.querySelector('.sizeUp');
+    stockNew = document.querySelector('.stockUp');
+    // buttons
+    addBtn = document.querySelector('.addButton');
+    clearBtn = document.querySelector('.clearButton');
+    checkoutBtn = document.querySelector('.checkoutButton');
+    searchBtn = document.querySelector('.searchButton');
+    recordEditor = document.querySelector('.recordUpdate');
+    showEditor = document.querySelector('.showRecordEditor');
+    updateBtn = document.querySelector('.updateRecords');
+    // data for templates
+    colourData = document.querySelector('.colourData');
+    brandData = document.querySelector('.brandData');
+    sizeData = document.querySelector('.sizeData');
+    listData = document.querySelector('.listData');
+    filterData = document.querySelector('.filterData');
+    // displays
+    dispTotal = document.querySelector('.totalText');
+    total = document.querySelector('#total');
+    messageField = document.querySelector('#messageRecord');
 
-                const colour = colourDropDown.value;
-                const brand = brandDropDown.value;
-                const size = sizeDropDown.value;
+    addBtn.addEventListener('click', () => {
+        if (!(colourDropDown.value).startsWith('Select') && !(brandDropDown.value).startsWith('Select') && !(sizeDropDown.value).startsWith('Select')) {
+            axios
+                .get('/api/shoes')
+                .then((results) => {
+                    const response = results.data;
+                    const shoes = response.shoes;
 
-                shoeInstance.buildBasket(shoes, colour, brand, size);
-                updateBasket();
+                    const colour = colourDropDown.value;
+                    const brand = brandDropDown.value;
+                    const size = sizeDropDown.value;
 
-                buildBasket();
+                    shoeInstance.buildBasket(shoes, colour, brand, size);
+                    updateBasket();
 
-                let id = 0;
-                for (let x = 0; x < shoes.length; x++) {
-                    if (colour === shoes[x].colour && brand === shoes[x].brand && Number(size) === shoes[x].size) {
-                        id = shoes[x].id;
+                    buildBasket();
+
+                    let id = 0;
+                    for (let x = 0; x < shoes.length; x++) {
+                        if (colour === shoes[x].colour && brand === shoes[x].brand && Number(size) === shoes[x].size) {
+                            id = shoes[x].id;
+                        };
                     };
-                };
 
-                updateStock(id);
-            });
-    } else {
-        displayField.innerHTML = 'Please fill out all the above fields before attempting to add to your basket';
+                    updateStock(id);
+                });
+        } else {
+            displayField.innerHTML = 'Please fill out all the above fields before attempting to add to your basket';
+            setTimeout(() => {
+                displayField.innerHTML = '';
+            }, 3000);
+        };
+    });
+
+    clearBtn.addEventListener('click', () => {
+        returnItems(shoeInstance.basket());
+        shoeInstance.newBasket([]);
+        updateBasket();
+    });
+
+    checkoutBtn.addEventListener('click', () => {
+        filterData.innerHTML = shoeInstance.checkout();
+        shoeInstance.newBasket([]);
+        updateBasket();
+        listData.innerHTML = '';
+        dispTotal.style.display = 'none';
         setTimeout(() => {
-            displayField.innerHTML = '';
+            filterData.innerHTML = '';
         }, 3000);
-    };
-});
+    });
 
-clearBtn.addEventListener('click', () => {
-    returnItems(shoeInstance.basket());
-    shoeInstance.newBasket([]);
-    updateBasket();
-});
+    updateBtn.addEventListener('click', () => {
+        if ((colourNew.value).trim() && (brandNew.value).trim() && priceNew.value && sizeNew.value && stockNew.value) {
+            const shoeData = {
+                colour: (colourNew.value).trim(),
+                brand: (brandNew.value).trim(),
+                price: Number(priceNew.value),
+                size: Number(sizeNew.value),
+                stock: Number(stockNew.value)
+            };
 
-checkoutBtn.addEventListener('click', () => {
-    filterData.innerHTML = shoeInstance.checkout();
-    shoeInstance.newBasket([]);
-    updateBasket();
-    listData.innerHTML = '';
-    dispTotal.style.display = 'none';
-    setTimeout(() => {
-        filterData.innerHTML = '';
-    }, 3000);
-});
+            addShoe(shoeData);
+            messageField.innerHTML = 'Item added successfully!';
+
+            setTimeout(() => {
+                messageField.innerHTML = '';
+            }, 2000);
+        } else {
+            messageField.innerHTML = 'You have not filled every field correctly.';
+        }
+    });
+
+    showEditor.addEventListener('click', () => {
+        if (showEditor.innerHTML === 'Hide') {
+            recordEditor.style.display = 'none';
+            colourNew.value = '';
+            brandNew.value = '';
+            priceNew.value = '';
+            sizeNew.value = '';
+            stockNew.value = '';
+            showEditor.innerHTML = 'Update records';
+        } else if (showEditor.innerHTML === 'Update records') {
+            recordEditor.style.display = 'unset';
+            showEditor.innerHTML = 'Hide';
+        };
+    });
+
+    searchBtn.addEventListener('click', () => {
+        if ((colourDropDown.value).startsWith('Select') && (brandDropDown.value).startsWith('Select') && (sizeDropDown.value).startsWith('Select')) {
+            filterData.innerHTML = '';
+            displayField.innerHTML = 'Please select one or more of the above fields';
+
+            setTimeout(() => {
+                displayField.innerHTML = '';
+            }, 3000);
+        } else {
+            if (!(colourDropDown.value).startsWith('Select') && !(brandDropDown.value).startsWith('Select') && !(sizeDropDown.value).startsWith('Select')) {
+                buildDisplayColourBrandSize(colourDropDown.value, brandDropDown.value, sizeDropDown.value);
+            } else if (!(colourDropDown.value).startsWith('Select') && !(brandDropDown.value).startsWith('Select')) {
+                buildDisplayColourBrand(colourDropDown.value, brandDropDown.value);
+            } else if (!(colourDropDown.value).startsWith('Select') && !(sizeDropDown.value).startsWith('Select')) {
+                buildDisplayColourSize(colourDropDown.value, sizeDropDown.value);
+            } else if (!(brandDropDown.value).startsWith('Select') && !(sizeDropDown.value).startsWith('Select')) {
+                buildDisplayBrandSize(brandDropDown.value, sizeDropDown.value);
+            } else if (!(colourDropDown.value).startsWith('Select')) {
+                buildDisplayColour(colourDropDown.value);
+            } else if (!(brandDropDown.value).startsWith('Select')) {
+                buildDisplayBrand(brandDropDown.value);
+            } else if (!(sizeDropDown.value).startsWith('Select')) {
+                buildDisplaySize(sizeDropDown.value);
+            }
+        }
+    });
+};
 
 const buildBasket = () => {
     const basketItems = { items: shoeInstance.basket() };

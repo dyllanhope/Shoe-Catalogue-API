@@ -11,6 +11,107 @@
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <title>Shoe Catalogue</title>
 
+    <script type='text/template' class='homeTemplate'>
+        <div class="col-8">
+            <div class="border sideRight center">
+                <table class="center">
+                    <tr>
+                        <td>
+                            <h4>Colour:</h4>
+                        </td>
+                        <td><select id="colourDrop" style="float: none;margin:0px"
+                            class="colourData center"></select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Brand:</h4>
+                        </td>
+                        <td><select id="brandDrop" style="float: none" class="brandData center"></select></td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <h4>Size:</h4>
+                        </td>
+                        <td><select id="sizeDrop" style="float: none" class="sizeData center"></select></td>
+                    </tr>
+                </table>
+                <div>
+                    <button style="margin:5px" class="searchButton">Search</button>
+                    <button style="margin:5px" class="addButton">Add to basket</button>
+                </div>
+                <div id='display' class="center">
+
+                </div>
+                <div class="filterData center">
+
+                </div>
+            </div>
+            <div>
+                <button class="showRecordEditor basket">Update records</button>
+            </div>
+            <div class="info recordUpdate">
+                <div>
+                    <h3 style="margin: 2px;color:black"><u>Update records</u></h3>
+                </div>
+                <div>
+                    <table>
+                        <tr>
+                            <td>
+                                <h4>Colour:</h4>
+                            </td>
+                            <td><input class="colourUp" style="margin:5px; float:none" type="text"></td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <h4>Brand:</h4>
+                                </td>
+                                <td><input class="brandUp" style="margin:5px" type="text"></td>
+                            </tr>
+                                <tr>
+                                    <td>
+                                        <h4>Price:</h4>
+                                    </td>
+                                    <td> <input class="priceUp" style="margin:5px;width:50px" type="number"></td>
+                            </tr>
+                                    <tr>
+                                        <td>
+                                            <h4>Size:</h4>
+                                        </td>
+                                        <td><input class="sizeUp" style="margin:5px;width:50px" type="number"></td>
+                            </tr>
+                                        <tr>
+                                            <td>
+                                                <h4>Stock:</h4>
+                                            </td>
+                                            <td><input class="stockUp" style="margin:5px;width:50px" type="number"></td>
+                            </tr>
+                        </table>
+                    </div>
+                                    <div>
+                                        <h4 style="margin:5px" id="messageRecord"></h4>
+                                        <button style="margin-bottom: 6px" class="updateRecords clear">Add record</button>
+                                    </div>
+                </div>
+            </div>
+                            <div style="background-color:rgb(204, 88, 53);border-radius:5px;border: 1px solid black"
+                                class="col-4 sideLeft">
+                                <h3 style='margin-left: 15px'><u>Shopping Basket:</u></h3>
+                                <div class="listData">
+
+                                </div>
+                                <div class='center'>
+                                    <strong class="totalText" style="color: white;float: none">Total: R<span id="total"></span></strong>
+                                </div>
+                                <div style="float: right">
+                                    <button class="clearButton basket">Clear basket</button>
+                                </div>
+                                <div style="float: left">
+                                    <button class="checkoutButton basket">Checkout</button>
+                                </div>
+                            </div>
+    </script>
+
     <script type='text/template' class='diplayChosenShoe'>
         <div class='row'>
             <div class='col-12'>
@@ -105,104 +206,6 @@
         <h1><u>Dyllans Shoe Catalogue</u></h1>
         <div class='row chosenDisplayData'></div>
         <div class="row filterDisplay">
-            <div class="col-8">
-                <div class="border sideRight center">
-                    <table class="center">
-                        <tr>
-                            <td>
-                                <h4>Colour:</h4>
-                            </td>
-                            <td><select id="colourDrop" style="float: none;margin:0px"
-                                    class="colourData center"></select>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4>Brand:</h4>
-                            </td>
-                            <td><select id="brandDrop" style="float: none" class="brandData center"></select></td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <h4>Size:</h4>
-                            </td>
-                            <td><select id="sizeDrop" style="float: none" class="sizeData center"></select></td>
-                        </tr>
-                    </table>
-                    <div>
-                        <button style="margin:5px" class="searchButton">Search</button>
-                        <button style="margin:5px" class="addButton">Add to basket</button>
-                    </div>
-                    <div id='display' class="center">
-
-                    </div>
-                    <div class="filterData center">
-
-                    </div>
-                </div>
-                <div>
-                    <button class="showRecordEditor basket">Update records</button>
-                </div>
-                <div class="info recordUpdate">
-                    <div>
-                        <h3 style="margin: 2px;color:black"><u>Update records</u></h3>
-                    </div>
-                    <div>
-                        <table>
-                            <tr>
-                                <td>
-                                    <h4>Colour:</h4>
-                                </td>
-                                <td><input class="colourUp" style="margin:5px; float:none" type="text"></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h4>Brand:</h4>
-                                </td>
-                                <td><input class="brandUp" style="margin:5px" type="text"></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h4>Price:</h4>
-                                </td>
-                                <td> <input class="priceUp" style="margin:5px;width:50px" type="number"></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h4>Size:</h4>
-                                </td>
-                                <td><input class="sizeUp" style="margin:5px;width:50px" type="number"></td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <h4>Stock:</h4>
-                                </td>
-                                <td><input class="stockUp" style="margin:5px;width:50px" type="number"></td>
-                            </tr>
-                        </table>
-                    </div>
-                    <div>
-                        <h4 style="margin:5px" id="messageRecord"></h4>
-                        <button style="margin-bottom: 6px" class="updateRecords clear">Add record</button>
-                    </div>
-                </div>
-            </div>
-            <div style="background-color:rgb(204, 88, 53);border-radius:5px;border: 1px solid black"
-                class="col-4 sideLeft">
-                <h3 style='margin-left: 15px'><u>Shopping Basket:</u></h3>
-                <div class="listData">
-
-                </div>
-                <div class='center'>
-                    <strong class="totalText" style="color: white;float: none">Total: R<span id="total"></span></strong>
-                </div>
-                <div style="float: right">
-                    <button class="clearButton basket">Clear basket</button>
-                </div>
-                <div style="float: left">
-                    <button class="checkoutButton basket">Checkout</button>
-                </div>
-            </div>
         </div>
     </div>
 </body>
